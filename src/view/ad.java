@@ -1,87 +1,63 @@
 package view;
 
+import java.awt.FlowLayout;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
 import data.DataConnection;
 
-public class ad {
+public class ad extends JFrame{
 	
 	static int op;
 	private static DataConnection mc = DataConnection.getInstance();
 	
+	public JPanel panel;
+	public JLabel label;
+	public JButton button;
+	public JTextArea area;
+	
+	public ad(){
+		super("sistema experto");
+        setVisible(true);
+        
+        panel = new JPanel();
+		panel.setLayout(new FlowLayout());
+
+		label = new JLabel("This is a label!");
+
+		button = new JButton();
+		button.setText("Press me");
+		
+		panel.add(label);
+		panel.add(button);
+		
+		area = new JTextArea(10,20);
+		panel.add(area);
+		this.mostrar();
+		
+		this.add(panel);
+		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//finaliza el programa cuando se da click en la X
+	     setSize(500,400);//configurando tamaño de la ventana
+	     setVisible(true);//configurando visualización de la ventana     
+	}
+	
 	public static void main(String[] args) throws Exception {
-		menu();
-		op=readInt();
-		exmenu(op);
+		ad a = new ad();
 	}
 
-	private static String readString() throws Exception {
-		BufferedReader br = new BufferedReader(
-		new InputStreamReader(System.in));
-		return br.readLine();
-	}
-	
-	private static int readInt() {
-		Scanner sc = new Scanner(System.in);
-		return sc.nextInt();
-		}
-	
-	public static void menu(){
-		System.out.println("Seleccioneu una opciÃ³ del menÃº:");
-		System.out.println("1. AÃ±adir nuevo producto");
-		System.out.println("2. Visualizar productos");
-		System.out.println("-1. Sortir");
-	}
-	
-	private static void exmenu(int op2) throws Exception {
-		String nom;
-		String cat;
-		boolean ok=false;
-		
-		switch (op2) {
-		case 1:
-				System.out.println("Nom del producte");
-				nom=readString();
-				System.out.println("Categoria del producte");
-				cat=readString();
-				addProd(nom,cat);
-				System.out.println("producte afegit");
-			break;
-		case 2:
-				mostraProds();
-			break;
-		case -1:
-			break;
-		default:
-			menu();
-			op=readInt();
-			exmenu(op);
-		break;
-		}
-		if(op!=-1){
-			System.out.println("Prem intro per a continuar");
-			String nada=readString();//no se usa, es para pausar
-									 //por si ha de salir otra vez el menu para hacer otra accion
-			menu();
-			op=readInt();
-			exmenu(op);
-		}
-	}
-	
-	static void addProd(String nom,String cat){
+	public void mostrar(){
 		try {
-			mc.insertaEsport(nom,cat);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	static void mostraProds(){
-		try {
+			System.out.println("nombre\t\tnivel\tid\tdescripcion");
 			for (int i = 0; i < mc.retornaEsports().size(); i++) {
+				this.area.setText(this.area.getText()+"\n"+(mc.retornaEsports().get(i).toString()+" "));
 				System.out.println(mc.retornaEsports().get(i).toString());
 			}
 		} catch (Exception e) {

@@ -24,7 +24,8 @@ public class DataConnection {
 		String host = "127.0.0.1";
 		String user = "root";
 		String pass = "";
-		String dtbs = "tienda";
+		//String dtbs = "tienda";
+		String dtbs = "sistema";
 		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
@@ -69,21 +70,29 @@ public class DataConnection {
 	
 	public ArrayList<String> retornaEsports() throws SQLException{
 		ArrayList<String> ls = new ArrayList<String>();
-		
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM Producto");
+		String concat;
+	
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM data WHERE nivel='1000'");
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()){
-			ls.add(rs.getString("nombre"));
+			
+			concat = rs.getString("nombre")+"\t"+
+					String.valueOf(rs.getInt("nivel"))+"\t"+
+					String.valueOf(rs.getInt("id"))+"\t"+
+					rs.getString("descripcion");
+			ls.add(concat);
 		}
 		rs.close();
 		return ls;
 	}
 
-	public void insertaEsport(String nom, String cat) throws SQLException {
-		String seleccio = "INSERT INTO `Producto` (`nombre`,`categoria`)VALUES (?,?)";
+	public void insertaEsport(String nom, int nivel, int id, String des) throws SQLException {
+		String seleccio = "INSERT INTO `data` (`nombre`,`nivel`,`id`,`descripcion`)VALUES (?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(seleccio);
 		ps.setString(1, nom); 
-		ps.setString(2, cat); 
+		ps.setInt(2, nivel); 
+		ps.setInt(3, id);
+		ps.setString(4,des);
 		ps.executeUpdate();
 	}
 }
