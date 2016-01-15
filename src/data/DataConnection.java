@@ -129,6 +129,24 @@ public class DataConnection {
 	}
 	
 	/**
+	 * retorna los nombres de un determinado nivel
+	 * */
+	public ArrayList<String> selectNameFromLevel(int level) throws SQLException{
+		ArrayList<String> ls = new ArrayList<String>();
+		String concat;
+	
+		PreparedStatement ps = con.prepareStatement("SELECT nombre FROM data WHERE nivel = "+level);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()){
+			
+			concat = rs.getString("nombre");			
+			ls.add(concat);
+		}
+		rs.close();
+		return ls;
+	}
+	
+	/**
 	 * retorna el nombre de un determiando ID
 	 * */
 	public ArrayList<String> selectNombreFromId(int id) throws SQLException{
