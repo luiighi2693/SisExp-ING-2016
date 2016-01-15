@@ -20,10 +20,10 @@ public class ad extends JFrame{
 	private static DataConnection mc = DataConnection.getInstance();
 	
 	public JPanel panel;
+	public JButton botones[];
 	public JLabel label;
 	public JButton button;
 	public JTextArea area;
-	public JButton botones[];
 	
 	public ad() throws SQLException{
 		super("sistema experto");
@@ -32,6 +32,7 @@ public class ad extends JFrame{
         panel = new JPanel();
 		panel.setLayout(new FlowLayout());
 
+		//this.botones= new JButton[10000];
 		label = new JLabel("This is a label!");
 
 		button = new JButton();
@@ -45,12 +46,13 @@ public class ad extends JFrame{
 		
 		botones=new JButton[10];
 		
-		for (int i = 0; i < mc.retornaEsports().size(); i++) {
+		for (int i = 0; i < mc.selectAllData().size(); i++) {
 			this.botones[i]=new JButton(""+(i+1));
 			panel.add(this.botones[i]);
 		}
 		
 		this.mostrar();
+		System.out.println(mc.selectAllNiveles());
 		
 		this.add(panel);
 		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//finaliza el programa cuando se da click en la X
@@ -64,10 +66,9 @@ public class ad extends JFrame{
 
 	public void mostrar(){
 		try {
-			System.out.println("nombre\t\tnivel\tid\tdescripcion");
-			for (int i = 0; i < mc.retornaEsports().size(); i++) {
-				this.area.setText(this.area.getText()+"\n"+(mc.retornaEsports().get(i).toString()+" "));
-				System.out.println(mc.retornaEsports().get(i).toString());
+			for (int i = 0; i < mc.selectSucesoresFromId(2002).size(); i++) {
+				this.area.setText(this.area.getText()+"\n"+(mc.selectSucesoresFromId(2002).get(i).toString()+" "));
+				//System.out.println(mc.selectAllDataFromId(1000).get(i).toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
