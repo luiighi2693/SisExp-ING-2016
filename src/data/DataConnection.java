@@ -72,7 +72,7 @@ public class DataConnection {
 		ArrayList<String> ls = new ArrayList<String>();
 		String concat;
 	
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM data WHERE nivel='1000'");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM data WHERE nivel='3000'");
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()){
 			

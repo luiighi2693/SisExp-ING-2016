@@ -23,8 +23,9 @@ public class ad extends JFrame{
 	public JLabel label;
 	public JButton button;
 	public JTextArea area;
+	public JButton botones[];
 	
-	public ad(){
+	public ad() throws SQLException{
 		super("sistema experto");
         setVisible(true);
         
@@ -41,11 +42,19 @@ public class ad extends JFrame{
 		
 		area = new JTextArea(10,20);
 		panel.add(area);
+		
+		botones=new JButton[10];
+		
+		for (int i = 0; i < mc.retornaEsports().size(); i++) {
+			this.botones[i]=new JButton(""+(i+1));
+			panel.add(this.botones[i]);
+		}
+		
 		this.mostrar();
 		
 		this.add(panel);
 		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//finaliza el programa cuando se da click en la X
-	     setSize(500,400);//configurando tamaño de la ventana
+	     setSize(400,400);//configurando tamaño de la ventana
 	     setVisible(true);//configurando visualización de la ventana     
 	}
 	
