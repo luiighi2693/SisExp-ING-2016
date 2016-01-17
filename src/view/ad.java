@@ -41,57 +41,37 @@ public class ad extends JFrame implements ActionListener{
 
 	public void inicializarFrame(){
 		
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//finaliza el programa cuando se da click en la X
-	     setSize(400,400);//configurando tamaño de la ventana
-	     setVisible(true);//configurando visualización de la ventana   
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//finaliza el programa cuando se da click en la X
+		setSize(400,400);//configurando tamaño de la ventana
+		setVisible(true);//configurando visualización de la ventana   
 	}
 	
 	public void inicializarComponentes() throws SQLException{
-	     panel = new JPanel();
-			panel.setLayout(new FlowLayout());
-			this.contBotonesActual=0;
-			
-			this.botones= new JButton[100];
-			this.codigos = new JLabel[100];
-			for (int i = 0; i < mc.selectIdFromLevel(1000).size(); i++) {
-				this.botones[i]=new JButton(mc.selectNameFromLevel(1000).get(i));
-				this.codigos[i]= new JLabel(mc.selectIdFromLevel(1000).get(i));
-				this.panel.add(this.botones[i]);
-				this.panel.add(this.codigos[i]);
-				this.botones[i].addActionListener(this);
-			}
-			/*label = new JLabel("This is a label!");
-
-			button = new JButton();
-			button.setText("Press me");
-			
-			panel.add(label);
-			panel.add(button);
-			
-			area = new JTextArea(10,20);
-			panel.add(area);
-			
-			botones=new JButton[10];
-			*/
-			/*for (int i = 0; i < mc.selectAllData().size(); i++) {
-				this.botones[i]=new JButton(""+(i+1));
-				panel.add(this.botones[i]);
-			}
-			
+		panel = new JPanel();
+		panel.setLayout(new FlowLayout());
+		this.contBotonesActual=0;
+		this.botones= new JButton[100]; //inicio
+		this.codigos = new JLabel[100];
+		for (int i = 0; i < mc.selectIdFromLevel(1000).size(); i++) {
+			this.botones[i]=new JButton(mc.selectNameFromLevel(1000).get(i));
+			this.codigos[i]= new JLabel(mc.selectIdFromLevel(1000).get(i));
+			this.panel.add(this.botones[i]);
+			this.panel.add(this.codigos[i]);
+			this.botones[i].addActionListener(this);
+			this.contBotonesActual++;
+		}
+		
+		System.out.println(this.contBotonesActual);
+		/*
 			this.mostrar();
 			System.out.println(mc.selectAllNiveles());
-			*/
-			this.add(panel);
-	     
-	     
+		 */
+		this.add(panel);
 	}
-	
-	
 	/*public void mostrar(){
 		try {
 			for (int i = 0; i < mc.selectSucesoresFromId(2002).size(); i++) {
-				this.area.setText(this.area.getText()+"\n"+(mc.selectSucesoresFromId(2002).get(i).toString()+" "));
 				//System.out.println(mc.selectAllDataFromId(1000).get(i).toString());
 			}
 		} catch (Exception e) {
@@ -101,7 +81,20 @@ public class ad extends JFrame implements ActionListener{
 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("hola");
+		
+		try {
+			String aux= "'"+((JButton)(e.getSource())).getText()+"'";
+			String aux2= mc.selectIdFromNombre(aux).get(0);
+			for (int i = 0; i < mc.selectSucesoresFromId(Integer.parseInt(aux2)).size(); i++) {
+				System.out.println(mc.selectSucesoresFromId(Integer.parseInt(aux2)).get(i).toString());
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		((JButton)(e.getSource())).removeActionListener(this);
+		((JButton)(e.getSource())).setVisible(false);
+		remove(((JButton)(e.getSource())));
 	}
 }
