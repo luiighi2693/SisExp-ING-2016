@@ -23,7 +23,6 @@ public class ad extends JFrame implements ActionListener{
 	
 	public JPanel panel;
 	public JButton botones[];
-	public JLabel codigos[];
 	public JLabel label;
 	public JButton button;
 	public JTextArea area;
@@ -52,17 +51,13 @@ public class ad extends JFrame implements ActionListener{
 		panel.setLayout(new FlowLayout());
 		this.contBotonesActual=0;
 		this.botones= new JButton[100]; //inicio
-		this.codigos = new JLabel[100];
 		for (int i = 0; i < mc.selectIdFromLevel(1000).size(); i++) {
 			this.botones[i]=new JButton(mc.selectNameFromLevel(1000).get(i));
-			this.codigos[i]= new JLabel(mc.selectIdFromLevel(1000).get(i));
+			this.botones[i].setName(mc.selectIdFromLevel(1000).get(i));
 			this.panel.add(this.botones[i]);
-			this.panel.add(this.codigos[i]);
 			this.botones[i].addActionListener(this);
 			this.contBotonesActual++;
 		}
-		
-		System.out.println(this.contBotonesActual);
 		/*
 			this.mostrar();
 			System.out.println(mc.selectAllNiveles());
@@ -79,22 +74,39 @@ public class ad extends JFrame implements ActionListener{
 		}
 	}
 */
+	public void eliminarBotones(){
+		for (int i = 0; i < this.contBotonesActual; i++) {
+			botones[i].removeActionListener(this);
+			botones[i].setVisible(false);
+			panel.remove(botones[i]);
+		}
+		this.contBotonesActual=0;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		String aux, aux2, aux3;
 		try {
-			String aux= "'"+((JButton)(e.getSource())).getText()+"'";
-			String aux2= mc.selectIdFromNombre(aux).get(0);
-			for (int i = 0; i < mc.selectSucesoresFromId(Integer.parseInt(aux2)).size(); i++) {
-				System.out.println(mc.selectSucesoresFromId(Integer.parseInt(aux2)).get(i).toString());
+			aux= ((JButton)(e.getSource())).getName(); //id
+			eliminarBotones();
+			for (int i = 0; i < mc.selectSucesoresFromId(Integer.parseInt(aux)).size(); i++) {
+				aux2=mc.selectSucesoresFromId(Integer.parseInt(aux)).get(i); //id sucesor
+				System.out.println(aux2);
+				aux3= mc.selectNombreFromId(Integer.parseInt(aux2)).get(0); //nombre
+				//aux3= (mc.selectNombreFromId(Integer.parseInt(mc.selectSucesoresFromId(Integer.parseInt(aux2)).get(i).toString()))).get(i).toString();
+				botones[i]= new JButton(aux3);
+				botones[i].setName(aux2);
+				this.panel.add(botones[i]);
+				botones[i].addActionListener(this);
+				botones[i].setVisible(true);
+				this.contBotonesActual++;
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		((JButton)(e.getSource())).removeActionListener(this);
-		((JButton)(e.getSource())).setVisible(false);
-		remove(((JButton)(e.getSource())));
+		System.out.println(contBotonesActual);
+		System.out.println("\n\n");
 	}
 }
+	

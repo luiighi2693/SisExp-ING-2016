@@ -223,24 +223,6 @@ public class DataConnection {
 		return cont;
 	}
 	
-	/**
-	 * retorna el ID de un determiando Nombre
-	 * */
-	public ArrayList<String> selectIdFromNombre(String nombre) throws SQLException{
-		ArrayList<String> ls = new ArrayList<String>();
-		String concat;
-	
-		PreparedStatement ps = con.prepareStatement("SELECT id FROM data WHERE nombre = "+nombre);
-		ResultSet rs = ps.executeQuery();
-		while(rs.next()){
-			
-			concat = String.valueOf(rs.getInt("id"));
-
-			ls.add(concat);
-		}
-		rs.close();
-		return ls;
-	}
 	
 	/******************************************ANTECESORES***************************************************/
 	/**
