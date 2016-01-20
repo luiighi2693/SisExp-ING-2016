@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-01-2016 a las 21:26:09
+-- Tiempo de generación: 20-01-2016 a las 21:39:58
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -53,7 +53,7 @@ INSERT INTO `antecesores` (`id_actual`, `id_antecesor`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `data` (
-  `nombre` varchar(20) NOT NULL,
+  `nombre` varchar(60) NOT NULL,
   `nivel` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `descripcion` text NOT NULL
@@ -64,14 +64,14 @@ CREATE TABLE IF NOT EXISTS `data` (
 --
 
 INSERT INTO `data` (`nombre`, `nivel`, `id`, `descripcion`) VALUES
-('prevencion', 1000, 1001, ''),
-('diagnostico', 1000, 1002, ''),
-('amenazas', 2000, 2001, ''),
+('prevencion (etapa Diseño)', 1000, 1001, ''),
+('diagnostico (etapa de Servicio)', 1000, 1002, ''),
+('amenazas (alcance de investigacion)', 2000, 2001, ''),
 ('posibles patologias', 2000, 2002, ''),
-('plantilla descriptio', 3000, 3001, ''),
-('concordancia del lev', 3000, 3002, ''),
-('planillas de inspecc', 3000, 3003, ''),
-('verificacion del sis', 3000, 3004, '');
+('plantilla descripcion amenaza y ensayos necesarios', 3000, 3001, ''),
+('concordancia del levantamiento altiplainetrico con planes ed', 3000, 3002, ''),
+('planillas de inspeccion con estudios necesarios a realizar', 3000, 3003, ''),
+('verificacion del sistema de fundacion con el tipo de suelo p', 3000, 3004, '');
 
 -- --------------------------------------------------------
 

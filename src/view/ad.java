@@ -58,22 +58,10 @@ public class ad extends JFrame implements ActionListener{
 			this.botones[i].addActionListener(this);
 			this.contBotonesActual++;
 		}
-		/*
-			this.mostrar();
-			System.out.println(mc.selectAllNiveles());
-		 */
+
 		this.add(panel);
 	}
-	/*public void mostrar(){
-		try {
-			for (int i = 0; i < mc.selectSucesoresFromId(2002).size(); i++) {
-				//System.out.println(mc.selectAllDataFromId(1000).get(i).toString());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-*/
+	
 	public void eliminarBotones(){
 		for (int i = 0; i < this.contBotonesActual; i++) {
 			botones[i].removeActionListener(this);
