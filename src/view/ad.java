@@ -27,6 +27,7 @@ public class ad extends JFrame implements ActionListener{
 	public JButton button;
 	public JTextArea area;
 	public int contBotonesActual;
+	public JButton atras;
 	
 	public ad() throws SQLException{
 		super("sistema experto");
@@ -58,7 +59,11 @@ public class ad extends JFrame implements ActionListener{
 			this.botones[i].addActionListener(this);
 			this.contBotonesActual++;
 		}
-
+		this.atras= new JButton("atras");
+		this.atras.setVisible(false);
+		this.atras.addActionListener(this);
+		this.panel.add(this.atras);
+		
 		this.add(panel);
 	}
 	
@@ -74,27 +79,65 @@ public class ad extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String aux, aux2, aux3;
-		try {
-			aux= ((JButton)(e.getSource())).getName(); //id
+		if(e.getSource()==atras){
+			aux= botones[0].getName(); //id
 			eliminarBotones();
-			for (int i = 0; i < mc.selectSucesoresFromId(Integer.parseInt(aux)).size(); i++) {
-				aux2=mc.selectSucesoresFromId(Integer.parseInt(aux)).get(i); //id sucesor
-				System.out.println(aux2);
-				aux3= mc.selectNombreFromId(Integer.parseInt(aux2)).get(0); //nombre
-				//aux3= (mc.selectNombreFromId(Integer.parseInt(mc.selectSucesoresFromId(Integer.parseInt(aux2)).get(i).toString()))).get(i).toString();
-				botones[i]= new JButton(aux3);
-				botones[i].setName(aux2);
-				this.panel.add(botones[i]);
-				botones[i].addActionListener(this);
-				botones[i].setVisible(true);
-				this.contBotonesActual++;
+			try {
+				aux2= mc.selectAntecesorFromId(Integer.parseInt(aux)).get(0);//id antecesor
+				if(Integer.parseInt(aux2)<2000){//primer nivel
+					for (int i = 0; i < mc.selectIdFromLevel(1000).size(); i++) {
+						this.botones[i]=new JButton(mc.selectNameFromLevel(1000).get(i));
+						this.botones[i].setName(mc.selectIdFromLevel(1000).get(i));
+						this.panel.add(this.botones[i]);
+						this.botones[i].addActionListener(this);
+						this.contBotonesActual++;
+					}
+				}
+				else { //pedir nuevamente el id antecesor
+					aux= mc.selectAntecesorFromId(Integer.parseInt(aux2)).get(0);//id antecesor2
+					construirBotones(aux);
+				}
+			} catch (NumberFormatException e1) {
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		}
+		else{
+			try {
+				aux= ((JButton)(e.getSource())).getName(); //id
+				eliminarBotones();
+				construirBotones(aux);
+				
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 		System.out.println(contBotonesActual);
 		System.out.println("\n\n");
+	}
+
+	private void construirBotones(String aux) throws NumberFormatException, SQLException {
+		String aux2, aux3;
+		for (int i = 0; i < mc.selectSucesoresFromId(Integer.parseInt(aux)).size(); i++) {
+			aux2=mc.selectSucesoresFromId(Integer.parseInt(aux)).get(i); //id sucesor
+			System.out.println(aux2);
+			aux3= mc.selectNombreFromId(Integer.parseInt(aux2)).get(0); //nombre
+			//aux3= (mc.selectNombreFromId(Integer.parseInt(mc.selectSucesoresFromId(Integer.parseInt(aux2)).get(i).toString()))).get(i).toString();
+			botones[i]= new JButton(aux3);
+			botones[i].setName(aux2);
+			this.panel.add(botones[i]);
+			botones[i].addActionListener(this);
+			botones[i].setVisible(true);
+			this.contBotonesActual++;		
+		}
+		
+		if((Integer.parseInt(mc.selectNivelFromId(Integer.parseInt(botones[0].getName())).get(0)))>1999){
+			atras.setVisible(true);
+		}
+		else {
+			atras.setVisible(false);
+		}
 	}
 }
 	
