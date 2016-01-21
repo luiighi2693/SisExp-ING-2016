@@ -42,7 +42,7 @@ public class ad extends JFrame implements ActionListener{
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//finaliza el programa cuando se da click en la X
-		setSize(400,400);//configurando tamaño de la ventana
+		setSize(500,350);//configurando tamaño de la ventana
 		setVisible(true);//configurando visualización de la ventana   
 	}
 	
