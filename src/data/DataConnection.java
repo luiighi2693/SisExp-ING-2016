@@ -24,8 +24,9 @@ public class DataConnection {
 		String host = "127.0.0.1";
 		String user = "root";
 		String pass = "";
-		String dtbs = "sistema";
-		
+		String dtbs = "ingenieria";
+//		String dtbs = "sistema";
+
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			String newConnectionURL = "jdbc:mysql://" + host + "/" + dtbs
@@ -68,7 +69,7 @@ public class DataConnection {
 	}
 	/******************************************DATA***************************************************/
 	/**
-	 *retorna todos los elementos de la taba data 
+	 *retorna todos los elementos de la tabla data
 	 * */
 	public ArrayList<String> selectAllData() throws SQLException{
 		ArrayList<String> ls = new ArrayList<String>();
