@@ -1186,6 +1186,22 @@ INSERT INTO `matrizrespuestaspatologicasvigas_patologia` (`nombre`, `numeroPregu
 ('Planilla N°7 FISICAS', 13, 'Desgaste Superficial', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('Planilla N°7 FISICAS', 14, 'Picaduras', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO');
 
+
+CREATE TABLE `preguntasplanillasetapas` (
+  `patologia` varchar(50) NOT NULL,
+  `elemento` varchar(50) NOT NULL,
+  `numeroEtapa` int(10) NOT NULL,
+  `numeroPregunta` int(50) NOT NULL,
+  `pregunta` varchar(300) NOT NULL,
+  `sugerencia` varchar(250) DEFAULT NULL,
+  `cantRespuestas` int(10) NOT NULL,
+  `respuestas` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `preguntasplanillasetapas` (`patologia`, `elemento`, `numeroEtapa`, `numeroPregunta`, `pregunta`, `sugerencia`, `cantRespuestas`, `respuestas`) VALUES
+('FISURAS', 'COLUMNA', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas? ', 'Se recomienda realizar Ensayo con Fisurometro, Medición con Cinta métrica de Fisuras. ', 2, 'ACTIVAS | PASIVAS');
+
+
 --
 -- Índices para tablas volcadas
 --
