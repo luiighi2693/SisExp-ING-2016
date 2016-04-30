@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-04-2016 a las 14:28:19
+-- Tiempo de generación: 01-05-2016 a las 01:13:44
 -- Versión del servidor: 10.0.17-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -1291,10 +1291,35 @@ INSERT INTO `preguntasplanillasetapas` (`patologia`, `elemento`, `numeroEtapa`, 
 ('FISURAS', 'MUROS', 2, 7, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI | NO'),
 ('FISURAS', 'MUROS', 2, 8, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', '', 2, 'SI | NO'),
 ('FISURAS', 'MUROS', 2, 9, '¿Los elementos que restringen la dilatación del elemento tienen fisuras?', 'Realizar Análisis Térmico (Termografia)', 2, 'SI | NO'),
-('FISURAS', 'MUROS', 2, 10, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar remoción de Friso/Recubrimiento, Ultra-Sonido, Gammagrafía.', 3, 'SUPERFICIALES | SUPERFICIALES - PROFUNDAS | PROFUNDAS');
+('FISURAS', 'MUROS', 2, 10, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar remoción de Friso/Recubrimiento, Ultra-Sonido, Gammagrafía.', 3, 'SUPERFICIALES | SUPERFICIALES - PROFUNDAS | PROFUNDAS'),
+('FISURAS', 'VIGAS', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas?', 'Realizar ensayos de Fisurometro, Medición de Actividad con Testigo.', 2, 'ACTIVAS | PASIVAS'),
+('FISURAS', 'VIGAS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', '', 3, 'SI, CON ENTRECRUZAMIENTO | SI, SIN ENTRECRUZAMIENTO | NO'),
+('FISURAS', 'VIGAS', 1, 3, '¿ Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', '', 2, 'SI| NO'),
+('FISURAS', 'VIGAS', 1, 4, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', '', 2, 'SI| NO'),
+('FISURAS', 'VIGAS', 1, 5, '¿Las fisuras se inclinan en un ángulo cercano a  45° respecto al eje longitudinal, con 75° como el máximo?', 'Realizar ensayos de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI| NO'),
+('FISURAS', 'VIGAS', 1, 6, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', NULL, 3, 'DURANTE LAS PRIMERAS HORAS | POSTERIORMENTE | NO LO SE'),
+('FISURAS', 'VIGAS', 1, 7, '¿Las fisuras se ubican únicamente en las zonas de mayor momento (nodos, tramo central de la luz del elemento)?', NULL, 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 1, 8, '¿Las fisuras toman distintas inclinaciones en cada cara del elemento?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 1, 9, '¿Las fisuras se presentan paralelas a la Armadura Longitudinal del elemento?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 3, 'SI, CONTINUAS | SI, NO CONTINUAS | NO'),
+('FISURAS', 'VIGAS', 1, 10, '¿Las fisuras aparecen paralelas a la armadura transversal del elemento?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 1, 11, '¿Hay fisuras específicamente acompañadas de rotura de Elementos Adosados?', '', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 1, 12, '¿El elemento afectado, podría restringir a un elemento que se esté dilatando?', 'Realizar Análisis Térmico ( Termografia )', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 1, 13, '¿Hay presencia solo de Micro-fisuras en el elemento afectado?', '', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 1, 14, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento cercano a éstas?', '', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 1, 15, '¿Las fisuras se presentan Verticalmente, Horizontalmente o Diagonalmente?', 'Realizar ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 4, 'VERTICALMENTE | HORIZONTALMENTE | DIAGONALMENTE | NINGUNA'),
+('FISURAS', 'VIGAS', 1, 16, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 1, 17, '¿Se evidencia Fisuras consecuentes en las distintas caras del elemento (Fisuras Tipo Resorte)?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 1, 18, '¿Son fisuras grandes con alguna configuración de las siguientes?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 6, 'A | B | C | D | E | NINGUNA'),
+('FISURAS', 'VIGAS', 2, 1, '¿Las fisuras aparecen progresando verticalmente a la línea neutra del elemento y desapareciendo al aproximarse?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 2, 2, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 2, 3, '¿Se evidencia presencia de fisuras, acompañadas de Expansión en Volumen del elemento Afectado?', 'Realizar Ensayo de Medicion de Recubrimiento, Escaneo 3D, Nivelacion de Superficies.', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 2, 4, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', '', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 2, 5, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', '', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 2, 6, '¿Las fisuras se presentan en todas las Caras del Elemento Afectado?', '', 2, 'SI | NO'),
+('FISURAS', 'VIGAS', 2, 7, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remocion de Friso/Recubrimiento, Gammagrafia, Ultra-Sonido', 3, 'SUPERFICIALES | SUPERFICIALES - PROFUNDAS | PROFUNDAS');
 
 --
--- Índices para tablas volcadas
+-- Índices para tablas volcadasS
 --
 
 --
