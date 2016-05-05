@@ -47,15 +47,15 @@ public class inicio extends JFrame implements ActionListener{
     }
 
     public void instancias(){
-        tituloLbl = new JLabel();
-        nombreProyectoLbl = new JLabel();
-        numeroCasoLlb = new JLabel();
-        ingenieroEspecialistaLbl = new JLabel();
-        cedulaLbl = new JLabel();
-        fechaLbl = new JLabel();
-        nuevaInspeccionBtn = new JButton();
-        atrasDatosInspeccionBtn = new JButton();
-        empezarInspeccionBtn = new JButton();
+        tituloLbl = new JLabel("DOCTOR STRUCTURE V1.0");
+        nombreProyectoLbl = new JLabel("Nombre de Proyecto:");
+        numeroCasoLlb = new JLabel("N°. Caso:");
+        ingenieroEspecialistaLbl = new JLabel("Ing. Especialista:");
+        cedulaLbl = new JLabel("CIV:");
+        fechaLbl = new JLabel("Fecha:");
+        nuevaInspeccionBtn = new JButton("Nueva Inspeccion");
+        atrasDatosInspeccionBtn = new JButton("atras");
+        empezarInspeccionBtn = new JButton("empezar");
         nombreProyectoTxF = new JTextField();
         numeroCasoTxF = new JTextField();
         ingenieroEspecialistaTxF = new JTextField();
@@ -73,46 +73,37 @@ public class inicio extends JFrame implements ActionListener{
         elementoInicialLbl = new JLabel("Elemento:");
         tipoAmbienteLbl = new JLabel("Tipo de Ambiente");
 
-        siguienteEtapa1Btn= new JButton();
+        siguienteEtapa1Btn= new JButton("Siguiente");
     }
 
     public void inicializarComponentes() throws SQLException {
-        tituloLbl.setText("DOCTOR STRUCTURE V1.0");
         tituloLbl.setBounds(400,100,250,25);
 
-        nuevaInspeccionBtn.setText("Nueva Inspeccion");
         nuevaInspeccionBtn.setBounds(850,650,150,30);
         nuevaInspeccionBtn.addActionListener(this);
 
-        atrasDatosInspeccionBtn.setText("atras");
         atrasDatosInspeccionBtn.setBounds(50,650,150,30);
         atrasDatosInspeccionBtn.addActionListener(this);
 
-        empezarInspeccionBtn.setText("empezar");
         empezarInspeccionBtn.setBounds(850,650,150,30);
         empezarInspeccionBtn.addActionListener(this);
 
-        nombreProyectoLbl.setText("Nombre de Proyecto:");
         nombreProyectoLbl.setBounds(180,120,150,25);
 
         nombreProyectoTxF.setBounds(320,120,300,25);
 
-        numeroCasoLlb.setText("N°. Caso:");
         numeroCasoLlb.setBounds(650,120,150,25);
 
         numeroCasoTxF.setBounds(720,120,100,25);
 
-        ingenieroEspecialistaLbl.setText("Ing. Especialista:");
         ingenieroEspecialistaLbl.setBounds(180,200,150,25);
 
         ingenieroEspecialistaTxF.setBounds(300,200,200,25);
 
-        cedulaLbl.setText("CIV:");
         cedulaLbl.setBounds(520,200,50,25);
 
         cedulaTxF.setBounds(550,200,100,25);
 
-        fechaLbl.setText("Fecha:");
         fechaLbl.setBounds(670,200,50,25);
 
         fechaTxF.setBounds(720,200,80,25);
@@ -130,7 +121,6 @@ public class inicio extends JFrame implements ActionListener{
         agresivoCbx.setBounds(350,350,150,25);
         noAgresivoCbx.setBounds(350,375,150,25);
 
-        siguienteEtapa1Btn.setText("Siguiente");
         siguienteEtapa1Btn.setBounds(850,650,150,30);
         siguienteEtapa1Btn.addActionListener(this);
 
@@ -190,6 +180,17 @@ public class inicio extends JFrame implements ActionListener{
             remove(cedulaTxF);
             remove(fechaLbl);
             remove(fechaTxF);
+            remove(elementoInicialLbl);
+            remove(vigaCbx);
+            remove(losaCbx);
+            remove(columnaCbx);
+            remove(mamposteriaCbx);
+            remove(muroCbx);
+            remove(tipoAmbienteLbl);
+            remove(agresivoCbx);
+            remove(noAgresivoCbx);
+            remove(siguienteEtapa1Btn);
+
             add(nuevaInspeccionBtn);
 
             tituloLbl.setText("DOCTOR STRUCTURE V1.0");
@@ -200,7 +201,6 @@ public class inicio extends JFrame implements ActionListener{
         if(e.getSource()==empezarInspeccionBtn){
             menu.remove(abrir);
             menu.add(guardar);
-//            remove(atrasDatosInspeccionBtn);
             remove(empezarInspeccionBtn);
             remove(nombreProyectoLbl);
             remove(nombreProyectoTxF);
