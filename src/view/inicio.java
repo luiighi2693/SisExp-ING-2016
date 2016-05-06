@@ -1,6 +1,11 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -127,6 +132,20 @@ public class inicio extends JFrame implements ActionListener{
         this.add(tituloLbl);
         this.add(nuevaInspeccionBtn);
 
+
+        JPanel panel = new JPanel();
+        panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        panel.setBounds(300,200,600,400);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        for(int i=0;i<100;i++){
+            panel.add(new JButton("hola"));
+        }
+        JScrollPane scroller = new JScrollPane(panel);
+        scroller.setBounds(225,200,600,400);
+        scroller.setAutoscrolls(true);
+
+        add(scroller);
+
 //        for (int i=0; i< mc.selectBaseDatosTratamientos().size(); i++){
 //            System.out.println(mc.selectBaseDatosTratamientos().get(i));
 //        }
@@ -163,6 +182,8 @@ public class inicio extends JFrame implements ActionListener{
             tituloLbl.setText("Datos Generales de la Inspección");
             tituloLbl.setBounds(400,50,250,25);
             repaint();
+
+            System.out.println();
         }
 
         if (e.getSource()== atrasDatosInspeccionBtn){
