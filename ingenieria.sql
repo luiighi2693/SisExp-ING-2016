@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.0.2
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2016 a las 09:55:21
--- Versión del servidor: 10.0.17-MariaDB
--- Versión de PHP: 5.6.14
+-- Servidor: localhost
+-- Tiempo de generación: 06-05-2016 a las 21:00:26
+-- Versión del servidor: 5.5.24-log
+-- Versión de PHP: 5.4.3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `ingenieria`
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `basedatosboletin12`
 --
 
-CREATE TABLE `basedatosboletin12` (
+CREATE TABLE IF NOT EXISTS `basedatosboletin12` (
   `numeroBoletin` int(11) NOT NULL,
   `numeroPregunta` int(11) NOT NULL,
   `elemento` varchar(50) NOT NULL,
@@ -34,7 +34,8 @@ CREATE TABLE `basedatosboletin12` (
   `descripcion` varchar(200) NOT NULL,
   `idEnsayoRecomendado` int(11) NOT NULL,
   `ensayoRecomendado` varchar(200) NOT NULL,
-  `ensayoDestructivoNecesario` varchar(50) DEFAULT NULL
+  `ensayoDestructivoNecesario` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`numeroBoletin`,`numeroPregunta`,`elemento`,`manifestacion`,`idEnsayoRecomendado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -320,7 +321,7 @@ INSERT INTO `basedatosboletin12` (`numeroBoletin`, `numeroPregunta`, `elemento`,
 -- Estructura de tabla para la tabla `basedatoscausas`
 --
 
-CREATE TABLE `basedatoscausas` (
+CREATE TABLE IF NOT EXISTS `basedatoscausas` (
   `idPatologia` int(50) NOT NULL,
   `patologia` varchar(100) NOT NULL,
   `numeroCausa` int(50) NOT NULL,
@@ -523,7 +524,7 @@ INSERT INTO `basedatoscausas` (`idPatologia`, `patologia`, `numeroCausa`, `posib
 -- Estructura de tabla para la tabla `basedatostratamientos`
 --
 
-CREATE TABLE `basedatostratamientos` (
+CREATE TABLE IF NOT EXISTS `basedatostratamientos` (
   `idPatologia` int(50) NOT NULL,
   `patologia` varchar(100) NOT NULL,
   `numeroTratamiento` int(50) NOT NULL,
@@ -726,10 +727,11 @@ INSERT INTO `basedatostratamientos` (`idPatologia`, `patologia`, `numeroTratamie
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicascolumnas_nombrepatologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicascolumnas_nombrepatologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicascolumnas_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
+  PRIMARY KEY (`idPatologia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -775,7 +777,7 @@ INSERT INTO `matrizrespuestaspatologicascolumnas_nombrepatologia` (`idPatologia`
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicascolumnas_patologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicascolumnas_patologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicascolumnas_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -811,7 +813,8 @@ CREATE TABLE `matrizrespuestaspatologicascolumnas_patologia` (
   `abrasion` varchar(50) NOT NULL,
   `ataqueSolucionAlcalina` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL
+  `valores` varchar(250) NOT NULL,
+  PRIMARY KEY (`nombre`,`numeroPregunta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -886,10 +889,11 @@ INSERT INTO `matrizrespuestaspatologicascolumnas_patologia` (`nombre`, `numeroPr
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicaslosas_nombrepatologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicaslosas_nombrepatologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicaslosas_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
+  PRIMARY KEY (`idPatologia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -938,7 +942,7 @@ INSERT INTO `matrizrespuestaspatologicaslosas_nombrepatologia` (`idPatologia`, `
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicaslosas_patologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicaslosas_patologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicaslosas_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -977,7 +981,8 @@ CREATE TABLE `matrizrespuestaspatologicaslosas_patologia` (
   `cortanteLosas` varchar(50) NOT NULL,
   `traccionLosas` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL
+  `valores` varchar(250) NOT NULL,
+  PRIMARY KEY (`nombre`,`numeroPregunta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1051,10 +1056,11 @@ INSERT INTO `matrizrespuestaspatologicaslosas_patologia` (`nombre`, `numeroPregu
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasmuros_nombrepatologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicasmuros_nombrepatologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasmuros_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
+  PRIMARY KEY (`idPatologia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1100,7 +1106,7 @@ INSERT INTO `matrizrespuestaspatologicasmuros_nombrepatologia` (`idPatologia`, `
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasmuros_patologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicasmuros_patologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasmuros_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -1136,7 +1142,8 @@ CREATE TABLE `matrizrespuestaspatologicasmuros_patologia` (
   `accionSismica` varchar(50) NOT NULL,
   `traccionMuros` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL
+  `valores` varchar(250) NOT NULL,
+  PRIMARY KEY (`nombre`,`numeroPregunta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1211,10 +1218,11 @@ INSERT INTO `matrizrespuestaspatologicasmuros_patologia` (`nombre`, `numeroPregu
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasparedes_nombrepatologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicasparedes_nombrepatologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasparedes_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
+  PRIMARY KEY (`idPatologia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1223,7 +1231,7 @@ CREATE TABLE `matrizrespuestaspatologicasparedes_nombrepatologia` (
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasparedes_patologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicasparedes_patologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasparedes_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -1255,7 +1263,8 @@ CREATE TABLE `matrizrespuestaspatologicasparedes_patologia` (
   `oquedadesSuperficiales` varchar(50) NOT NULL,
   `ataqueBiologico` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL
+  `valores` varchar(250) NOT NULL,
+  PRIMARY KEY (`nombre`,`numeroPregunta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1319,10 +1328,11 @@ INSERT INTO `matrizrespuestaspatologicasparedes_patologia` (`nombre`, `numeroPre
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasvigas_nombrepatologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicasvigas_nombrepatologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasvigas_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
+  PRIMARY KEY (`idPatologia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1370,7 +1380,7 @@ INSERT INTO `matrizrespuestaspatologicasvigas_nombrepatologia` (`idPatologia`, `
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasvigas_patologia`
 --
 
-CREATE TABLE `matrizrespuestaspatologicasvigas_patologia` (
+CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasvigas_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -1408,7 +1418,8 @@ CREATE TABLE `matrizrespuestaspatologicasvigas_patologia` (
   `accionSismica` varchar(50) NOT NULL,
   `asentamiento` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL
+  `valores` varchar(250) NOT NULL,
+  PRIMARY KEY (`nombre`,`numeroPregunta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1486,15 +1497,16 @@ INSERT INTO `matrizrespuestaspatologicasvigas_patologia` (`nombre`, `numeroPregu
 -- Estructura de tabla para la tabla `preguntasplanillasetapas`
 --
 
-CREATE TABLE `preguntasplanillasetapas` (
+CREATE TABLE IF NOT EXISTS `preguntasplanillasetapas` (
   `patologia` varchar(50) NOT NULL,
   `elemento` varchar(50) NOT NULL,
   `numeroEtapa` int(10) NOT NULL,
   `numeroPregunta` int(50) NOT NULL,
   `pregunta` varchar(300) NOT NULL,
-  `sugerencia` varchar(250) DEFAULT NULL,
+  `sugerencia` varchar(300) DEFAULT NULL,
   `cantRespuestas` int(10) NOT NULL,
-  `respuestas` varchar(100) NOT NULL
+  `respuestas` varchar(100) NOT NULL,
+  PRIMARY KEY (`patologia`,`elemento`,`numeroEtapa`,`numeroPregunta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1503,229 +1515,149 @@ CREATE TABLE `preguntasplanillasetapas` (
 
 INSERT INTO `preguntasplanillasetapas` (`patologia`, `elemento`, `numeroEtapa`, `numeroPregunta`, `pregunta`, `sugerencia`, `cantRespuestas`, `respuestas`) VALUES
 ('FISURAS', 'COLUMNAS', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas? ', 'Se recomienda realizar Ensayo con Fisurometro, Medición con Cinta métrica de Fisuras. ', 2, 'ACTIVAS-PASIVAS'),
-('FISURAS', 'COLUMNAS', 1, 2, '¿Las fisuras se presentan en forma de “Mapeo” o “Redes”, entrecruzadas entre sí?', NULL, 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
-('FISURAS', 'COLUMNAS', 1, 3, '¿Las fisuras muestran presencia de Compuestos de tipo “Gel” en ellas?', NULL, 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 1, 4, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', NULL, 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 1, 2, '¿Las fisuras se presentan en forma de “Mapeo” o “Redes”, entrecruzadas entre sí?', 'Realizar inspección Visual.', 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
+('FISURAS', 'COLUMNAS', 1, 3, '¿Las fisuras muestran presencia de Compuestos de tipo “Gel” en ellas?', 'Realizar inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 1, 4, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', 'Realizar inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 1, 5, '¿Las fisuras se inclinan en un ángulo cercano a  45°, con 75° como el máximo?', 'Realizar Ensayo de Fisurómetro, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 1, 6, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', NULL, 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-TAL VEZ'),
-('FISURAS', 'COLUMNAS', 1, 7, '¿Las fisuras se ubican en el tramo Central de la luz del Elemento o en las zonas de mayor momento (nodos, tramo central de la luz del elemento)?', NULL, 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 1, 6, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', 'Obtener respuesta del historial de la edificación.', 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-TAL VEZ'),
+('FISURAS', 'COLUMNAS', 1, 7, '¿Las fisuras se ubican en el tramo Central de la luz del Elemento o en las zonas de mayor momento (nodos, tramo central de la luz del elemento)?', 'Realizar inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 1, 8, '¿Las fisuras toman distintas inclinaciones en cada cara del elemento?', 'Realizar ensayo de Fisurómetro, Medición de Fisuras', 8, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 1, 9, '¿Hay fisuras acompañadas de rotura de Elementos Adosados?', NULL, 2, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 1, 10, '¿El elemento afectado, restringe la dilatación de algún otro Elemento?', 'Realizar Ensayo de Análisis Térmico ( Termografia)', 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 1, 11, '¿Hay presencia solo de Micro-fisuras en el elemento afectado?', NULL, 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 1, 11, '¿Hay presencia solo de Micro-fisuras en el elemento afectado?', 'Realizar Levantamiento grafico de fisuras, medición de fisuras o fisurometro.', 2, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 1, 12, '¿Se evidencia presencia de fisuras, acompañadas de Expansión en Volumen del elemento Afectado?', 'Realizar Medición de Recubrimiento, Nivelación de Superficies, Escaneo 3D, Plomo de muros y Columnas.', 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 1, 13, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento?', NULL, 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 1, 13, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento?', 'Ensayos recomendados; ensayo con pachómetro (Ferroscan, Profometro) acompañado de la inspección visual o medición de recubrimiento', 2, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 1, 14, '¿Las fisuras se presentan Verticalmente, Horizontalmente o Diagonalmente?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 4, 'VERTICALMENTE-HORIZONTALMENTE-DIAGONALMENTE-SIN DIRECCION DEFINIDA'),
 ('FISURAS', 'COLUMNAS', 1, 15, '¿Se evidencia Fisuras consecuentes en las distintas caras del elemento (Fisuras Tipo Resorte)?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 1, 16, '¿Las fisuras se Asemejan a algunas de estas Imágenes?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 6, 'A-B-C-D-E-NINGUNA'),
-('FISURAS', 'COLUMNAS', 1, 17, '¿Las fisuras se presentan en todas las Caras del Elemento Afectado?', NULL, 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 1, 17, '¿Las fisuras se presentan en todas las Caras del Elemento Afectado?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras', 2, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 2, 1, '¿Las fisuras se presentan paralelas a la Armadura Longitudinal del elemento?', 'Realizar Ensayos de Ferroscan, Profometro, Auscultación Magnética, Gammagrafía.', 3, 'SI, CONTINUAS-SI, NO CONTINUAS-NO'),
-('FISURAS', 'COLUMNAS', 2, 2, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar Ensayos de Ferroscan, Profometro, Auscultación Magnética, Gammagrafía.', 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 2, 3, '¿Las fisuras aparecen paralelas a la armadura transversal del elemento?', 'Realizar Ensayos de Ferroscan, Profometro, Auscultación Magnética, Gammagrafía.', 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 2, 4, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', '', 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 2, 5, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayos de Ferroscan, Profometro, Auscultación Magnética, Gammagrafía.', 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 2, 6, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', '', 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 2, 7, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción Friso/Recubrimiento, Ultra-sonido, Gammagrafía.', 3, 'SUPERFICIALES-SUPERFICIALES-PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'COLUMNAS', 2, 2, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 2, 3, '¿Las fisuras aparecen paralelas a la armadura transversal del elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía).', 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 2, 4, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 2, 5, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 2, 6, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'COLUMNAS', 2, 7, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción Friso/Recubrimiento, Ultra-sonido, Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIALES-SUPERFICIALES-PROFUNDAS-PROFUNDAS'),
 ('FISURAS', 'LOSAS', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas?', 'Realizar Ensayo de Fisurómetro, Medición de Actividad con Testigos.', 2, 'ACTIVAS-PASIVAS'),
-('FISURAS', 'LOSAS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', NULL, 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
-('FISURAS', 'LOSAS', 1, 3, '¿Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', NULL, 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 1, 4, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', NULL, 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', 'Realizar inspección Visual.', 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
+('FISURAS', 'LOSAS', 1, 3, '¿Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', 'Realizar inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 1, 4, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', 'Realizar inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 1, 5, '¿Las fisuras se inclinan en un ángulo cercano a  45° respecto al eje longitudinal, con 75° como el máximo?', 'Realizar ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras', 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 1, 6, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', NULL, 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-NO LO SE'),
-('FISURAS', 'LOSAS', 1, 7, '¿Las fisuras se ubican únicamente en las zonas de mayor momento (nodos, tramo central de la luz del elemento)?', NULL, 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 1, 6, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', 'Consultar historial de la edificación', 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-NO LO SE'),
+('FISURAS', 'LOSAS', 1, 7, '¿Las fisuras se ubican únicamente en las zonas de mayor momento (nodos, tramo central de la luz del elemento)?', 'Determinar por inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 1, 8, '¿Las fisuras toman distintas inclinaciones en cada cara del elemento?', 'Realizar ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 1, 9, '¿Las fisuras se presentan paralelas a la Armadura Longitudinal del elemento?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía.', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 1, 10, '¿Las fisuras aparecen paralelas a la armadura transversal del elemento?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía..', 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 1, 11, '¿Hay fisuras específicamente acompañadas de rotura de Elementos Adosados?', NULL, 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 1, 11, '¿Hay fisuras específicamente acompañadas de rotura de Elementos Adosados?', 'Determinar por inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 1, 12, '¿El elemento afectado, podría restringir a un elemento que se esté dilatando?', 'Realizar Análisis Térmico (Termografia)', 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 1, 13, '¿Hay presencia solo de Micro-fisuras en el elemento afectado?', NULL, 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 1, 14, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento cercano a éstas?', NULL, 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 1, 13, '¿Hay presencia solo de Micro-fisuras en el elemento afectado?', 'Realizar medición de fisuras, levantamiento gráfico de síntomas, inspección visual.', 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 1, 14, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento cercano a éstas?', 'Determinar por inspección Visual,  Ensayo con Pachómetro (Ferroscan, Profometro)', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 1, 15, '¿Las fisuras se presentan Verticalmente, Horizontalmente o Diagonalmente?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras.', 4, 'VERTICALMENTE-HORIZONTALMENTE-DIAGONALMENTE-NINGUNA'),
-('FISURAS', 'LOSAS', 2, 1, '¿Las fisuras aparecen progresando verticalmente a la línea neutra del elemento y desapareciendo al aproximarse?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía.', 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 2, 2, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía.', 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 2, 1, '¿Las fisuras aparecen progresando verticalmente a la línea neutra del elemento y desapareciendo al aproximarse?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 2, 2, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 2, 3, '¿Se evidencia presencia de fisuras, acompañadas de Expansión en Volumen del elemento Afectado?', 'Realizar Ensayo de Medicion de Recubrimiento, Nivelacion de Superficies, Escaneo 3D', 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 2, 4, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', NULL, 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 2, 5, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía.', 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 2, 6, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', NULL, 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 2, 4, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 2, 5, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
+('FISURAS', 'LOSAS', 2, 6, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 2, 7, '¿Los elementos que restringen la dilatación del elemento tienen fisuras?', 'Realizar Análisis Térmico (Termografia)', 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 2, 8, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción Friso/Recubrimiento, Ultra-Sonido, Gammagrafía', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'LOSAS', 2, 8, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción Friso/Recubrimiento, Ultra-Sonido,  Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
 ('FISURAS', 'MAMPOSTERIA', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas?', 'Realizar ensayo de Fisurometro, Actividad de Fisuras con Testigo.', 2, 'ACTIVAS-PASIVAS'),
-('FISURAS', 'MAMPOSTERIA', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', 'Realizar ensayo de Fisurometro, Actividad de Fisuras con Testigo.', 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
-('FISURAS', 'MAMPOSTERIA', 1, 3, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', 'Realizar ensayo de Fisurometro, Actividad de Fisuras con Testigo.', 2, 'SI-NO'),
+('FISURAS', 'MAMPOSTERIA', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', 'Determinar por Inspección Visual.', 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
+('FISURAS', 'MAMPOSTERIA', 1, 3, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'MAMPOSTERIA', 1, 4, '¿Las fisuras se inclinan en un ángulo cercano a  45° respecto al eje longitudinal, con 75° como el máximo?', 'Realizar ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
-('FISURAS', 'MAMPOSTERIA', 1, 5, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', 'Realizar ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-NO LO SE'),
-('FISURAS', 'MAMPOSTERIA', 1, 6, '¿Hay fisuras específicamente acompañadas de rotura de Elementos Adosados?', '', 2, 'SI-NO'),
+('FISURAS', 'MAMPOSTERIA', 1, 5, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', 'Consultar Historial de la edificación', 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-NO LO SE'),
+('FISURAS', 'MAMPOSTERIA', 1, 6, '¿Hay fisuras específicamente acompañadas de rotura de Elementos Adosados?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'MAMPOSTERIA', 1, 7, '¿Se evidencia presencia de fisuras, acompañadas de Expansión en Volumen del elemento Afectado?', 'Realizar Medición de Recubrimiento, Nivelación de Superficie, Escaneo 3D, Plomo de Muros y Columnas.', 2, 'SI-NO'),
-('FISURAS', 'MAMPOSTERIA', 1, 8, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento cercano a éstas?', 'Realizar Medición de Recubrimiento, Nivelación de Superficie, Escaneo 3D, Plomo de Muros y Columnas.', 2, 'SI-NO'),
+('FISURAS', 'MAMPOSTERIA', 1, 8, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento cercano a éstas?', 'Determinar por inspección Visual', 2, 'SI-NO'),
 ('FISURAS', 'MAMPOSTERIA', 1, 9, '¿Las fisuras se presentan Verticalmente, Horizontalmente o Diagonalmente?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras.', 4, 'VERTICALMENTE-HORIZONTALMENTE-DIAGONALMENTE-NINGUNA'),
 ('FISURAS', 'MAMPOSTERIA', 1, 10, '¿Las fisuras se Asemejan a algunas de estas Imágenes?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 6, 'A-B-C-D-E-NINGUNA'),
-('FISURAS', 'MAMPOSTERIA', 2, 1, '¿Las fisuras en la mampostería aparecen cerca de la cara del apoyo o en la zona de confinamiento de un elemento Estructural?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Gammagrafía, Ultra-sonido.', 2, 'SI-NO'),
+('FISURAS', 'MAMPOSTERIA', 2, 1, '¿Las fisuras en la mampostería aparecen cerca de la cara del apoyo o en la zona de confinamiento de un elemento Estructural?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía), Ultra-sonido.', 2, 'SI-NO'),
 ('FISURAS', 'MAMPOSTERIA', 2, 2, '¿Se encuentran fisuras en elementos que restrinjan la dilatación del Elemento Afectado?', 'Realizar Análisis Térmico ( Termografia).', 2, 'SI-NO'),
-('FISURAS', 'MAMPOSTERIA', 2, 3, '¿Las fisuras que se observan,  son solo superficiales o también las acompañan profundas?', 'Realizar Remoción de Friso/Recubrimiento, Ultra-sonido, Gammagrafía.', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'MAMPOSTERIA', 2, 3, '¿Las fisuras que se observan,  son solo superficiales o también las acompañan profundas?', 'Realizar Remoción de Friso/Recubrimiento, Ultra-sonido, Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
 ('FISURAS', 'MUROS', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas?', 'Realizar Ensayo de Fisurómetro, Medición de Actividad con Testigos.', 2, 'ACTIVAS-PASIVAS'),
-('FISURAS', 'MUROS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', '', 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
-('FISURAS', 'MUROS', 1, 3, '¿Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', '', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 1, 4, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', '', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', 'Determinar por Inspección Visual.', 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
+('FISURAS', 'MUROS', 1, 3, '¿Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 1, 4, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'MUROS', 1, 5, '¿Las fisuras se inclinan en un ángulo cercano a  45° respecto al eje longitudinal, con 75° como el máximo?', 'Realizar ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 1, 6, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', '', 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-TAL VEZ'),
-('FISURAS', 'MUROS', 1, 7, '¿Las fisuras se ubican únicamente en las zonas de mayor momento (nodos, tramo central de la luz del elemento)?', '', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 1, 6, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', 'Consultar el historial de la Edificación.', 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-TAL VEZ'),
+('FISURAS', 'MUROS', 1, 7, '¿Las fisuras se ubican únicamente en las zonas de mayor momento (nodos, tramo central de la luz del elemento)?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'MUROS', 1, 8, '¿Las fisuras toman distintas inclinaciones en cada cara del elemento?', 'Realizar ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 1, 9, '¿Hay fisuras específicamente acompañadas de rotura de Elementos Adosados?', '', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 1, 10, '¿Hay presencia solo de Micro-fisuras en el elemento afectado?', '', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 1, 9, '¿Hay fisuras específicamente acompañadas de rotura de Elementos Adosados?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 1, 10, '¿Hay presencia solo de Micro-fisuras en el elemento afectado?', 'Realizar medición de fisuras, fisurometro, levantamiento grafico de síntomas.', 2, 'SI-NO'),
 ('FISURAS', 'MUROS', 1, 11, '¿Se evidencia presencia de fisuras, acompañadas de Expansión en Volumen del elemento Afectado?', 'Realizar Medicion de Recubrimiento, Nivelacion de Superficies, Plomo de Muros y Columnas, Escaneo 3D.', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 1, 12, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento cercano a éstas?', '', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 1, 12, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento cercano a éstas?', 'Determinar por Inspección Visual,  Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'MUROS', 1, 13, '¿Las fisuras se presentan Verticalmente, Horizontalmente o Diagonalmente?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras.', 4, 'VERTICALMENTE-HORIZONTALMENTE-DIAGONALMENTE-NINGUNA'),
 ('FISURAS', 'MUROS', 1, 14, '¿Las fisuras se Asemejan a algunas de estas Imágenes?', 'Realizar ensayo de Fisurómetro, Medición de fisuras, Levantamiento Grafico de Fisuras.', 6, 'A-B-C-D-E-NINGUNA'),
-('FISURAS', 'MUROS', 2, 1, '¿Las fisuras aparecen progresando verticalmente a la línea neutra del elemento y desapareciendo al aproximarse?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía.', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 2, 2, '¿Las fisuras se presentan paralelas a la Armadura Longitudinal del elemento?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía.', 3, 'SI, CONTINUAS-SI, NO CONTINUAS-NO'),
-('FISURAS', 'MUROS', 2, 3, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía.', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 2, 4, '¿Las fisuras aparecen paralelas a la armadura transversal del elemento?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía.', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 2, 1, '¿Las fisuras aparecen progresando verticalmente a la línea neutra del elemento y desapareciendo al aproximarse?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 2, 2, '¿Las fisuras se presentan paralelas a la Armadura Longitudinal del elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SI, CONTINUAS-SI, NO CONTINUAS-NO'),
+('FISURAS', 'MUROS', 2, 3, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 2, 4, '¿Las fisuras aparecen paralelas a la armadura transversal del elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'MUROS', 2, 5, '¿El elemento afectado, podría restringir a un elemento que se esté dilatando?', 'Realizar Análisis Térmico ( Termografia)', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 2, 6, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', '', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 2, 7, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 2, 8, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', '', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 2, 6, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 2, 7, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
+('FISURAS', 'MUROS', 2, 8, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'MUROS', 2, 9, '¿Los elementos que restringen la dilatación del elemento tienen fisuras?', 'Realizar Análisis Térmico (Termografia)', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 2, 10, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar remoción de Friso/Recubrimiento, Ultra-Sonido, Gammagrafía.', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'MUROS', 2, 10, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar remoción de Friso/Recubrimiento, Ultra-Sonido, Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
 ('FISURAS', 'VIGAS', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas?', 'Realizar ensayos de Fisurometro, Medición de Actividad con Testigo.', 2, 'ACTIVAS-PASIVAS'),
-('FISURAS', 'VIGAS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', '', 3, 'SI, CON ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
-('FISURAS', 'VIGAS', 1, 3, '¿ Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', '', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 1, 4, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', '', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', 'Realizar inspección visual.', 3, 'SI, CON ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
+('FISURAS', 'VIGAS', 1, 3, '¿ Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', 'Realizar inspección visual.', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 1, 4, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', 'Realizar inspección visual.', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 1, 5, '¿Las fisuras se inclinan en un ángulo cercano a  45° respecto al eje longitudinal, con 75° como el máximo?', 'Realizar ensayos de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 1, 6, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', NULL, 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-NO LO SE'),
-('FISURAS', 'VIGAS', 1, 7, '¿Las fisuras se ubican únicamente en las zonas de mayor momento (nodos, tramo central de la luz del elemento)?', NULL, 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 1, 6, '¿Las fisuras surgen durante las primeras horas luego del Vaciado del Hormigón, o posterior?', 'Evaluar historial de la edificación.', 3, 'DURANTE LAS PRIMERAS HORAS-POSTERIORMENTE-NO LO SE'),
+('FISURAS', 'VIGAS', 1, 7, '¿Las fisuras se ubican únicamente en las zonas de mayor momento (nodos, tramo central de la luz del elemento)?', 'Realizar inspección visual.', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 1, 8, '¿Las fisuras toman distintas inclinaciones en cada cara del elemento?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 1, 9, '¿Las fisuras se presentan paralelas a la Armadura Longitudinal del elemento?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 3, 'SI, CONTINUAS-SI, NO CONTINUAS-NO'),
-('FISURAS', 'VIGAS', 1, 10, '¿Las fisuras aparecen paralelas a la armadura transversal del elemento?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 1, 9, '¿Las fisuras se presentan paralelas a la Armadura Longitudinal del elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SI, CONTINUAS-SI, NO CONTINUAS-NO'),
+('FISURAS', 'VIGAS', 1, 10, '¿Las fisuras aparecen paralelas a la armadura transversal del elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 1, 11, '¿Hay fisuras específicamente acompañadas de rotura de Elementos Adosados?', '', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 1, 12, '¿El elemento afectado, podría restringir a un elemento que se esté dilatando?', 'Realizar Análisis Térmico ( Termografia )', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 1, 13, '¿Hay presencia solo de Micro-fisuras en el elemento afectado?', '', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 1, 14, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento cercano a éstas?', '', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 1, 13, '¿Hay presencia solo de Micro-fisuras en el elemento afectado?', 'Realizar Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 1, 14, '¿Se observan Fisuras, acompañadas de Desprendimiento del Recubrimiento cercano a éstas?', 'Realizar inspección visual, Ensayo con pachómetro (Ferroscan, profometro)', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 1, 15, '¿Las fisuras se presentan Verticalmente, Horizontalmente o Diagonalmente?', 'Realizar ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 4, 'VERTICALMENTE-HORIZONTALMENTE-DIAGONALMENTE-NINGUNA'),
-('FISURAS', 'VIGAS', 1, 16, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 1, 16, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 1, 17, '¿Se evidencia Fisuras consecuentes en las distintas caras del elemento (Fisuras Tipo Resorte)?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 1, 18, '¿Son fisuras grandes con alguna configuración de las siguientes?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 6, 'A-B-C-D-E-NINGUNA'),
-('FISURAS', 'VIGAS', 2, 1, '¿Las fisuras aparecen progresando verticalmente a la línea neutra del elemento y desapareciendo al aproximarse?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 2, 2, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar Ensayo de Ferroscan, Auscultación Magnética, Profometro, Gammagrafía', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 2, 1, '¿Las fisuras aparecen progresando verticalmente a la línea neutra del elemento y desapareciendo al aproximarse?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 2, 2, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 2, 3, '¿Se evidencia presencia de fisuras, acompañadas de Expansión en Volumen del elemento Afectado?', 'Realizar Ensayo de Medicion de Recubrimiento, Escaneo 3D, Nivelacion de Superficies.', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 2, 4, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', '', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 2, 5, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', '', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 2, 6, '¿Las fisuras se presentan en todas las Caras del Elemento Afectado?', '', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 2, 7, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remocion de Friso/Recubrimiento, Gammagrafia, Ultra-Sonido', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'VIGAS', 2, 4, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 2, 5, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 2, 6, '¿Las fisuras se presentan en todas las Caras del Elemento Afectado?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 2, 7, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción de Friso/Recubrimiento, Radiografía  (Auscultación Magnética, Gammagrafía), Ultra-Sonido', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
 ('MANIFESTACION FISICA', 'TODOS', 1, 1, '¿Se aprecian deformaciones en el Elemento Afectado?', 'Realizar ensayos de Nivelación de Superficies, Escaneo 3D, Plomo de Muros y Columnas.', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 2, '¿Se observa perdida recubrimiento en el Elemento Afectado?', 'Realizar Medición del Recubrimiento, Ultra-sonido, Profometro', 2, 'SI-NO'),
+('MANIFESTACION FISICA', 'TODOS', 1, 2, '¿Se observa perdida recubrimiento en el Elemento Afectado?', 'Se recomienda determinar a través de inspección visual; para mayor precisión el ensayo de Velocidad de Pulsos Ultrasónicos o algún ensayo de medición de recubrimiento', 2, 'SI-NO'),
 ('MANIFESTACION FISICA', 'TODOS', 1, 3, '¿Se observan aumentos en el volumen, o  pérdida en la sección del hormigón del Elemento Afectado?', 'Para esta pregunta, realizar ensayo de Medición del Recubrimiento, Nivelacion de Superficies, Escaneo 3D.', 3, 'AUMENTO DE VOLUMEN-PERDIDA DE LA SECCION-NINGUNA'),
-('MANIFESTACION FISICA', 'TODOS', 1, 4, '¿Existieron cambios de volumen en el pasado?', '', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 5, '¿Se observaron armaduras aparentes en el Elemento Afectado? (Armaduras Expuestas)?', '', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 6, '¿El Elemento Afectado se encontró en procesos de lixiviación?', '', 2, 'SI-NO'),
+('MANIFESTACION FISICA', 'TODOS', 1, 4, '¿Existieron cambios de volumen en el pasado?', 'Evaluar historial de edificación y dimensiones con planos existentes.', 2, 'SI-NO'),
+('MANIFESTACION FISICA', 'TODOS', 1, 5, '¿Se observaron armaduras aparentes en el Elemento Afectado? (Armaduras Expuestas)?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('MANIFESTACION FISICA', 'TODOS', 1, 6, '¿El Elemento Afectado se encontró en procesos de lixiviación?', 'Evaluar por Inspección Visual. Para mayor precisión, es recomendado verificar a través del ensayo de Lixiviación In Situ (Requiere ensayo de Core-Drill).', 2, 'SI-NO'),
 ('MANIFESTACION FISICA', 'TODOS', 1, 7, '¿Se observó desagregación de los áridos?', 'Llevar a cabo Prueba Manual de Pulverización (Sobre Muestras desprendidas o desprendibles)', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 8, '¿Se localizó aplastamiento en el Elemento Afectado?', '', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 9, '¿Hay formación de Grandes fallos (Oquedades / Huecos / Cangrejeras) en el Elemento Afectado?', '', 2, 'SI-NO'),
+('MANIFESTACION FISICA', 'TODOS', 1, 8, '¿Se localizó aplastamiento en el Elemento Afectado?', 'Para esta pregunta, es recomendado realizar ensayo de Medición del Recubrimiento, Nivelación de Superficies, Escaneo 3D.', 2, 'SI-NO'),
+('MANIFESTACION FISICA', 'TODOS', 1, 9, '¿Hay formación de Grandes fallos (Oquedades / Huecos / Cangrejeras) en el Elemento Afectado?', 'Determinar a través de la inspección visual y de ser necesario realizar ensayo de Velocidad de Pulso Ultrasónico o de Auscultación Magnética.', 2, 'SI-NO'),
 ('MANIFESTACION FISICA', 'TODOS', 1, 10, '¿Hay presencia de Oquedades tipo "Picaduras"  En el elemento?', '', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 11, '¿Se evidenció rotura brusca (Spalling) del  Elemento Afectado?', '', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 12, '¿Se encontró una deformación notoria de las barras de acero en el Elemento Afectado?', 'Para este caso, realizar Gammagrafía del elemento, Remoción de Friso/Recubrimiento para Exponer   Barras.', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 13, '¿Hubo presencia de reducción de la sección transversal del acero de refuerzo en el Elemento Afectado?', 'Realizar Gammagrafía, Profometro, Remoción Friso/Recubrimiento para Exponer Barras.', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 14, '¿Se evidencia desgaste Superficial del Hormigón?', 'Realizar ensayo de Discos Giratorios para evaluar estado actual ante el Desgaste, en caso afirmativo.', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 2, 1, '¿Se evidenció rotura brusca (Spalling) del  Elemento Afectado?', '', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 2, 2, '¿Se encontró una deformación notoria de las barras de acero en el Elemento Afectado?', 'Para este caso, realizar Gammagrafía del elemento, Remoción de Friso/Recubrimiento para Exponer   Barras.', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 2, 3, '¿Hubo presencia de reducción de la sección transversal del acero de refuerzo en el Elemento Afectado?', 'Realizar Gammagrafía, Profometro, Remoción Friso/Recubrimiento para Exponer Barras.', 2, 'SI-NO'),
+('MANIFESTACION FISICA', 'TODOS', 2, 1, '¿Se evidenció rotura brusca (Spalling) del  Elemento Afectado?', 'Se recomienda verificar en el historial de la edificación y en la inspección visual.', 2, 'SI-NO'),
+('MANIFESTACION FISICA', 'TODOS', 2, 2, '¿Se encontró una deformación notoria de las barras de acero en el Elemento Afectado?', 'Para este caso, Realizar Radiografía (Auscultación Magnética, Gammagrafía)  del elemento, Remoción de Friso/Recubrimiento para Exponer Barra, ensayo con Pachometrto (Ferroscan, Profometro)', 2, 'SI-NO'),
+('MANIFESTACION FISICA', 'TODOS', 2, 3, '¿Hubo presencia de reducción de la sección transversal del acero de refuerzo en el Elemento Afectado?', 'Realizar Gammagrafía, Pachometro ( Ferroscan, Profometro, Remoción Friso/Recubrimiento para Exponer Barras.', 2, 'SI-NO'),
 ('MANIFESTACION FISICA', 'TODOS', 2, 4, '¿Se evidencia desgaste Superficial del Hormigón?', 'Realizar ensayo de Discos Giratorios para evaluar estado actual ante el Desgaste, en caso afirmativo.', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 1, '¿Existe la presencia de exudación, masa de cemento en la superficie del elemento?', '', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 2, '¿Se observan los áridos en la superficie del elemento?', '', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 3, '¿Se presentan manchas de óxido en la superficie del hormigón?', 'Realizar ensayo de Conductividad Eléctrica y Media Celda de Cobre para evaluar Estado Actual.', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 4, '¿Se observa presencia de Productos de Corrosión en el Elemento Afectado (Sales, óxidos, etc.)?', '*Realizar Ensayo de Mapa Electroquímica, Conductividad Eléctrica y Media Celda de Cobre. *Para evaluar grado de Corrosión, Realizar ensayo de Velocidad de Corrosión, Espectroscopia de Impedancia Electroquímica (EIS), Resistencia a la Polarización (Rp', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 5, '¿Se observan aumentos en la Humedad interna y de la conductividad Eléctrica del Hormigón?', 'Para esta pregunta, realizar ensayo de Prueba de Humedad Relativa y Potencial Eléctrico', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 6, '¿Hay presencia de un Gel en el Elemento Afectado?', '', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 7, '¿Se observan Manchas, de coloración blanca en la superficie del Hormigón (Eflorescencias)?', '', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 8, '¿Se evidencia Lixiviación de color blanca, en forma de Estalactitas?', 'Para esta pregunta, realizar ensayo de Porosidad para analizar alteraciones en la estructura interna del Hormigón.', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 9, '¿La pasta de cemento de alguna u otra manera terminó expulsada o desintegrada?', 'Realizar ensayo Manual de Pulverización ( A muestras desprendidas o desprendibles)', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 10, '¿Se observa Coloración o Manchas Rosácea, gris claro, blanca o amarillenta en el Hormigón?', '', 6, 'ROSALEA-GRIS CLARO-BLANCA-AMARILLENTA-MUY OSCURA (TIENDE A NEGRO)-NINGUNA'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 1, '¿Existe la presencia de exudación, masa de cemento en la superficie del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 2, '¿Se observan los áridos en la superficie del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 3, '¿Se presentan manchas de óxido en la superficie del hormigón?', 'Realizar ensayo de Conductividad Eléctrica y Media Celda de Cobre para evaluar Estado Actual, Inspección Visual en caso de ser Suficiente.', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 4, '¿Se observa presencia de Productos de Corrosión en el Elemento Afectado (Sales, óxidos, etc.)?', '*Realizar Ensayo de Mapa Electroquímica, Conductividad Eléctrica y Media Celda de Cobre. *Para evaluar grado de Corrosión, Realizar ensayo de Velocidad de Corrosión, Espectroscopia de Impedancia Electroquímica (EIS), Resistencia a la Polarización (Rp)  o Voltametria Cíclica.', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 5, '¿Se observan aumentos en la Humedad interna y de la conductividad Eléctrica del Hormigón?', 'Para esta pregunta, realizar ensayo de Prueba de Humedad Relativa, Potencial de media celda o Auscultación magnética (Radiografía- Gammagrafía).', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 6, '¿Hay presencia de un Gel en el Elemento Afectado?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 7, '¿Se observan Manchas, de coloración blanca en la superficie del Hormigón (Eflorescencias)?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 8, '¿Se evidencia Lixiviación de color blanca, en forma de Estalactitas?', 'Para esta pregunta, realizar ensayo de Porosidad para analizar alteraciones en la estructura interna del Hormigón. De ser necesario realizar Lixiviación In-Situ (LIS) (Requiere de Ensayo de Core-Drill).', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 9, '¿La pasta de cemento de alguna u otra manera terminó expulsada o desintegrada?', 'Realizar ensayo Manual de Pulverización , lixiviación in situ (Requiere ensayo de Core-Drill)  o una inspección visual. ', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 10, '¿Se observa Coloración o Manchas Rosácea, gris claro, blanca o amarillenta en el Hormigón?', 'Determinar por Inspección Visual.', 6, 'ROSALEA-GRIS CLARO-BLANCA-AMARILLENTA-MUY OSCURA (TIENDE A NEGRO)-NINGUNA'),
 ('MANIFESTACION QUIMICA', 'TODOS', 1, 11, '¿Se evidencia Aumento de la Porosidad del Elemento Afectado?', 'Realizar ensayos de Porosidad para esta pregunta.', 2, 'SI-NO'),
 ('MANIFESTACION QUIMICA', 'TODOS', 1, 12, '¿Hay presencia de alguna oquedad, fisura o medio a través del cual se puedan trasladar agentes agresivos?', 'Realizar ensayo de Ultra-sonido, Gammagrafía para detectar profundidad de Medios o Medios internos.', 2, 'SI-NO'),
 ('MANIFESTACION QUIMICA', 'TODOS', 1, 13, '¿Existen cambios de humedad seguidos en el elemento?', 'Realizar ensayos de Gammagrafía o Humedad Relativa de forma periódica.', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 1, 14, '¿Permanece un alto contenido de humedad durante tiempo prolongado?', 'Llevar a cabo ensayos de Gammagrafía o Humedad relativa de forma Periódica', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 1, 14, '¿Permanece un alto contenido de humedad durante tiempo prolongado?', 'Llevar a cabo ensayos de Gammagrafía , Termografia, Humedad relativa de forma Periódica', 2, 'SI-NO'),
 ('MANIFESTACION QUIMICA', 'TODOS', 2, 1, '¿Se presentan manchas por Carbonatación en el elemento afectado?', 'Realizar Prueba de Lixiviacion In-Situ (LIS), Fenolftaleina, Prueba de Carbonatacion. Requiere de Extraccion de Nucleos (Core-Drill)', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 2, 2, '¿Se presenta una Dureza y Resistencia superficial del Elemento Afectado por debajo de lo esperado?', 'Para esta pregunta, realizar ensayo de Pistola de Windsor, Core-Drill.', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 2, 2, '¿Se presenta una Dureza y Resistencia superficial del Elemento Afectado por debajo de lo esperado?', 'Para esta pregunta, realizar ensayo de Pistola de Windsor, Esclerometro de Schmidt, Ultra-Sonido o Core-Drill.', 2, 'SI-NO'),
 ('MANIFESTACION QUIMICA', 'TODOS', 2, 3, '¿Se presenta reducción del PH (?8)  del hormigón en el elemento afectado?', 'Para este caso, se recomienda hacer ensayo con Electrodo de Calomelanos, medición de Ph por Prueba (LIS). Este Ensayo requiere de la extracción de Núcleos  (Core-Drill).', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 2, 4, '¿Existe la presencia de iones cloruros en el Hormigón?', 'Realizar ensayos de Perfil de Penetración de Cloruro, Prueba de Contenido de Cloruros, Análisis Petrográfico del Hormigón, Conductividad Eléctrica. Este Ensayo requiere de la Extracción de Núcleos (Core-Drill)', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 2, 5, '¿La pasta de cemento perdió su cohesión con los agregados o barras de acero?', '', 2, 'SI-NO'),
-('MANIFESTACION QUIMICA', 'TODOS', 2, 6, '¿Hay presencia de iones Sulfatos?', 'Realizar extracción de Núcleos,  Espectrofotómetro para Detección de Sulfatos, Microscopia Electrónica de Barrido Ambiental (ESEM)', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 2, 4, '¿Existe la presencia de iones cloruros en el Hormigón?', 'Realizar ensayos de Perfil de Penetración de Cloruro, Prueba de Contenido de Cloruros, Análisis Petrográfico del Hormigón, Conductividad Eléctrica, Potencial de media Celda.  Este Ensayo requiere de la Extracción de Núcleos (Core-Drill)', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 2, 5, '¿La pasta de cemento perdió su cohesión con los agregados o barras de acero?', 'Se recomiendan los ensayos de Voltametria cíclica, Espectroscopia de Impedancia Electroquímica (EIS)', 2, 'SI-NO'),
+('MANIFESTACION QUIMICA', 'TODOS', 2, 6, '¿Hay presencia de iones Sulfatos?', 'Espectrofotómetro para Detección de Sulfatos, Microscopia Electrónica de Barrido Ambiental (ESEM). Requiere Extracción de Núcleos ( Core-Drill).', 2, 'SI-NO'),
 ('MANIFESTACION QUIMICA', 'TODOS', 2, 7, '¿Hay Presencia de Microorganismos en el Hormigón?', 'Realizar Análisis Petrográfico al Hormigón. Requiere de Extracción de Núcleos (Core-Drill)', 2, 'SI-NO');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `basedatosboletin12`
---
-ALTER TABLE `basedatosboletin12`
-  ADD PRIMARY KEY (`numeroBoletin`,`numeroPregunta`,`elemento`,`manifestacion`,`idEnsayoRecomendado`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicascolumnas_nombrepatologia`
---
-ALTER TABLE `matrizrespuestaspatologicascolumnas_nombrepatologia`
-  ADD PRIMARY KEY (`idPatologia`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicascolumnas_patologia`
---
-ALTER TABLE `matrizrespuestaspatologicascolumnas_patologia`
-  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicaslosas_nombrepatologia`
---
-ALTER TABLE `matrizrespuestaspatologicaslosas_nombrepatologia`
-  ADD PRIMARY KEY (`idPatologia`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicaslosas_patologia`
---
-ALTER TABLE `matrizrespuestaspatologicaslosas_patologia`
-  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicasmuros_nombrepatologia`
---
-ALTER TABLE `matrizrespuestaspatologicasmuros_nombrepatologia`
-  ADD PRIMARY KEY (`idPatologia`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicasmuros_patologia`
---
-ALTER TABLE `matrizrespuestaspatologicasmuros_patologia`
-  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicasparedes_nombrepatologia`
---
-ALTER TABLE `matrizrespuestaspatologicasparedes_nombrepatologia`
-  ADD PRIMARY KEY (`idPatologia`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicasparedes_patologia`
---
-ALTER TABLE `matrizrespuestaspatologicasparedes_patologia`
-  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicasvigas_nombrepatologia`
---
-ALTER TABLE `matrizrespuestaspatologicasvigas_nombrepatologia`
-  ADD PRIMARY KEY (`idPatologia`);
-
---
--- Indices de la tabla `matrizrespuestaspatologicasvigas_patologia`
---
-ALTER TABLE `matrizrespuestaspatologicasvigas_patologia`
-  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
-
---
--- Indices de la tabla `preguntasplanillasetapas`
---
-ALTER TABLE `preguntasplanillasetapas`
-  ADD PRIMARY KEY (`patologia`,`elemento`,`numeroEtapa`,`numeroPregunta`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
