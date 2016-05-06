@@ -2,13 +2,10 @@ package view;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class inicio extends JFrame implements ActionListener{
     public JLabel tituloLbl, nombreProyectoLbl, numeroCasoLlb, ingenieroEspecialistaLbl, cedulaLbl, fechaLbl, elementoInicialLbl, tipoAmbienteLbl;
@@ -18,6 +15,26 @@ public class inicio extends JFrame implements ActionListener{
     public JMenu menu;
     public JMenuItem abrir, guardar;
     public JCheckBox vigaCbx, losaCbx, muroCbx, columnaCbx, mamposteriaCbx, agresivoCbx, noAgresivoCbx;
+    public JCheckBox respuestasFisurasColumnas1Cxb [], respuestasFisurasColumnas2Cxb [], respuestasFisurasLosas1Cxb [],
+            respuestasFisurasLosas2Cxb [], respuestasFisurasMamposteria1Cxb [], respuestasFisurasMamposteria2Cxb [],
+            respuestasFisurasMuros1Cxb [], respuestasFisurasMuros2Cxb [], respuestasFisurasVigas1Cxb [],
+            respuestasFisurasVigas2Cxb [], respuestasManifestacionesFisicas1Cxb [], respuestasManifestacionesFisicas2Cxb [],
+            respuestasManifestacionesQuimicas1Cxb [], respuestasManifestacionesQuimicas2Cxb [];
+    public String respuestasFisurasColumnas1Str [], respuestasFisurasColumnas2Str [], respuestasFisurasLosas1Str [],
+            respuestasFisurasLosas2Str [], respuestasFisurasMamposteria1Str [], respuestasFisurasMamposteria2Str [],
+            respuestasFisurasMuros1Str [], respuestasFisurasMuros2Str [], respuestasFisurasVigas1Str [],
+            respuestasFisurasVigas2Str [], respuestasManifestacionesFisicas1Str [], respuestasManifestacionesFisicas2Str [],
+            respuestasManifestacionesQuimicas1Str [], respuestasManifestacionesQuimicas2Str [];
+    public int tamRespuestasFisurasColumnas1, tamRespuestasFisurasColumnas2, tamRespuestasFisurasLosas1,
+            tamRespuestasFisurasLosas2, tamRespuestasFisurasMamposteria1, tamRespuestasFisurasMamposteria2,
+            tamRespuestasFisurasMuros1, tamRespuestasFisurasMuros2, tamRespuestasFisurasVigas1,
+            tamRespuestasFisurasVigas2, tamRespuestasManifestacionesFisicas1, tamRespuestasManifestacionesFisicas2,
+            tamRespuestasManifestacionesQuimicas1, tamRespuestasManifestacionesQuimicas2;
+    public JPanel panel;
+    public JScrollPane scroller;
+
+    public String elementoSeleccionado, ambienteSeleccionado;
+    public int etapaActual;
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
 
@@ -79,6 +96,9 @@ public class inicio extends JFrame implements ActionListener{
         tipoAmbienteLbl = new JLabel("Tipo de Ambiente");
 
         siguienteEtapa1Btn= new JButton("Siguiente");
+
+        panel = new JPanel();
+        scroller = new JScrollPane(panel);
     }
 
     public void inicializarComponentes() throws SQLException {
@@ -129,26 +149,15 @@ public class inicio extends JFrame implements ActionListener{
         siguienteEtapa1Btn.setBounds(850,650,150,30);
         siguienteEtapa1Btn.addActionListener(this);
 
-        this.add(tituloLbl);
-        this.add(nuevaInspeccionBtn);
-
-
-        JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         panel.setBounds(300,200,600,400);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        for(int i=0;i<100;i++){
-            panel.add(new JButton("hola"));
-        }
-        JScrollPane scroller = new JScrollPane(panel);
+
         scroller.setBounds(225,200,600,400);
         scroller.setAutoscrolls(true);
 
-        add(scroller);
-
-//        for (int i=0; i< mc.selectBaseDatosTratamientos().size(); i++){
-//            System.out.println(mc.selectBaseDatosTratamientos().get(i));
-//        }
+        this.add(tituloLbl);
+        this.add(nuevaInspeccionBtn);
     }
 
     public void mostrarInicio(){
@@ -156,14 +165,162 @@ public class inicio extends JFrame implements ActionListener{
         atrasDatosInspeccionBtn.doClick();
     }
 
+    public int contarElementos() throws SQLException {
+        int cont=0;
+        String [] elementos, respuestas;
+        for (int i=0; i<mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size(); i++) {
+            elementos = mc.selectRespuestasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).get(i).split("/", 2);
+            respuestas = elementos[1].split("-", Integer.parseInt(elementos[0]));
+
+            for (int j=0; j<respuestas.length; j++){
+                cont++;
+            }
+        }
+        return cont;
+    }
+
+    public void inicializarArreglos() throws SQLException {
+        tamRespuestasFisurasColumnas1=0;
+        tamRespuestasFisurasColumnas2=0;
+        tamRespuestasFisurasLosas1=0;
+        tamRespuestasFisurasLosas2=0;
+        tamRespuestasFisurasMamposteria1=0;
+        tamRespuestasFisurasMamposteria2=0;
+        tamRespuestasFisurasMuros1=0;
+        tamRespuestasFisurasMuros2=0;
+        tamRespuestasFisurasVigas1=0;
+        tamRespuestasFisurasVigas2=0;
+        tamRespuestasManifestacionesFisicas1=0;
+        tamRespuestasManifestacionesFisicas2=0;
+        tamRespuestasManifestacionesQuimicas1=0;
+        tamRespuestasManifestacionesQuimicas2=0;
+
+        if(etapaActual==1){
+            if(Objects.equals(elementoSeleccionado, "VIGAS")){
+                respuestasFisurasVigas1Cxb = new JCheckBox[contarElementos()];
+            }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
+                respuestasFisurasColumnas1Cxb = new JCheckBox[contarElementos()];
+            }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
+                respuestasFisurasMamposteria1Cxb = new JCheckBox[contarElementos()];
+            }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
+                respuestasFisurasLosas1Cxb = new JCheckBox[contarElementos()];
+            }else{
+                respuestasFisurasMuros1Cxb = new JCheckBox[contarElementos()];
+            } 
+        }else{
+            if(Objects.equals(elementoSeleccionado, "VIGAS")){
+                respuestasFisurasVigas2Cxb = new JCheckBox[contarElementos()];
+            }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
+                respuestasFisurasColumnas2Cxb = new JCheckBox[contarElementos()];
+            }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
+                respuestasFisurasMamposteria2Cxb = new JCheckBox[contarElementos()];
+            }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
+                respuestasFisurasLosas2Cxb = new JCheckBox[contarElementos()];
+            }else{
+                respuestasFisurasMuros2Cxb = new JCheckBox[contarElementos()];
+            }
+        }
+        System.out.print(contarElementos());
+    }
+
+    public void preguntasInPane(String tipo) throws SQLException {
+        //determinar todas las respuestas de la etapa
+        String [] elementos, respuestas;
+
+//        contarElementos();
+
+        for (int i=0; i<mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size(); i++){
+            elementos= mc.selectRespuestasFromPreguntasPlanillasEtapas(etapaActual,elementoSeleccionado).get(i).split("/",2);
+            respuestas = elementos[1].split("-", Integer.parseInt(elementos[0]));
+
+            for (int j=0; j<respuestas.length; j++){
+                if(etapaActual==1){
+                    if(Objects.equals(elementoSeleccionado, "VIGAS")){
+                        respuestasFisurasVigas1Cxb[tamRespuestasFisurasVigas1] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasVigas1++;
+                    }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
+                        respuestasFisurasColumnas1Cxb[tamRespuestasFisurasColumnas1] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasColumnas1++;
+                    }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
+                        respuestasFisurasMamposteria1Cxb [tamRespuestasFisurasMamposteria1] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasMamposteria1++;
+                    }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
+                        respuestasFisurasLosas1Cxb[tamRespuestasFisurasLosas1] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasLosas1++;
+                    }else{
+                        respuestasFisurasMuros1Cxb[tamRespuestasFisurasMuros1] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasMuros1++;
+                    }
+                }else {
+                    if (Objects.equals(elementoSeleccionado, "VIGAS")) {
+                        respuestasFisurasVigas2Cxb[tamRespuestasFisurasVigas2] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasVigas2++;
+                    } else if (Objects.equals(elementoSeleccionado, "COLUMNAS")) {
+                        respuestasFisurasColumnas2Cxb[tamRespuestasFisurasColumnas2] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasColumnas2++;
+                    } else if (Objects.equals(elementoSeleccionado, "MAMPOSTERIA")) {
+                        respuestasFisurasMamposteria2Cxb[tamRespuestasFisurasMamposteria2] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasMamposteria2++;
+                    } else if (Objects.equals(elementoSeleccionado, "LOSAS")) {
+                        respuestasFisurasLosas2Cxb[tamRespuestasFisurasLosas2] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasLosas2++;
+                    } else {
+                        respuestasFisurasMuros2Cxb[tamRespuestasFisurasMuros2] = new JCheckBox(respuestas[j]);
+                        tamRespuestasFisurasMuros2++;
+                    }
+                }
+            }
+        }
+
+        int cont = 0;
+
+        for (int i=0; i<mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size(); i++){
+            panel.add(new JLabel(mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).get(i)));
+            if(mc.selectSugerenciasFromPreguntasPlanillasEtapas(etapaActual,elementoSeleccionado).get(i)!=null){
+                panel.add(new JLabel("  *"+mc.selectSugerenciasFromPreguntasPlanillasEtapas(etapaActual,elementoSeleccionado).get(i)));
+            }
+            panel.add(new JLabel(" "));
+
+            elementos= mc.selectRespuestasFromPreguntasPlanillasEtapas(etapaActual,elementoSeleccionado).get(i).split("/",2);
+            respuestas = elementos[1].split("-", Integer.parseInt(elementos[0]));
+
+            for (int j=0; j<respuestas.length; j++){
+                panel.add(respuestasFisurasMuros1Cxb[cont]);
+                cont++;
+            }
+            panel.add(new JLabel(" "));
+            panel.add(new JLabel(" "));
+        }
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==abrir){
             System.out.println("presionaste abrir");
         }
 
+        if(e.getSource()==guardar){
+            int cont=0;
+            try {
+                respuestasFisurasMuros1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                for(int i=0; i<contarElementos();i++){
+                    if (respuestasFisurasMuros1Cxb[i].isSelected()){
+                        respuestasFisurasMuros1Str[cont]=((respuestasFisurasMuros1Cxb[i])).getText();
+                        cont++;
+                    }
+                }
+
+                for (int i=0; i<cont; i++){
+                    System.out.println(respuestasFisurasMuros1Str[i]+"\n");
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+
         if (e.getSource()== nuevaInspeccionBtn){
-            menu.add(abrir);
+            menu.remove(abrir);
             menu.remove(guardar);
             remove(nuevaInspeccionBtn);
             add(atrasDatosInspeccionBtn);
@@ -182,12 +339,10 @@ public class inicio extends JFrame implements ActionListener{
             tituloLbl.setText("Datos Generales de la Inspección");
             tituloLbl.setBounds(400,50,250,25);
             repaint();
-
-            System.out.println();
         }
 
         if (e.getSource()== atrasDatosInspeccionBtn){
-            menu.remove(abrir);
+            menu.add(abrir);
             menu.remove(guardar);
             remove(atrasDatosInspeccionBtn);
             remove(empezarInspeccionBtn);
@@ -211,6 +366,7 @@ public class inicio extends JFrame implements ActionListener{
             remove(agresivoCbx);
             remove(noAgresivoCbx);
             remove(siguienteEtapa1Btn);
+            remove(scroller);
 
             add(nuevaInspeccionBtn);
 
@@ -249,11 +405,54 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteEtapa1Btn){
-            System.out.println(vigaCbx.isSelected());
-            System.out.println(losaCbx.isSelected());
-            System.out.println(columnaCbx.isSelected());
-            System.out.println(mamposteriaCbx.isSelected());
-            System.out.println(muroCbx.isSelected());
+            //parametros iniciales
+            if(vigaCbx.isSelected()){
+                elementoSeleccionado="VIGAS";
+            }else if(columnaCbx.isSelected()){
+                elementoSeleccionado="COLUMNAS";
+            }else if(mamposteriaCbx.isSelected()){
+                elementoSeleccionado="MAMPOSTERIA";
+            }else if(losaCbx.isSelected()){
+                elementoSeleccionado="LOSAS";
+            }else{
+                elementoSeleccionado= "MUROS";
+            }
+
+            if(agresivoCbx.isSelected()){
+                ambienteSeleccionado = agresivoCbx.getText();
+            }
+            else{
+                ambienteSeleccionado = noAgresivoCbx.getText();
+            }
+
+            etapaActual=1;
+
+            try {
+                inicializarArreglos();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+
+            tituloLbl.setText("Boletin 1 Fisuras "+"");
+            remove(elementoInicialLbl);
+            remove(vigaCbx);
+            remove(losaCbx);
+            remove(columnaCbx);
+            remove(mamposteriaCbx);
+            remove(muroCbx);
+            remove(tipoAmbienteLbl);
+            remove(agresivoCbx);
+            remove(noAgresivoCbx);
+            remove(siguienteEtapa1Btn);
+
+            try {
+                preguntasInPane("boletin");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+
+            add(scroller);
+            repaint();
         }
     }
 

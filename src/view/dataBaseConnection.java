@@ -89,4 +89,48 @@ public class dataBaseConnection {
         rs.close();
         return ls;
     }
+
+    public ArrayList<String> selectPreguntasFromPreguntasPlanillasEtapas(int numeroEtapa, String elemento) throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT numeroPregunta, pregunta FROM preguntasplanillasetapas WHERE numeroEtapa = "+numeroEtapa+ " AND elemento = '"+elemento+"'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  String.valueOf(rs.getInt("numeroPregunta"))+". "+rs.getString("pregunta");
+
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
+
+    public ArrayList<String> selectSugerenciasFromPreguntasPlanillasEtapas(int numeroEtapa, String elemento) throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT sugerencia FROM preguntasplanillasetapas WHERE numeroEtapa = "+numeroEtapa+ " AND elemento = '"+elemento+"'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  rs.getString("sugerencia");
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
+
+    public ArrayList<String> selectRespuestasFromPreguntasPlanillasEtapas(int numeroEtapa, String elemento) throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT cantRespuestas, respuestas FROM preguntasplanillasetapas WHERE numeroEtapa = "+numeroEtapa+ " AND elemento = '"+elemento+"'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  String.valueOf(rs.getInt("cantRespuestas"))+"/"+rs.getString("respuestas");
+
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
 }
