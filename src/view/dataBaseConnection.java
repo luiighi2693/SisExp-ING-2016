@@ -138,7 +138,7 @@ public class dataBaseConnection {
         ArrayList<String> ls = new ArrayList<String>();
         String concat;
 
-        PreparedStatement ps = con.prepareStatement("SELECT sugerencia FROM preguntasplanillasetapas WHERE numeroEtapa = "+patologia+ " AND  = '"+patologia+"'");
+        PreparedStatement ps = con.prepareStatement("SELECT sugerencia FROM preguntasplanillasetapas WHERE numeroEtapa = "+numeroEtapa+ " AND patologia = '"+patologia+"'");
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
             concat =  rs.getString("sugerencia");

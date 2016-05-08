@@ -11,6 +11,8 @@ import java.util.Objects;
 public class inicio extends JFrame implements ActionListener{
     public JLabel tituloLbl, nombreProyectoLbl, numeroCasoLlb, ingenieroEspecialistaLbl, cedulaLbl, fechaLbl, elementoInicialLbl, tipoAmbienteLbl;
     public JButton nuevaInspeccionBtn, atrasDatosInspeccionBtn, empezarInspeccionBtn, siguienteBoletin1Fisura, siguienteEtapa1Fisura, siguienteBoletin2Fisura, siguienteEtapa2Fisura;
+    public JButton siguienteBoletin1Fisica, siguienteEtapa1Fisica, siguienteBoletin2Fisica, siguienteEtapa2Fisica;
+    public JButton siguienteBoletin1Quimica, siguienteEtapa1Quimica, siguienteBoletin2Quimica, siguienteEtapa2Quimica;
     public JTextField nombreProyectoTxF, numeroCasoTxF, ingenieroEspecialistaTxF, cedulaTxF, fechaTxF;
     public JMenuBar menuBar;
     public JMenu menu;
@@ -98,9 +100,18 @@ public class inicio extends JFrame implements ActionListener{
 
         siguienteBoletin1Fisura= new JButton("Siguiente");
         siguienteEtapa1Fisura= new JButton("Siguiente");
-
         siguienteBoletin2Fisura= new JButton("Siguiente");
         siguienteEtapa2Fisura= new JButton("Siguiente");
+
+        siguienteBoletin1Fisica= new JButton("Siguiente");
+        siguienteEtapa1Fisica= new JButton("Siguiente");
+        siguienteBoletin2Fisica= new JButton("Siguiente");
+        siguienteEtapa2Fisica= new JButton("Siguiente");
+
+        siguienteBoletin1Quimica= new JButton("Siguiente");
+        siguienteEtapa1Quimica= new JButton("Siguiente");
+        siguienteBoletin2Quimica= new JButton("Siguiente");
+        siguienteEtapa2Quimica= new JButton("Siguiente");
 
         panel = new JPanel();
         scroller = new JScrollPane(panel);
@@ -153,15 +164,30 @@ public class inicio extends JFrame implements ActionListener{
 
         siguienteBoletin1Fisura.setBounds(850,650,150,30);
         siguienteBoletin1Fisura.addActionListener(this);
-
         siguienteBoletin2Fisura.setBounds(850,650,150,30);
         siguienteBoletin2Fisura.addActionListener(this);
-
         siguienteEtapa1Fisura.setBounds(850,650,150,30);
         siguienteEtapa1Fisura.addActionListener(this);
-
         siguienteEtapa2Fisura.setBounds(850,650,150,30);
         siguienteEtapa2Fisura.addActionListener(this);
+
+        siguienteBoletin1Fisica.setBounds(850,650,150,30);
+        siguienteBoletin1Fisica.addActionListener(this);
+        siguienteBoletin2Fisica.setBounds(850,650,150,30);
+        siguienteBoletin2Fisica.addActionListener(this);
+        siguienteEtapa1Fisica.setBounds(850,650,150,30);
+        siguienteEtapa1Fisica.addActionListener(this);
+        siguienteEtapa2Fisica.setBounds(850,650,150,30);
+        siguienteEtapa2Fisica.addActionListener(this);
+
+        siguienteBoletin1Quimica.setBounds(850,650,150,30);
+        siguienteBoletin1Quimica.addActionListener(this);
+        siguienteBoletin2Quimica.setBounds(850,650,150,30);
+        siguienteBoletin2Quimica.addActionListener(this);
+        siguienteEtapa1Quimica.setBounds(850,650,150,30);
+        siguienteEtapa1Quimica.addActionListener(this);
+        siguienteEtapa2Quimica.setBounds(850,650,150,30);
+        siguienteEtapa2Quimica.addActionListener(this);
 
         panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         panel.setBounds(300,200,600,400);
@@ -194,7 +220,7 @@ public class inicio extends JFrame implements ActionListener{
             }
         }else {
             for(int i=0; i<mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size(); i++){
-                elementos = mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).get(i).split("/",2);
+                elementos = mc.selectRespuestasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).get(i).split("/",2);
                 respuestas = elementos[1].split("-", Integer.parseInt(elementos[0]));
 
                 for (int j=0; j<respuestas.length; j++){
@@ -358,14 +384,18 @@ public class inicio extends JFrame implements ActionListener{
                     if(etapaActual==1){
                         if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
                             respuestasManifestacionesFisicas1Cxb[tamRespuestasManifestacionesFisicas1] = new JCheckBox(respuestas[j]);
+                            tamRespuestasManifestacionesFisicas1++;
                         }else{
                             respuestasManifestacionesQuimicas1Cxb[tamRespuestasManifestacionesQuimicas1] = new JCheckBox(respuestas[j]);
+                            tamRespuestasManifestacionesQuimicas1++;
                         }
                     }else {
                         if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
                             respuestasManifestacionesFisicas2Cxb[tamRespuestasManifestacionesFisicas2] = new JCheckBox(respuestas[j]);
+                            tamRespuestasManifestacionesFisicas2++;
                         }else{
                             respuestasManifestacionesQuimicas2Cxb[tamRespuestasManifestacionesQuimicas2] = new JCheckBox(respuestas[j]);
+                            tamRespuestasManifestacionesQuimicas2++;
                         }
                     }
                 }
@@ -817,6 +847,7 @@ public class inicio extends JFrame implements ActionListener{
         if(e.getSource()==siguienteEtapa2Fisura){
             tituloLbl.setText("Etapa 2 Fisuras "+elementoSeleccionado);
             remove(siguienteEtapa2Fisura);
+            add(siguienteBoletin1Fisica);
             inicializarIndices();
             try {
                 inicializarArreglos();
@@ -826,7 +857,129 @@ public class inicio extends JFrame implements ActionListener{
             }
             repaint();
         }
-        
+
+        if(e.getSource()==siguienteBoletin1Fisica){
+
+            etapaActual=1;
+            manifestacionSeleccionada= "MANIFESTACION FISICA";
+
+            tituloLbl.setText("Boletin 1 Manifestaciòn Fìsica");
+            remove(siguienteBoletin1Fisica);
+            add(siguienteEtapa1Fisica);
+            inicializarIndices();
+            try {
+                inicializarArreglos();
+                preguntasInPane("boletin");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            repaint();
+        }
+
+        if(e.getSource()==siguienteEtapa1Fisica){
+            tituloLbl.setText("Etapa 1 Manifestaciòn Fìsica");
+            remove(siguienteEtapa1Fisica);
+            add(siguienteBoletin2Fisica);
+            inicializarIndices();
+            try {
+                inicializarArreglos();
+                preguntasInPane("etapa");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            repaint();
+        }
+
+        if(e.getSource()==siguienteBoletin2Fisica){
+            etapaActual=2;
+
+            tituloLbl.setText("Boletin 2 Manifestaciòn Fìsica");
+            remove(siguienteBoletin2Fisica);
+            add(siguienteEtapa2Fisica);
+            inicializarIndices();
+            try {
+                inicializarArreglos();
+                preguntasInPane("boletin");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            repaint();
+        }
+
+        if(e.getSource()==siguienteEtapa2Fisica){
+            tituloLbl.setText("etapa 2 Manifestaciòn Fìsica");
+            remove(siguienteEtapa2Fisica);
+            add(siguienteBoletin1Quimica);
+            inicializarIndices();
+            try {
+                inicializarArreglos();
+                preguntasInPane("etapa");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            repaint();
+        }
+
+        if(e.getSource()==siguienteBoletin1Quimica){
+            etapaActual=1;
+            manifestacionSeleccionada= "MANIFESTACION QUIMICA";
+
+            tituloLbl.setText("boletin 1 Manifestaciòn Quimica");
+            remove(siguienteBoletin1Quimica);
+            add(siguienteEtapa1Quimica);
+            inicializarIndices();
+            try {
+                inicializarArreglos();
+                preguntasInPane("boletin");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            repaint();
+        }
+
+        if(e.getSource()==siguienteEtapa1Quimica){
+            tituloLbl.setText("Etapa 1 Manifestaciòn Quimica");
+            remove(siguienteEtapa1Quimica);
+            add(siguienteBoletin2Quimica);
+            inicializarIndices();
+            try {
+                inicializarArreglos();
+                preguntasInPane("etapa");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            repaint();
+        }
+
+        if(e.getSource()==siguienteBoletin2Quimica){
+            etapaActual=2;
+
+            tituloLbl.setText("boletin 2 Manifestaciòn Quimica");
+            remove(siguienteBoletin2Quimica);
+            add(siguienteEtapa2Quimica);
+            inicializarIndices();
+            try {
+                inicializarArreglos();
+                preguntasInPane("boletin");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            repaint();
+        }
+
+        if(e.getSource()==siguienteEtapa2Quimica){
+            tituloLbl.setText("Etapa 2 Manifestaciòn Quimica");
+            remove(siguienteEtapa2Quimica);
+//            add(siguienteEtapa2Quimica);
+            inicializarIndices();
+            try {
+                inicializarArreglos();
+                preguntasInPane("etapa");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            repaint();
+        }
         
     }
 
