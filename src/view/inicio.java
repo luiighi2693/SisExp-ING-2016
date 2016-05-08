@@ -13,6 +13,7 @@ public class inicio extends JFrame implements ActionListener{
     public JButton nuevaInspeccionBtn, atrasDatosInspeccionBtn, empezarInspeccionBtn, siguienteBoletin1Fisura, siguienteEtapa1Fisura, siguienteBoletin2Fisura, siguienteEtapa2Fisura;
     public JButton siguienteBoletin1Fisica, siguienteEtapa1Fisica, siguienteBoletin2Fisica, siguienteEtapa2Fisica;
     public JButton siguienteBoletin1Quimica, siguienteEtapa1Quimica, siguienteBoletin2Quimica, siguienteEtapa2Quimica;
+    public JButton siguienteBoletin3, siguienteAvanzarDiagnostico, siguienteEtapa4, siguienteOtrasHipotesis, siguienteReporte;
     public JTextField nombreProyectoTxF, numeroCasoTxF, ingenieroEspecialistaTxF, cedulaTxF, fechaTxF;
     public JMenuBar menuBar;
     public JMenu menu;
@@ -113,6 +114,14 @@ public class inicio extends JFrame implements ActionListener{
         siguienteBoletin2Quimica= new JButton("Siguiente");
         siguienteEtapa2Quimica= new JButton("Siguiente");
 
+        siguienteBoletin3= new JButton("Avanzar");
+
+        siguienteAvanzarDiagnostico= new JButton("Avanzar a Diagnostico");
+        siguienteEtapa4= new JButton("Evaluar Etapa 4");
+
+        siguienteOtrasHipotesis= new JButton("Seleccionar Otras Hipotesis");
+        siguienteReporte= new JButton("Avanzar a Reporte");
+
         panel = new JPanel();
         scroller = new JScrollPane(panel);
     }
@@ -188,6 +197,21 @@ public class inicio extends JFrame implements ActionListener{
         siguienteEtapa1Quimica.addActionListener(this);
         siguienteEtapa2Quimica.setBounds(850,650,150,30);
         siguienteEtapa2Quimica.addActionListener(this);
+
+        siguienteBoletin3.setBounds(850,650,150,30);
+        siguienteBoletin3.addActionListener(this);
+
+        siguienteAvanzarDiagnostico.setBounds(800,650,200,30);
+        siguienteAvanzarDiagnostico.addActionListener(this);
+
+        siguienteEtapa4.setBounds(850,600,150,30);
+        siguienteEtapa4.addActionListener(this);
+
+        siguienteOtrasHipotesis.setBounds(800,650,200,30);
+        siguienteOtrasHipotesis.addActionListener(this);
+
+        siguienteReporte.setBounds(850,600,150,30);
+        siguienteReporte.addActionListener(this);
 
         panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         panel.setBounds(300,200,600,400);
@@ -664,6 +688,25 @@ public class inicio extends JFrame implements ActionListener{
         }
     }
 
+    public void insertBoletin3 () {
+        panel.removeAll();
+
+        panel.add(new JLabel("1. Ensayo de Core-Drill\n"));
+        panel.add(new JLabel(" "));
+
+        panel.add(new JLabel("2. Analisis Estructural (SLA , DLA , SNLA , DNLA )\n\n"));
+        panel.add(new JLabel(" "));
+
+        panel.add(new JLabel("3. Pruebas de Carga\n\n"));
+        panel.add(new JLabel(" "));
+
+        panel.add(new JLabel("4. Analisis de Sistema de Fundaciones\n"));
+        panel.add(new JLabel(" "));
+
+        panel.add(new JLabel("5. Estudio de Suelos\n"));
+        panel.add(new JLabel(" "));
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==abrir){
@@ -730,6 +773,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(siguienteBoletin1Fisura);
             remove(scroller);
             remove(siguienteEtapa1Fisura);
+            remove(siguienteAvanzarDiagnostico);
+            remove(siguienteEtapa4);
 
             add(nuevaInspeccionBtn);
 
@@ -997,7 +1042,7 @@ public class inicio extends JFrame implements ActionListener{
         if(e.getSource()==siguienteEtapa2Quimica){
             tituloLbl.setText("Etapa 2 Manifestaciòn Quimica");
             remove(siguienteEtapa2Quimica);
-//            add(siguienteEtapa2Quimica);
+            add(siguienteBoletin3);
             inicializarIndices();
             try {
                 inicializarArreglos();
@@ -1007,7 +1052,46 @@ public class inicio extends JFrame implements ActionListener{
             }
             repaint();
         }
-        
+
+        if(e.getSource()==siguienteBoletin3){
+            safeChanges();
+            tituloLbl.setText("Boletin 3");
+            remove(siguienteBoletin3);
+            add(siguienteAvanzarDiagnostico);
+            add(siguienteEtapa4);
+
+           insertBoletin3();
+            repaint();
+        }
+
+        if(e.getSource()==siguienteAvanzarDiagnostico){
+            tituloLbl.setText("Planteamiento de hipotesis de Diagnostico");
+            remove(siguienteAvanzarDiagnostico);
+            remove(siguienteEtapa4);
+            add(siguienteOtrasHipotesis);
+            add(siguienteReporte);
+
+            panel.removeAll();
+            repaint();
+        }
+
+        if(e.getSource()==siguienteEtapa4){
+            tituloLbl.setText("Etapa 4");
+            remove(siguienteOtrasHipotesis);
+            remove(siguienteReporte);
+            remove(siguienteEtapa4);
+            add(siguienteAvanzarDiagnostico);
+
+            panel.removeAll();
+            panel.add(new JLabel("¿ El comportamiento de los componentes de la estructura ( Super-Estructura, Infra-Estructura\n, Suelo de fundación, etc.) fue satisfactorio?"));
+            panel.add(new JLabel(" "));
+            panel.add(new JCheckBox("SI"));
+            panel.add(new JLabel(" "));
+            panel.add(new JCheckBox("NO"));
+            panel.add(new JLabel(" "));
+
+            repaint();
+        }
     }
 
     public static void main(String Args[]) throws SQLException {
