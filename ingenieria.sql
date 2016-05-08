@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.5.0.2
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 06-05-2016 a las 21:00:26
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 08-05-2016 a las 07:01:36
+-- Versión del servidor: 10.0.17-MariaDB
+-- Versión de PHP: 5.6.14
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `ingenieria`
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `basedatosboletin12`
 --
 
-CREATE TABLE IF NOT EXISTS `basedatosboletin12` (
+CREATE TABLE `basedatosboletin12` (
   `numeroBoletin` int(11) NOT NULL,
   `numeroPregunta` int(11) NOT NULL,
   `elemento` varchar(50) NOT NULL,
@@ -34,8 +34,7 @@ CREATE TABLE IF NOT EXISTS `basedatosboletin12` (
   `descripcion` varchar(200) NOT NULL,
   `idEnsayoRecomendado` int(11) NOT NULL,
   `ensayoRecomendado` varchar(200) NOT NULL,
-  `ensayoDestructivoNecesario` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`numeroBoletin`,`numeroPregunta`,`elemento`,`manifestacion`,`idEnsayoRecomendado`)
+  `ensayoDestructivoNecesario` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -321,7 +320,7 @@ INSERT INTO `basedatosboletin12` (`numeroBoletin`, `numeroPregunta`, `elemento`,
 -- Estructura de tabla para la tabla `basedatoscausas`
 --
 
-CREATE TABLE IF NOT EXISTS `basedatoscausas` (
+CREATE TABLE `basedatoscausas` (
   `idPatologia` int(50) NOT NULL,
   `patologia` varchar(100) NOT NULL,
   `numeroCausa` int(50) NOT NULL,
@@ -524,7 +523,7 @@ INSERT INTO `basedatoscausas` (`idPatologia`, `patologia`, `numeroCausa`, `posib
 -- Estructura de tabla para la tabla `basedatostratamientos`
 --
 
-CREATE TABLE IF NOT EXISTS `basedatostratamientos` (
+CREATE TABLE `basedatostratamientos` (
   `idPatologia` int(50) NOT NULL,
   `patologia` varchar(100) NOT NULL,
   `numeroTratamiento` int(50) NOT NULL,
@@ -727,11 +726,10 @@ INSERT INTO `basedatostratamientos` (`idPatologia`, `patologia`, `numeroTratamie
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicascolumnas_nombrepatologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicascolumnas_nombrepatologia` (
+CREATE TABLE `matrizrespuestaspatologicascolumnas_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
-  PRIMARY KEY (`idPatologia`)
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -777,7 +775,7 @@ INSERT INTO `matrizrespuestaspatologicascolumnas_nombrepatologia` (`idPatologia`
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicascolumnas_patologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicascolumnas_patologia` (
+CREATE TABLE `matrizrespuestaspatologicascolumnas_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -813,8 +811,7 @@ CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicascolumnas_patologia` (
   `abrasion` varchar(50) NOT NULL,
   `ataqueSolucionAlcalina` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL,
-  PRIMARY KEY (`nombre`,`numeroPregunta`)
+  `valores` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -889,11 +886,10 @@ INSERT INTO `matrizrespuestaspatologicascolumnas_patologia` (`nombre`, `numeroPr
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicaslosas_nombrepatologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicaslosas_nombrepatologia` (
+CREATE TABLE `matrizrespuestaspatologicaslosas_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
-  PRIMARY KEY (`idPatologia`)
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -942,7 +938,7 @@ INSERT INTO `matrizrespuestaspatologicaslosas_nombrepatologia` (`idPatologia`, `
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicaslosas_patologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicaslosas_patologia` (
+CREATE TABLE `matrizrespuestaspatologicaslosas_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -981,8 +977,7 @@ CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicaslosas_patologia` (
   `cortanteLosas` varchar(50) NOT NULL,
   `traccionLosas` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL,
-  PRIMARY KEY (`nombre`,`numeroPregunta`)
+  `valores` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1056,11 +1051,10 @@ INSERT INTO `matrizrespuestaspatologicaslosas_patologia` (`nombre`, `numeroPregu
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasmuros_nombrepatologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasmuros_nombrepatologia` (
+CREATE TABLE `matrizrespuestaspatologicasmuros_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
-  PRIMARY KEY (`idPatologia`)
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1106,7 +1100,7 @@ INSERT INTO `matrizrespuestaspatologicasmuros_nombrepatologia` (`idPatologia`, `
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasmuros_patologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasmuros_patologia` (
+CREATE TABLE `matrizrespuestaspatologicasmuros_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -1142,8 +1136,7 @@ CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasmuros_patologia` (
   `accionSismica` varchar(50) NOT NULL,
   `traccionMuros` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL,
-  PRIMARY KEY (`nombre`,`numeroPregunta`)
+  `valores` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1218,11 +1211,10 @@ INSERT INTO `matrizrespuestaspatologicasmuros_patologia` (`nombre`, `numeroPregu
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasparedes_nombrepatologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasparedes_nombrepatologia` (
+CREATE TABLE `matrizrespuestaspatologicasparedes_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
-  PRIMARY KEY (`idPatologia`)
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1231,7 +1223,7 @@ CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasparedes_nombrepatologia` 
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasparedes_patologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasparedes_patologia` (
+CREATE TABLE `matrizrespuestaspatologicasparedes_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -1263,8 +1255,7 @@ CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasparedes_patologia` (
   `oquedadesSuperficiales` varchar(50) NOT NULL,
   `ataqueBiologico` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL,
-  PRIMARY KEY (`nombre`,`numeroPregunta`)
+  `valores` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1328,11 +1319,10 @@ INSERT INTO `matrizrespuestaspatologicasparedes_patologia` (`nombre`, `numeroPre
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasvigas_nombrepatologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasvigas_nombrepatologia` (
+CREATE TABLE `matrizrespuestaspatologicasvigas_nombrepatologia` (
   `idPatologia` varchar(50) NOT NULL,
   `nombrePatologia` varchar(100) NOT NULL,
-  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL,
-  PRIMARY KEY (`idPatologia`)
+  `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1380,7 +1370,7 @@ INSERT INTO `matrizrespuestaspatologicasvigas_nombrepatologia` (`idPatologia`, `
 -- Estructura de tabla para la tabla `matrizrespuestaspatologicasvigas_patologia`
 --
 
-CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasvigas_patologia` (
+CREATE TABLE `matrizrespuestaspatologicasvigas_patologia` (
   `nombre` varchar(100) NOT NULL,
   `numeroPregunta` int(100) NOT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
@@ -1418,8 +1408,7 @@ CREATE TABLE IF NOT EXISTS `matrizrespuestaspatologicasvigas_patologia` (
   `accionSismica` varchar(50) NOT NULL,
   `asentamiento` varchar(50) NOT NULL,
   `numeroValores` int(100) NOT NULL,
-  `valores` varchar(250) NOT NULL,
-  PRIMARY KEY (`nombre`,`numeroPregunta`)
+  `valores` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1497,7 +1486,7 @@ INSERT INTO `matrizrespuestaspatologicasvigas_patologia` (`nombre`, `numeroPregu
 -- Estructura de tabla para la tabla `preguntasplanillasetapas`
 --
 
-CREATE TABLE IF NOT EXISTS `preguntasplanillasetapas` (
+CREATE TABLE `preguntasplanillasetapas` (
   `patologia` varchar(50) NOT NULL,
   `elemento` varchar(50) NOT NULL,
   `numeroEtapa` int(10) NOT NULL,
@@ -1505,8 +1494,7 @@ CREATE TABLE IF NOT EXISTS `preguntasplanillasetapas` (
   `pregunta` varchar(300) NOT NULL,
   `sugerencia` varchar(300) DEFAULT NULL,
   `cantRespuestas` int(10) NOT NULL,
-  `respuestas` varchar(100) NOT NULL,
-  PRIMARY KEY (`patologia`,`elemento`,`numeroEtapa`,`numeroPregunta`)
+  `respuestas` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1658,6 +1646,82 @@ INSERT INTO `preguntasplanillasetapas` (`patologia`, `elemento`, `numeroEtapa`, 
 ('MANIFESTACION QUIMICA', 'TODOS', 2, 5, '¿La pasta de cemento perdió su cohesión con los agregados o barras de acero?', 'Se recomiendan los ensayos de Voltametria cíclica, Espectroscopia de Impedancia Electroquímica (EIS)', 2, 'SI-NO'),
 ('MANIFESTACION QUIMICA', 'TODOS', 2, 6, '¿Hay presencia de iones Sulfatos?', 'Espectrofotómetro para Detección de Sulfatos, Microscopia Electrónica de Barrido Ambiental (ESEM). Requiere Extracción de Núcleos ( Core-Drill).', 2, 'SI-NO'),
 ('MANIFESTACION QUIMICA', 'TODOS', 2, 7, '¿Hay Presencia de Microorganismos en el Hormigón?', 'Realizar Análisis Petrográfico al Hormigón. Requiere de Extracción de Núcleos (Core-Drill)', 2, 'SI-NO');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `basedatosboletin12`
+--
+ALTER TABLE `basedatosboletin12`
+  ADD PRIMARY KEY (`numeroBoletin`,`numeroPregunta`,`elemento`,`manifestacion`,`idEnsayoRecomendado`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicascolumnas_nombrepatologia`
+--
+ALTER TABLE `matrizrespuestaspatologicascolumnas_nombrepatologia`
+  ADD PRIMARY KEY (`idPatologia`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicascolumnas_patologia`
+--
+ALTER TABLE `matrizrespuestaspatologicascolumnas_patologia`
+  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicaslosas_nombrepatologia`
+--
+ALTER TABLE `matrizrespuestaspatologicaslosas_nombrepatologia`
+  ADD PRIMARY KEY (`idPatologia`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicaslosas_patologia`
+--
+ALTER TABLE `matrizrespuestaspatologicaslosas_patologia`
+  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicasmuros_nombrepatologia`
+--
+ALTER TABLE `matrizrespuestaspatologicasmuros_nombrepatologia`
+  ADD PRIMARY KEY (`idPatologia`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicasmuros_patologia`
+--
+ALTER TABLE `matrizrespuestaspatologicasmuros_patologia`
+  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicasparedes_nombrepatologia`
+--
+ALTER TABLE `matrizrespuestaspatologicasparedes_nombrepatologia`
+  ADD PRIMARY KEY (`idPatologia`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicasparedes_patologia`
+--
+ALTER TABLE `matrizrespuestaspatologicasparedes_patologia`
+  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicasvigas_nombrepatologia`
+--
+ALTER TABLE `matrizrespuestaspatologicasvigas_nombrepatologia`
+  ADD PRIMARY KEY (`idPatologia`);
+
+--
+-- Indices de la tabla `matrizrespuestaspatologicasvigas_patologia`
+--
+ALTER TABLE `matrizrespuestaspatologicasvigas_patologia`
+  ADD PRIMARY KEY (`nombre`,`numeroPregunta`);
+
+--
+-- Indices de la tabla `preguntasplanillasetapas`
+--
+ALTER TABLE `preguntasplanillasetapas`
+  ADD PRIMARY KEY (`patologia`,`elemento`,`numeroEtapa`,`numeroPregunta`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
