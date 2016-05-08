@@ -487,6 +487,182 @@ public class inicio extends JFrame implements ActionListener{
         }
     }
 
+    public void safeChanges(){
+        int cont=0;
+        try {
+            if(etapaActual==1){
+                if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
+                    if(Objects.equals(elementoSeleccionado, "VIGAS")){
+                        respuestasFisurasVigas1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasVigas1Cxb[i].isSelected()){
+                                respuestasFisurasVigas1Str[cont]=((respuestasFisurasVigas1Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
+                        respuestasFisurasColumnas1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasColumnas1Cxb[i].isSelected()){
+                                respuestasFisurasColumnas1Str[cont]=((respuestasFisurasColumnas1Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
+                        respuestasFisurasMamposteria1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasMamposteria1Cxb[i].isSelected()){
+                                respuestasFisurasMamposteria1Str[cont]=((respuestasFisurasMamposteria1Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
+                        respuestasFisurasLosas1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasLosas1Cxb[i].isSelected()){
+                                respuestasFisurasLosas1Str[cont]=((respuestasFisurasLosas1Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else{
+                        respuestasFisurasMuros1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasMuros1Cxb[i].isSelected()){
+                                respuestasFisurasMuros1Str[cont]=((respuestasFisurasMuros1Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }
+                }else {
+                    if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
+                        respuestasManifestacionesFisicas1Str= new String[mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasManifestacionesFisicas1Cxb[i].isSelected()){
+                                respuestasManifestacionesFisicas1Str[cont]=((respuestasManifestacionesFisicas1Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else{
+                        respuestasManifestacionesQuimicas1Str= new String[mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasManifestacionesQuimicas1Cxb[i].isSelected()){
+                                respuestasManifestacionesQuimicas1Str[cont]=((respuestasManifestacionesQuimicas1Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }
+                }
+            }else{
+                if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
+                    if(Objects.equals(elementoSeleccionado, "VIGAS")){
+                        respuestasFisurasVigas2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasVigas2Cxb[i].isSelected()){
+                                respuestasFisurasVigas2Str[cont]=((respuestasFisurasVigas2Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
+                        respuestasFisurasColumnas2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasColumnas2Cxb[i].isSelected()){
+                                respuestasFisurasColumnas2Str[cont]=((respuestasFisurasColumnas2Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
+                        respuestasFisurasMamposteria2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasMamposteria2Cxb[i].isSelected()){
+                                respuestasFisurasMamposteria2Str[cont]=((respuestasFisurasMamposteria2Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
+                        respuestasFisurasLosas2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasLosas2Cxb[i].isSelected()){
+                                respuestasFisurasLosas2Str[cont]=((respuestasFisurasLosas2Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else{
+                        respuestasFisurasMuros2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasFisurasMuros2Cxb[i].isSelected()){
+                                respuestasFisurasMuros2Str[cont]=((respuestasFisurasMuros2Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }
+                }else {
+                    if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
+                        respuestasManifestacionesFisicas2Str= new String[mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasManifestacionesFisicas2Cxb[i].isSelected()){
+                                respuestasManifestacionesFisicas2Str[cont]=((respuestasManifestacionesFisicas2Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }else{
+                        respuestasManifestacionesQuimicas2Str= new String[mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size()];
+                        for(int i=0; i<contarElementos();i++){
+                            if (respuestasManifestacionesQuimicas2Cxb[i].isSelected()){
+                                respuestasManifestacionesQuimicas2Str[cont]=((respuestasManifestacionesQuimicas2Cxb[i])).getText();
+                                cont++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int i=0; i<cont; i++){
+                if(etapaActual==1){
+                    if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
+                        if(Objects.equals(elementoSeleccionado, "VIGAS")){
+                            System.out.println(respuestasFisurasVigas1Str[i]+"\n");
+                        }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
+                            System.out.println(respuestasFisurasColumnas1Str[i]+"\n");
+                        }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
+                            System.out.println(respuestasFisurasMamposteria1Str[i]+"\n");
+                        }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
+                            System.out.println(respuestasFisurasLosas1Str[i]+"\n");
+                        }else{
+                            System.out.println(respuestasFisurasMuros1Str[i]+"\n");
+                        }
+                    }else {
+                        if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
+                            System.out.println(respuestasManifestacionesFisicas1Str[i]+"\n");
+                        }else{
+                            System.out.println(respuestasManifestacionesQuimicas1Str[i]+"\n");
+                        }
+                    }
+                }else{
+                    if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
+                        if(Objects.equals(elementoSeleccionado, "VIGAS")){
+                            System.out.println(respuestasFisurasVigas2Str[i]+"\n");
+                        }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
+                            System.out.println(respuestasFisurasColumnas2Str[i]+"\n");
+                        }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
+                            System.out.println(respuestasFisurasMamposteria2Str[i]+"\n");
+                        }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
+                            System.out.println(respuestasFisurasLosas2Str[i]+"\n");
+                        }else{
+                            System.out.println(respuestasFisurasMuros2Str[i]+"\n");
+                        }
+                    }else {
+                        if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
+                            System.out.println(respuestasManifestacionesFisicas2Str[i]+"\n");
+                        }else{
+                            System.out.println(respuestasManifestacionesQuimicas2Str[i]+"\n");
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -495,182 +671,14 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==guardar){
-            int cont=0;
-            try {
-                if(etapaActual==1){
-                    if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
-                        if(Objects.equals(elementoSeleccionado, "VIGAS")){
-                            respuestasFisurasVigas1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasVigas1Cxb[i].isSelected()){
-                                    respuestasFisurasVigas1Str[cont]=((respuestasFisurasVigas1Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
-                            respuestasFisurasColumnas1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasColumnas1Cxb[i].isSelected()){
-                                    respuestasFisurasColumnas1Str[cont]=((respuestasFisurasColumnas1Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
-                            respuestasFisurasMamposteria1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasMamposteria1Cxb[i].isSelected()){
-                                    respuestasFisurasMamposteria1Str[cont]=((respuestasFisurasMamposteria1Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
-                            respuestasFisurasLosas1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasLosas1Cxb[i].isSelected()){
-                                    respuestasFisurasLosas1Str[cont]=((respuestasFisurasLosas1Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else{
-                            respuestasFisurasMuros1Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasMuros1Cxb[i].isSelected()){
-                                    respuestasFisurasMuros1Str[cont]=((respuestasFisurasMuros1Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }
-                    }else {
-                        if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
-                            respuestasManifestacionesFisicas1Str= new String[mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasManifestacionesFisicas1Cxb[i].isSelected()){
-                                    respuestasManifestacionesFisicas1Str[cont]=((respuestasManifestacionesFisicas1Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else{
-                            respuestasManifestacionesQuimicas1Str= new String[mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasManifestacionesQuimicas1Cxb[i].isSelected()){
-                                    respuestasManifestacionesQuimicas1Str[cont]=((respuestasManifestacionesQuimicas1Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }
-                    }
-                }else{
-                    if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
-                        if(Objects.equals(elementoSeleccionado, "VIGAS")){
-                            respuestasFisurasVigas2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasVigas2Cxb[i].isSelected()){
-                                    respuestasFisurasVigas2Str[cont]=((respuestasFisurasVigas2Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
-                            respuestasFisurasColumnas2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasColumnas2Cxb[i].isSelected()){
-                                    respuestasFisurasColumnas2Str[cont]=((respuestasFisurasColumnas2Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
-                            respuestasFisurasMamposteria2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasMamposteria2Cxb[i].isSelected()){
-                                    respuestasFisurasMamposteria2Str[cont]=((respuestasFisurasMamposteria2Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
-                            respuestasFisurasLosas2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasLosas2Cxb[i].isSelected()){
-                                    respuestasFisurasLosas2Str[cont]=((respuestasFisurasLosas2Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else{
-                            respuestasFisurasMuros2Str = new String[mc.selectPreguntasFromPreguntasPlanillasEtapas(etapaActual, elementoSeleccionado).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasFisurasMuros2Cxb[i].isSelected()){
-                                    respuestasFisurasMuros2Str[cont]=((respuestasFisurasMuros2Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }
-                    }else {
-                        if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
-                            respuestasManifestacionesFisicas2Str= new String[mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasManifestacionesFisicas2Cxb[i].isSelected()){
-                                    respuestasManifestacionesFisicas2Str[cont]=((respuestasManifestacionesFisicas2Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }else{
-                            respuestasManifestacionesQuimicas2Str= new String[mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size()];
-                            for(int i=0; i<contarElementos();i++){
-                                if (respuestasManifestacionesQuimicas2Cxb[i].isSelected()){
-                                    respuestasManifestacionesQuimicas2Str[cont]=((respuestasManifestacionesQuimicas2Cxb[i])).getText();
-                                    cont++;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                for (int i=0; i<cont; i++){
-                    if(etapaActual==1){
-                        if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
-                            if(Objects.equals(elementoSeleccionado, "VIGAS")){
-                                System.out.println(respuestasFisurasVigas1Str[i]+"\n");
-                            }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
-                                System.out.println(respuestasFisurasColumnas1Str[i]+"\n");
-                            }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
-                                System.out.println(respuestasFisurasMamposteria1Str[i]+"\n");
-                            }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
-                                System.out.println(respuestasFisurasLosas1Str[i]+"\n");
-                            }else{
-                                System.out.println(respuestasFisurasMuros1Str[i]+"\n");
-                            }
-                        }else {
-                            if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
-                                System.out.println(respuestasManifestacionesFisicas1Str[i]+"\n");
-                            }else{
-                                System.out.println(respuestasManifestacionesQuimicas1Str[i]+"\n");
-                            }
-                        }
-                    }else{
-                        if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
-                            if(Objects.equals(elementoSeleccionado, "VIGAS")){
-                                System.out.println(respuestasFisurasVigas2Str[i]+"\n");
-                            }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
-                                System.out.println(respuestasFisurasColumnas2Str[i]+"\n");
-                            }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
-                                System.out.println(respuestasFisurasMamposteria2Str[i]+"\n");
-                            }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
-                                System.out.println(respuestasFisurasLosas2Str[i]+"\n");
-                            }else{
-                                System.out.println(respuestasFisurasMuros2Str[i]+"\n");
-                            }
-                        }else {
-                            if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")){
-                                System.out.println(respuestasManifestacionesFisicas2Str[i]+"\n");
-                            }else{
-                                System.out.println(respuestasManifestacionesQuimicas2Str[i]+"\n");
-                            }
-                        }
-                    }
-                }
-//                System.out.println(respuestasFisurasColumnas1Str.length);
-//                System.out.println(respuestasFisurasColumnas2Str.length);
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
+            safeChanges();
+            System.out.println("\n");
+            System.out.println(respuestasFisurasColumnas1Str.length);
+            System.out.println(respuestasFisurasColumnas2Str.length);
+            System.out.println(respuestasManifestacionesFisicas1Str.length);
+            System.out.println(respuestasManifestacionesFisicas2Str.length);
+            System.out.println(respuestasManifestacionesQuimicas1Str.length);
+            System.out.println(respuestasManifestacionesQuimicas2Str.length);
         }
 
         if (e.getSource()== nuevaInspeccionBtn){
@@ -756,6 +764,22 @@ public class inicio extends JFrame implements ActionListener{
             add(agresivoCbx);
             add(noAgresivoCbx);
             add(siguienteBoletin1Fisura);
+
+            tamRespuestasFisurasColumnas1=0;
+            tamRespuestasFisurasColumnas2=0;
+            tamRespuestasFisurasLosas1=0;
+            tamRespuestasFisurasLosas2=0;
+            tamRespuestasFisurasMamposteria1=0;
+            tamRespuestasFisurasMamposteria2=0;
+            tamRespuestasFisurasMuros1=0;
+            tamRespuestasFisurasMuros2=0;
+            tamRespuestasFisurasVigas1=0;
+            tamRespuestasFisurasVigas2=0;
+            tamRespuestasManifestacionesFisicas1=0;
+            tamRespuestasManifestacionesFisicas2=0;
+            tamRespuestasManifestacionesQuimicas1=0;
+            tamRespuestasManifestacionesQuimicas2=0;
+
             repaint();
         }
 
@@ -828,7 +852,7 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteBoletin2Fisura) {
-
+            safeChanges();
             etapaActual=2;
 
             tituloLbl.setText("Boletin 2 Fisuras "+elementoSeleccionado);
@@ -859,7 +883,7 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteBoletin1Fisica){
-
+            safeChanges();
             etapaActual=1;
             manifestacionSeleccionada= "MANIFESTACION FISICA";
 
@@ -891,6 +915,7 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteBoletin2Fisica){
+            safeChanges();
             etapaActual=2;
 
             tituloLbl.setText("Boletin 2 Manifestaciòn Fìsica");
@@ -921,6 +946,7 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteBoletin1Quimica){
+            safeChanges();
             etapaActual=1;
             manifestacionSeleccionada= "MANIFESTACION QUIMICA";
 
@@ -952,6 +978,7 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteBoletin2Quimica){
+            safeChanges();
             etapaActual=2;
 
             tituloLbl.setText("boletin 2 Manifestaciòn Quimica");
