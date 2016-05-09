@@ -1128,22 +1128,27 @@ public class inicio extends JFrame implements ActionListener{
                 aciertoPatologias = new int[nombrePatologias.length];
 
                 int cont;
-//                for(int i =0; i<idNombrePatologias.length; i++){
-//                    cont =0;
-//                    if(vigaCbx.isSelected()){
-//                        if(mc.selectTablaForHipotesis(tablaSeleccionada)){
+                for(int i =0; i<idNombrePatologias.length; i++){
+                    cont =0;
+                    aciertoPatologias[i]=0;
+
+                    if(vigaCbx.isSelected()){
+                        for(int j=0; j<mc.selectTablaForHipotesis(tablaSeleccionada,idNombrePatologias[i], "FISURAS").size();j++){
+                            System.out.println("hola");
+                        }
+//                        if(mc.selectTablaForHipotesis(tablaSeleccionada,idNombrePatologias[i], "FISICAS").get(i)){
 //
 //                        }
-//                    }else if(columnaCbx.isSelected()){
-//
-//                    }else if(mamposteriaCbx.isSelected()){
-//
-//                    }else if(losaCbx.isSelected()){
-//
-//                    }else{
-//
-//                    }
-//                }
+                    }else if(columnaCbx.isSelected()){
+
+                    }else if(mamposteriaCbx.isSelected()){
+
+                    }else if(losaCbx.isSelected()){
+
+                    }else{
+
+                    }
+                }
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
@@ -1155,6 +1160,13 @@ public class inicio extends JFrame implements ActionListener{
             add(siguienteReporte);
 
             panel.removeAll();
+
+//            panel.add(new JCheckBox("Ataque Biologico 33%"));
+//            panel.add(new JLabel(" "));
+//            panel.add(new JCheckBox("Adherencia y Anclaje 32%"));
+//            panel.add(new JLabel(" "));
+//            panel.add(new JCheckBox("Accion Sismica 18%"));
+
             repaint();
         }
 

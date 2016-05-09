@@ -182,7 +182,7 @@ public class dataBaseConnection {
         ArrayList<String> ls = new ArrayList<String>();
         String concat;
 
-        PreparedStatement ps = con.prepareStatement("SELECT idPatologia FROM '"+nombreTabla+"'");
+        PreparedStatement ps = con.prepareStatement("SELECT idPatologia FROM "+nombreTabla);
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
             concat =  rs.getString("idPatologia");
@@ -197,7 +197,7 @@ public class dataBaseConnection {
         ArrayList<String> ls = new ArrayList<String>();
         String concat;
 
-        PreparedStatement ps = con.prepareStatement("SELECT nombrePatologia FROM '"+nombreTabla+"'");
+        PreparedStatement ps = con.prepareStatement("SELECT nombrePatologia FROM "+nombreTabla);
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
             concat =  rs.getString("nombrePatologia");
@@ -212,10 +212,10 @@ public class dataBaseConnection {
         ArrayList<String> ls = new ArrayList<String>();
         String concat;
 
-        PreparedStatement ps = con.prepareStatement("SELECT '"+idNombrePatologias+"' FROM '"+nombreTabla+"' WHERE nombre ='"+manifestacion+"'");
+        PreparedStatement ps = con.prepareStatement("SELECT "+idNombrePatologias+" FROM "+nombreTabla+" WHERE nombre ='"+manifestacion+"'");
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
-            concat =  rs.getString("idNombrePatologias");
+            concat =  rs.getString(idNombrePatologias);
 
             ls.add(concat);
         }
