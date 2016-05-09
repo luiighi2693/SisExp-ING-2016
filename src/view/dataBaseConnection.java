@@ -192,4 +192,34 @@ public class dataBaseConnection {
         rs.close();
         return ls;
     }
+
+    public ArrayList<String> selectNombresPatologias(String nombreTabla) throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT nombrePatologia FROM '"+nombreTabla+"'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  rs.getString("nombrePatologia");
+
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
+
+    public ArrayList<String> selectTablaForHipotesis(String nombreTabla, String idNombrePatologias, String manifestacion) throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT '"+idNombrePatologias+"' FROM '"+nombreTabla+"' WHERE nombre ='"+manifestacion+"'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  rs.getString("idNombrePatologias");
+
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
 }

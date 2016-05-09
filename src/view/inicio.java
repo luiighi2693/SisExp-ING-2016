@@ -39,8 +39,8 @@ public class inicio extends JFrame implements ActionListener{
     public JScrollPane scroller;
 
     public String elementoSeleccionado, ambienteSeleccionado, manifestacionSeleccionada;
-    public String nombrePatologias[];
-    public int etapaActual;
+    public String nombrePatologias[], idNombrePatologias[], tablaNombresSeleccionada, tablaSeleccionada;
+    public int etapaActual, aciertoPatologias[];
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
 
@@ -1096,6 +1096,58 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteAvanzarDiagnostico){
+
+            if(vigaCbx.isSelected()){
+                tablaNombresSeleccionada= "matrizrespuestaspatologicasvigas_nombrepatologia";
+                tablaSeleccionada = "matrizrespuestaspatologicasvigas_patologia";
+            }else if(columnaCbx.isSelected()){
+                tablaNombresSeleccionada= "matrizrespuestaspatologicascolumnas_nombrepatologia";
+                tablaSeleccionada= "matrizrespuestaspatologicascolumnas_patologia";
+            }else if(mamposteriaCbx.isSelected()){
+                tablaNombresSeleccionada= "matrizrespuestaspatologicasparedes_nombrepatologia";
+                tablaSeleccionada= "matrizrespuestaspatologicasparedes_patologia";
+            }else if(losaCbx.isSelected()){
+                tablaNombresSeleccionada= "matrizrespuestaspatologicaslosas_nombrepatologia";
+                tablaSeleccionada= "matrizrespuestaspatologicaslosas_patologia";
+            }else{
+                tablaNombresSeleccionada= "matrizrespuestaspatologicasmuros_nombrepatologia";
+                tablaSeleccionada= "matrizrespuestaspatologicasmuros_patologia";
+            }
+
+            try {
+                nombrePatologias = new String[mc.selectNombresPatologias(tablaNombresSeleccionada).size()];
+                for(int i = 0; i<mc.selectNombresPatologias(tablaNombresSeleccionada).size(); i++){
+                    nombrePatologias[i]= mc.selectNombresPatologias(tablaNombresSeleccionada).get(i);
+                }
+
+                idNombrePatologias = new String[mc.selectIdNombresPatologias(tablaNombresSeleccionada).size()];
+                for(int i = 0; i<mc.selectIdNombresPatologias(tablaNombresSeleccionada).size(); i++){
+                    idNombrePatologias[i]= mc.selectIdNombresPatologias(tablaNombresSeleccionada).get(i);
+                }
+
+                aciertoPatologias = new int[nombrePatologias.length];
+
+                int cont;
+//                for(int i =0; i<idNombrePatologias.length; i++){
+//                    cont =0;
+//                    if(vigaCbx.isSelected()){
+//                        if(mc.selectTablaForHipotesis(tablaSeleccionada)){
+//
+//                        }
+//                    }else if(columnaCbx.isSelected()){
+//
+//                    }else if(mamposteriaCbx.isSelected()){
+//
+//                    }else if(losaCbx.isSelected()){
+//
+//                    }else{
+//
+//                    }
+//                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+
             tituloLbl.setText("Planteamiento de hipotesis de Diagnostico");
             remove(siguienteAvanzarDiagnostico);
             remove(siguienteEtapa4);
