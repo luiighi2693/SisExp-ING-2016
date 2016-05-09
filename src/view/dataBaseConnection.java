@@ -177,4 +177,19 @@ public class dataBaseConnection {
         rs.close();
         return ls;
     }
+
+    public ArrayList<String> selectIdNombresPatologias(String nombreTabla) throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT idPatologia FROM '"+nombreTabla+"'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  rs.getString("idPatologia");
+
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
 }

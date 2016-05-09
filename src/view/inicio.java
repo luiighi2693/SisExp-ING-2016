@@ -39,6 +39,7 @@ public class inicio extends JFrame implements ActionListener{
     public JScrollPane scroller;
 
     public String elementoSeleccionado, ambienteSeleccionado, manifestacionSeleccionada;
+    public String nombrePatologias[];
     public int etapaActual;
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
