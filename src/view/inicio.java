@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class inicio extends JFrame implements ActionListener{
     public JLabel tituloLbl, nombreProyectoLbl, numeroCasoLlb, ingenieroEspecialistaLbl, cedulaLbl, fechaLbl, elementoInicialLbl, tipoAmbienteLbl;
+    public JLabel inicioImg, cargaDatosImg;
     public JButton nuevaInspeccionBtn, atrasDatosInspeccionBtn, empezarInspeccionBtn, siguienteBoletin1Fisura, siguienteEtapa1Fisura, siguienteBoletin2Fisura, siguienteEtapa2Fisura;
     public JButton siguienteBoletin1Fisica, siguienteEtapa1Fisica, siguienteBoletin2Fisica, siguienteEtapa2Fisica;
     public JButton siguienteBoletin1Quimica, siguienteEtapa1Quimica, siguienteBoletin2Quimica, siguienteEtapa2Quimica;
@@ -122,6 +123,9 @@ public class inicio extends JFrame implements ActionListener{
         siguienteOtrasHipotesis= new JButton("Seleccionar Otras Hipotesis");
         siguienteReporte= new JButton("Avanzar a Reporte");
 
+        inicioImg= new JLabel("");
+        cargaDatosImg = new JLabel("");
+
         panel = new JPanel();
         scroller = new JScrollPane(panel);
     }
@@ -213,6 +217,12 @@ public class inicio extends JFrame implements ActionListener{
         siguienteReporte.setBounds(850,600,150,30);
         siguienteReporte.addActionListener(this);
 
+        inicioImg.setIcon(new ImageIcon("frame1.png"));
+        inicioImg.setBounds(175,150,700,400);
+
+        cargaDatosImg.setIcon(new ImageIcon("frame2.png"));
+        cargaDatosImg.setBounds(175,200,700,400);
+
         panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         panel.setBounds(300,200,600,400);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -222,6 +232,7 @@ public class inicio extends JFrame implements ActionListener{
 
         this.add(tituloLbl);
         this.add(nuevaInspeccionBtn);
+        this.add(inicioImg);
     }
 
     public void mostrarInicio(){
@@ -727,6 +738,7 @@ public class inicio extends JFrame implements ActionListener{
         if (e.getSource()== nuevaInspeccionBtn){
             menu.remove(abrir);
             menu.remove(guardar);
+            remove(inicioImg);
             remove(nuevaInspeccionBtn);
             add(atrasDatosInspeccionBtn);
             add(empezarInspeccionBtn);
@@ -740,6 +752,7 @@ public class inicio extends JFrame implements ActionListener{
             add(cedulaTxF);
             add(fechaLbl);
             add(fechaTxF);
+            add(cargaDatosImg);
 
             tituloLbl.setText("Datos Generales de la Inspección");
             tituloLbl.setBounds(400,50,250,25);
@@ -770,14 +783,29 @@ public class inicio extends JFrame implements ActionListener{
             remove(tipoAmbienteLbl);
             remove(agresivoCbx);
             remove(noAgresivoCbx);
-            remove(siguienteBoletin1Fisura);
             remove(scroller);
-            remove(siguienteEtapa1Fisura);
-            remove(siguienteAvanzarDiagnostico);
             remove(siguienteEtapa4);
+            remove(siguienteOtrasHipotesis);
+            remove(siguienteReporte);
+            remove(siguienteEtapa4);
+            remove(siguienteBoletin1Fisura);
+            remove(siguienteEtapa1Fisura);
+            remove(siguienteBoletin2Fisura);
+            remove(siguienteEtapa2Fisura);
+            remove(siguienteBoletin1Fisica);
+            remove(siguienteEtapa1Fisica);
+            remove(siguienteBoletin2Fisica);
+            remove(siguienteEtapa2Fisica);
+            remove(siguienteBoletin1Quimica);
+            remove(siguienteEtapa1Quimica);
+            remove(siguienteBoletin2Quimica);
+            remove(siguienteEtapa2Quimica);
+            remove(siguienteBoletin3);
+            remove(siguienteAvanzarDiagnostico);
+            remove(cargaDatosImg);
 
             add(nuevaInspeccionBtn);
-
+            add(inicioImg);
             tituloLbl.setText("DOCTOR STRUCTURE V1.0");
             tituloLbl.setBounds(400,100,250,25);
             repaint();
@@ -797,6 +825,7 @@ public class inicio extends JFrame implements ActionListener{
             remove(cedulaTxF);
             remove(fechaLbl);
             remove(fechaTxF);
+            remove(cargaDatosImg);
 
             tituloLbl.setText("Etapa 0");
             add(elementoInicialLbl);
@@ -870,6 +899,7 @@ public class inicio extends JFrame implements ActionListener{
             remove(agresivoCbx);
             remove(noAgresivoCbx);
             remove(siguienteBoletin1Fisura);
+            remove(cargaDatosImg);
 
             try {
                 preguntasInPane("boletin");
