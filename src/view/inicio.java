@@ -5,8 +5,20 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.Objects;
+
+import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.pdfview.PDFFile;
+import com.sun.pdfview.PDFPage;
+import com.sun.pdfview.PagePanel;
 
 public class inicio extends JFrame implements ActionListener{
     public JLabel tituloLbl, nombreProyectoLbl, numeroCasoLlb, ingenieroEspecialistaLbl, cedulaLbl, fechaLbl, elementoInicialLbl, tipoAmbienteLbl;
@@ -39,9 +51,10 @@ public class inicio extends JFrame implements ActionListener{
     public JScrollPane scroller;
 
     public String elementoSeleccionado, ambienteSeleccionado, manifestacionSeleccionada;
-    public String nombrePatologias[], idNombrePatologias[], tablaNombresSeleccionada, tablaSeleccionada;
-    public int etapaActual, aciertoPatologias[], seleccionadoAciertoPatologias[], indiceRespuestasNombrePatologia[];
+    public String nombrePatologias[], idNombrePatologias[], tablaNombresSeleccionada, tablaSeleccionada, patologiaFinal;
+    public int etapaActual, aciertoPatologias[], seleccionadoAciertoPatologias[], indiceRespuestasNombrePatologia[], otraPatologiaSeleccionada;
     public JCheckBox respuestasSeleccionadas[], condicionEtapa4Si, condicionEtapa4NO;
+    public JComboBox comboBox;
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
 
@@ -723,6 +736,103 @@ public class inicio extends JFrame implements ActionListener{
         panel.add(new JLabel(" "));
     }
 
+    public static String validacionTamano(String x, int tamano) {
+        if(x.length() < tamano) {
+            for(int i = x.length(); i < tamano; ++i) {
+                x = x + " ";
+            }
+        } else if(x.length() > tamano) {
+            x = (String)x.subSequence(0, tamano);
+        }
+
+        return x;
+    }
+
+    public void reporte() throws IOException, DocumentException{
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("C:\\drStructure\\inspecciones\\"+numeroCasoTxF.getText()+"\\"+numeroCasoTxF.getText()+".pdf"));
+        document.setPageSize(PageSize.A4);
+        document.setMargins(36.0F, 30.0F, 30.0F, 30.0F);
+        document.setMarginMirroring(true);
+        document.open();
+
+        Font fuente = new Font();
+
+        fuente.setStyle(1);
+        Paragraph paragraph = new Paragraph("Software Dr. Structure 1.0\nReporte Final de Diagnostico\n\n", fuente);
+        paragraph.setAlignment(1);
+        document.add(paragraph);
+
+        String nombreProyecto = nombreProyectoTxF.getText();
+        nombreProyecto = validacionTamano(nombreProyecto, 70);
+
+        String numeroCaso = numeroCasoTxF.getText();
+        numeroCaso = validacionTamano(numeroCaso, 10);
+
+        paragraph = new Paragraph("Nombre de Proyecto:   " + nombreProyecto + "N° Caso: " + numeroCaso);
+        document.add(paragraph);
+
+        String nombreIngeniero = ingenieroEspecialistaTxF.getText();
+        nombreIngeniero = validacionTamano(nombreIngeniero, 35);
+
+        String cedula =cedulaTxF.getText();
+        cedula = validacionTamano(cedula, 26);
+
+        String fecha = fechaTxF.getText();
+        paragraph = new Paragraph("Ing. Espcialista: " + nombreIngeniero + "CIV: " + cedula + "Fecha: " + fecha + "\n\n");
+        document.add(paragraph);
+
+        fuente.setStyle(1);
+        paragraph = new Paragraph("    *Mecanismo / Patología Diagnosticada:", fuente);
+        document.add(paragraph);
+
+//        String patologiaDiagnosticada = "(Variación Térmica, Retracción Hidráulica, Ataque de Cloruros, etc.) *La que selecciono el Usuario en la lista de Hipótesis de la Etapa 3.";
+        String patologiaDiagnosticada = patologiaFinal;
+        if (patologiaDiagnosticada.length() > 89) {
+            paragraph = new Paragraph("                *" + patologiaDiagnosticada.subSequence(0, 88) + "\n                 " + patologiaDiagnosticada.subSequence(88, patologiaDiagnosticada.length()));
+        } else {
+            paragraph = new Paragraph("                *" + patologiaDiagnosticada);
+        }
+        document.add(paragraph);
+
+        fuente.setStyle(1);
+        paragraph = new Paragraph("\n    *Síntomas correspondientes a Dicha Patología:", fuente);
+        document.add(paragraph);
+
+        for (int i = 0; i < 5; ++i) {
+            paragraph = new Paragraph("                * Sintoma " + (i + 1));
+            document.add(paragraph);
+        }
+
+        fuente.setStyle(1);
+        paragraph = new Paragraph("\n    *Referencia Grafica de la Patología:", fuente);
+        document.add(paragraph);
+
+        Image image1 = Image.getInstance("imagen.png");
+//        image1.setAbsolutePosition(150, 500);
+        document.add(image1);
+
+        fuente.setStyle(1);
+        paragraph = new Paragraph("\n    *Causas u Orígenes conocidos de la Patología Diagnosticada:", fuente);
+        document.add(paragraph);
+
+        for (int i = 0; i < 5; ++i) {
+            paragraph = new Paragraph("                * Causa " + (i + 1));
+            document.add(paragraph);
+        }
+
+        fuente.setStyle(1);
+        paragraph = new Paragraph("\n    *Acciones Correctivas / Preventivas, para Reparar y Erradicar  Localmente el mecanismo:", fuente);
+        document.add(paragraph);
+
+        for (int i = 0; i < 5; ++i) {
+            paragraph = new Paragraph("                * Terapia " + (i + 1));
+            document.add(paragraph);
+        }
+
+        document.close();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==abrir){
@@ -811,6 +921,8 @@ public class inicio extends JFrame implements ActionListener{
 
             add(nuevaInspeccionBtn);
             add(inicioImg);
+            panel.setBounds(300,200,600,400);
+            scroller.setBounds(225,200,600,400);
             tituloLbl.setText("DOCTOR STRUCTURE V1.0");
             tituloLbl.setBounds(400,100,250,25);
             repaint();
@@ -858,6 +970,15 @@ public class inicio extends JFrame implements ActionListener{
             tamRespuestasManifestacionesFisicas2=0;
             tamRespuestasManifestacionesQuimicas1=0;
             tamRespuestasManifestacionesQuimicas2=0;
+
+//            try {
+                File dir = new File("C:\\drStructure\\inspecciones\\"+numeroCasoTxF.getText());
+                dir.mkdir();
+//                String cmd="md C:\\drStructure\\inspecciones\\"+numeroCasoTxF.getText();
+//                Runtime.getRuntime().exec(cmd);
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
 
             repaint();
         }
@@ -1297,6 +1418,7 @@ public class inicio extends JFrame implements ActionListener{
             seleccionadoAciertoPatologias=new int[aciertoPatologias.length];
             indiceRespuestasNombrePatologia = new int[3];
             double porcentajes [] = new double[3];
+            DecimalFormat decimales = new DecimalFormat("0.00");
             int tam;
 
             if(vigaCbx.isSelected()){
@@ -1325,7 +1447,7 @@ public class inicio extends JFrame implements ActionListener{
                 if (mayor == aciertoPatologias[i] && seleccionadoAciertoPatologias[i]!=1){
                     porcentajes[0] = ((float)aciertoPatologias[i]/(tam))*100;
                     indiceRespuestasNombrePatologia[0] = i;
-                    respuestasSeleccionadas[0] = new JCheckBox(nombrePatologias[i]+": "+porcentajes[0]+"%");
+                    respuestasSeleccionadas[0] = new JCheckBox(nombrePatologias[i]+": "+decimales.format(porcentajes[0])+"%");
                     seleccionadoAciertoPatologias[i]=1;
                     break;
                 }
@@ -1342,7 +1464,7 @@ public class inicio extends JFrame implements ActionListener{
                 if (mayor == aciertoPatologias[i] && seleccionadoAciertoPatologias[i]!=1){
                     porcentajes[1] = ((float)aciertoPatologias[i]/(tam))*100;
                     indiceRespuestasNombrePatologia[1] = i;
-                    respuestasSeleccionadas[1] = new JCheckBox(nombrePatologias[i]+": "+porcentajes[1]+"%");
+                    respuestasSeleccionadas[1] = new JCheckBox(nombrePatologias[i]+": "+decimales.format(porcentajes[1])+"%");
                     seleccionadoAciertoPatologias[i]=1;
                     break;
                 }
@@ -1359,11 +1481,12 @@ public class inicio extends JFrame implements ActionListener{
                 if (mayor == aciertoPatologias[i] && seleccionadoAciertoPatologias[i]!=1){
                     porcentajes[2] = ((float)aciertoPatologias[i]/(tam))*100;
                     indiceRespuestasNombrePatologia[2] = i;
-                    respuestasSeleccionadas[2] = new JCheckBox(nombrePatologias[i]+": "+porcentajes[2]+"%");
+                    respuestasSeleccionadas[2] = new JCheckBox(nombrePatologias[i]+": "+decimales.format(porcentajes[2])+"%");
                     seleccionadoAciertoPatologias[i]=1;
                     break;
                 }
             }
+            otraPatologiaSeleccionada=0;
 
             panel.removeAll();
 
@@ -1378,13 +1501,6 @@ public class inicio extends JFrame implements ActionListener{
             remove(siguienteEtapa4);
             add(siguienteOtrasHipotesis);
             add(siguienteReporte);
-
-
-//            panel.add(new JCheckBox("Ataque Biologico 33%"));
-//            panel.add(new JLabel(" "));
-//            panel.add(new JCheckBox("Adherencia y Anclaje 32%"));
-//            panel.add(new JLabel(" "));
-//            panel.add(new JCheckBox("Accion Sismica 18%"));
 
             repaint();
         }
@@ -1405,6 +1521,103 @@ public class inicio extends JFrame implements ActionListener{
             condicionEtapa4NO.setText("NO");
             panel.add(condicionEtapa4NO);
             panel.add(new JLabel(" "));
+
+            repaint();
+        }
+
+        if(e.getSource()==siguienteOtrasHipotesis){
+
+            String patologiasSeleccionar [] = new String[0];
+            otraPatologiaSeleccionada=1;
+
+            try {
+                patologiasSeleccionar = new String[mc.selectNombresPatologias(tablaNombresSeleccionada).size()];
+                for(int i=0; i<mc.selectNombresPatologias(tablaNombresSeleccionada).size();i++){
+                    patologiasSeleccionar[i]= mc.selectNombresPatologias(tablaNombresSeleccionada).get(i);
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            comboBox = new JComboBox(patologiasSeleccionar);
+
+            tituloLbl.setText("Seleccion de otra hipotesis");
+            remove(siguienteOtrasHipotesis);
+            panel.removeAll();
+            panel.setBounds(300,200,300,50);
+            scroller.setBounds(225,200,300,50);
+            panel.add(comboBox);
+            repaint();
+        }
+
+        if(e.getSource()==siguienteReporte ){
+
+            tituloLbl.setText("reporte");
+            panel.setBounds(300,200,600,400);
+            scroller.setBounds(225,200,600,400);
+            panel.removeAll();
+            remove(siguienteReporte);
+            remove(siguienteOtrasHipotesis);
+
+            if(otraPatologiaSeleccionada==0){
+                if(respuestasSeleccionadas[0].isSelected()){
+                    try {
+                        patologiaFinal=mc.selectNombresPatologias(tablaNombresSeleccionada).get(indiceRespuestasNombrePatologia[0]);
+                        System.out.println(mc.selectNombresPatologias(tablaNombresSeleccionada).get(indiceRespuestasNombrePatologia[0]));
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }else if(respuestasSeleccionadas[1].isSelected()){
+                    try {
+                        patologiaFinal=mc.selectNombresPatologias(tablaNombresSeleccionada).get(indiceRespuestasNombrePatologia[1]);
+                        System.out.println(mc.selectNombresPatologias(tablaNombresSeleccionada).get(indiceRespuestasNombrePatologia[1]));
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }else{
+                    try {
+                        patologiaFinal=mc.selectNombresPatologias(tablaNombresSeleccionada).get(indiceRespuestasNombrePatologia[2]);
+                        System.out.println(mc.selectNombresPatologias(tablaNombresSeleccionada).get(indiceRespuestasNombrePatologia[2]));
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }else{
+                patologiaFinal=comboBox.getSelectedItem().toString();
+                System.out.println(comboBox.getSelectedItem());
+            }
+
+           try {
+                reporte();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            } catch (DocumentException e1) {
+                e1.printStackTrace();
+            }
+
+            JFrame frame = new JFrame("PDF Test");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            PagePanel panel = new PagePanel();
+            frame.add(panel);
+            frame.pack();
+            frame.setVisible(true);
+
+            //load a pdf from a byte buffer
+            File file = new File("C:\\drStructure\\inspecciones\\"+numeroCasoTxF.getText()+"\\"+numeroCasoTxF.getText()+".pdf");
+            RandomAccessFile raf = null;
+            try {
+                raf = new RandomAccessFile(file, "r");
+                FileChannel channel = raf.getChannel();
+                ByteBuffer buf = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size());
+                PDFFile pdffile = new PDFFile(buf);
+                PDFPage page = pdffile.getPage(0);
+                panel.showPage(page);
+            } catch (FileNotFoundException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+            add(frame);
 
             repaint();
         }
