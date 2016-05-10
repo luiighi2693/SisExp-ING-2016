@@ -40,7 +40,8 @@ public class inicio extends JFrame implements ActionListener{
 
     public String elementoSeleccionado, ambienteSeleccionado, manifestacionSeleccionada;
     public String nombrePatologias[], idNombrePatologias[], tablaNombresSeleccionada, tablaSeleccionada;
-    public int etapaActual, aciertoPatologias[],tamEtapa1, tamEtapa2;;
+    public int etapaActual, aciertoPatologias[], seleccionadoAciertoPatologias[], indiceRespuestasNombrePatologia[];
+    public JCheckBox respuestasSeleccionadas[], condicionEtapa4Si, condicionEtapa4NO;
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
 
@@ -126,6 +127,9 @@ public class inicio extends JFrame implements ActionListener{
 
         inicioImg= new JLabel("");
         cargaDatosImg = new JLabel("");
+
+        condicionEtapa4Si = new JCheckBox();
+        condicionEtapa4NO = new JCheckBox();
 
         panel = new JPanel();
         scroller = new JScrollPane(panel);
@@ -1096,6 +1100,9 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteAvanzarDiagnostico){
+            if(condicionEtapa4NO.isSelected()){
+                JOptionPane.showMessageDialog(null, "AVANCE A DIAGNOSTICO Y EN \" SELECCIONAR OTRAS HIPOTESIS\" , SELECCIONE LA FALLA ENCONTRADA EN LOS ANALISIS ESTRUCTURALES PARA PASAR A REPORTE");
+            }
 
             if(vigaCbx.isSelected()){
                 tablaNombresSeleccionada= "matrizrespuestaspatologicasvigas_nombrepatologia";
@@ -1285,13 +1292,93 @@ public class inicio extends JFrame implements ActionListener{
                 e1.printStackTrace();
             }
 
+            //elegir las tres hipotesis de mayor coincidencia
+            respuestasSeleccionadas = new JCheckBox[3];
+            seleccionadoAciertoPatologias=new int[aciertoPatologias.length];
+            indiceRespuestasNombrePatologia = new int[3];
+            double porcentajes [] = new double[3];
+            int tam;
+
+            if(vigaCbx.isSelected()){
+                tam=respuestasFisurasVigas1Str.length+respuestasFisurasVigas2Str.length;
+            }else if(columnaCbx.isSelected()){
+                tam= respuestasFisurasColumnas1Str.length+respuestasFisurasColumnas2Str.length;
+            }else if(mamposteriaCbx.isSelected()){
+                tam=respuestasFisurasMamposteria1Str.length+respuestasFisurasMamposteria2Str.length;
+            }else if(losaCbx.isSelected()){
+                tam = respuestasFisurasLosas1Str.length+respuestasFisurasLosas2Str.length;
+            }else{
+                tam = respuestasFisurasMuros1Str.length+respuestasFisurasMuros2Str.length;
+            }
+
+            tam = tam + respuestasManifestacionesFisicas1Str.length+ respuestasManifestacionesFisicas2Str.length;
+            tam = tam + respuestasManifestacionesQuimicas1Str.length + respuestasManifestacionesQuimicas2Str.length;
+
+            int mayor = -1;
+            for (int i=0; i<aciertoPatologias.length;i++){
+                if (aciertoPatologias[i]>mayor && seleccionadoAciertoPatologias[i]!=1){
+                    mayor  = aciertoPatologias[i];
+                }
+            }
+
+            for (int i=0; i<aciertoPatologias.length;i++){
+                if (mayor == aciertoPatologias[i] && seleccionadoAciertoPatologias[i]!=1){
+                    porcentajes[0] = ((float)aciertoPatologias[i]/(tam))*100;
+                    indiceRespuestasNombrePatologia[0] = i;
+                    respuestasSeleccionadas[0] = new JCheckBox(nombrePatologias[i]+": "+porcentajes[0]+"%");
+                    seleccionadoAciertoPatologias[i]=1;
+                    break;
+                }
+            }
+
+            mayor=-1;
+            for (int i=0; i<aciertoPatologias.length;i++){
+                if (aciertoPatologias[i]>mayor && seleccionadoAciertoPatologias[i]!=1){
+                    mayor  = aciertoPatologias[i];
+                }
+            }
+
+            for (int i=0; i<aciertoPatologias.length;i++){
+                if (mayor == aciertoPatologias[i] && seleccionadoAciertoPatologias[i]!=1){
+                    porcentajes[1] = ((float)aciertoPatologias[i]/(tam))*100;
+                    indiceRespuestasNombrePatologia[1] = i;
+                    respuestasSeleccionadas[1] = new JCheckBox(nombrePatologias[i]+": "+porcentajes[1]+"%");
+                    seleccionadoAciertoPatologias[i]=1;
+                    break;
+                }
+            }
+
+            mayor=-1;
+            for (int i=0; i<aciertoPatologias.length;i++){
+                if (aciertoPatologias[i]>mayor && seleccionadoAciertoPatologias[i]!=1){
+                    mayor  = aciertoPatologias[i];
+                }
+            }
+
+            for (int i=0; i<aciertoPatologias.length;i++){
+                if (mayor == aciertoPatologias[i] && seleccionadoAciertoPatologias[i]!=1){
+                    porcentajes[2] = ((float)aciertoPatologias[i]/(tam))*100;
+                    indiceRespuestasNombrePatologia[2] = i;
+                    respuestasSeleccionadas[2] = new JCheckBox(nombrePatologias[i]+": "+porcentajes[2]+"%");
+                    seleccionadoAciertoPatologias[i]=1;
+                    break;
+                }
+            }
+
+            panel.removeAll();
+
+            panel.add(respuestasSeleccionadas[0]);
+            panel.add(new JLabel(" "));
+            panel.add(respuestasSeleccionadas[1]);
+            panel.add(new JLabel(" "));
+            panel.add(respuestasSeleccionadas[2]);
+
             tituloLbl.setText("Planteamiento de hipotesis de Diagnostico");
             remove(siguienteAvanzarDiagnostico);
             remove(siguienteEtapa4);
             add(siguienteOtrasHipotesis);
             add(siguienteReporte);
 
-            panel.removeAll();
 
 //            panel.add(new JCheckBox("Ataque Biologico 33%"));
 //            panel.add(new JLabel(" "));
@@ -1312,9 +1399,11 @@ public class inicio extends JFrame implements ActionListener{
             panel.removeAll();
             panel.add(new JLabel("¿ El comportamiento de los componentes de la estructura ( Super-Estructura, Infra-Estructura\n, Suelo de fundación, etc.) fue satisfactorio?"));
             panel.add(new JLabel(" "));
-            panel.add(new JCheckBox("SI"));
+            condicionEtapa4Si.setText("SI");
+            panel.add(condicionEtapa4Si);
             panel.add(new JLabel(" "));
-            panel.add(new JCheckBox("NO"));
+            condicionEtapa4NO.setText("NO");
+            panel.add(condicionEtapa4NO);
             panel.add(new JLabel(" "));
 
             repaint();
