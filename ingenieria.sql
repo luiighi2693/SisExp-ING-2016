@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.0.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2016 a las 05:48:45
--- Versión del servidor: 10.0.17-MariaDB
--- Versión de PHP: 5.6.14
+-- Tiempo de generación: 10-05-2016 a las 09:03:34
+-- Versión del servidor: 10.1.10-MariaDB
+-- Versión de PHP: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -737,7 +737,6 @@ CREATE TABLE `matrizrespuestaspatologicascolumnas_nombrepatologia` (
 --
 
 INSERT INTO `matrizrespuestaspatologicascolumnas_nombrepatologia` (`idPatologia`, `nombrePatologia`, `afectanTodosElementos`) VALUES
-(' fluenciaElementos', 'Fluencia de Elementos', 'SI'),
 ('abrasion', 'Abrasion', 'NO'),
 ('accionAguaMar', 'Accion de Agua de Mar', 'SI'),
 ('accionFuego', 'Accion del Fuego', 'SI'),
@@ -756,6 +755,7 @@ INSERT INTO `matrizrespuestaspatologicascolumnas_nombrepatologia` (`idPatologia`
 ('falloFlexionTorsion', 'Fallo por Flexion - Torsion (Columna)', 'NO'),
 ('falloTorsion', 'Fallo por Torsion (Columna)', 'NO'),
 ('falloTraccion', 'Fallo por Traccion (Columna)', 'NO'),
+('fluenciaElementos', 'Fluencia de Elementos', 'SI'),
 ('impactos', 'Impactos', 'NO'),
 ('malaRelacionAguaCemento', 'Mala Relacion Agua/Cemento', 'SI'),
 ('malVibradoConcreto', 'Mal Vibrado del Concreto', 'SI'),
@@ -848,7 +848,7 @@ INSERT INTO `matrizrespuestaspatologicascolumnas_patologia` (`nombre`, `numeroPr
 ('FISURAS', 13, 'Restringe Dilatacion de Elementos', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
 ('FISURAS', 14, 'Micro-Fisuras', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
 ('FISURAS', 15, 'Con expansion de Volumen', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
-('FISURAS', 16, 'Con Desprendimiento de Recubrimiento', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'SI', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 2, 'NO | SI'),
+('FISURAS', 16, 'Con Desprendimiento de Recubrimiento', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'NO', 'CUALQUIERA', 'NO', 'CUALQUIERA', 'NO', 'NO', 'NO', 'CUALQUIERA', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'CUALQUIERA', 'CUALQUIERA', 2, 'NO | SI'),
 ('FISURAS', 17, 'En la zona de Compresion', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
 ('FISURAS', 18, 'Direccion de Fisuras', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'VERTICALMENTE', 'VERTICALMENTE', 'HORIZONTALMENTE / VERTICALMENTE', 'CUALQUIERA', 'CUALQUIERA', 'NO', 'CUALQUIERA', 'VERTICALMENTE', 'CUALQUIERA', 'VERTICALMENTE', 'HORIZONTALMENTE', 'VERTICALMENTE', 'NO', 'DIAGONALMENTE', 'DIAGONALMENTE', 'DIAGONALMENTE', 'VERTICALMENTE', 'DIAGONALMENTE', 'HORIZONTALMENTE', 'CUALQUIERA', 'DIAGONALMENTE', 'HORIZONTALMENTE', 'NO', 'CUALQUIERA', 6, 'CUALQUIERA | NO | DIAGONALMENTE | HORIZONTALMENTE | VERTICALMENTE | HORIZONTALMENTE / VERTICALMENTE'),
 ('FISURAS', 19, 'Perpendiculares al Acero Principal', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
@@ -876,9 +876,9 @@ INSERT INTO `matrizrespuestaspatologicascolumnas_patologia` (`nombre`, `numeroPr
 ('QUIMICAS', 17, 'Presencia de Medios para transportar Agentes (Fisuras, Oquedades, etc.)', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
 ('QUIMICAS', 18, 'Cambios de Humedad constantes', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
 ('QUIMICAS', 19, 'Alto % de Humedad prolongado', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
-('QUIMICAS', 20, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 2, 'NO | SI'),
-('QUIMICAS', 21, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
-('QUIMICAS', 22, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI');
+('QUIMICAS', 20, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
+('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'NO | SI'),
+('QUIMICAS', 22, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 2, 'NO | SI');
 
 -- --------------------------------------------------------
 
@@ -912,14 +912,14 @@ INSERT INTO `matrizrespuestaspatologicaslosas_nombrepatologia` (`idPatologia`, `
 ('corrosionCarbonatacion', 'Corrosion por Carbonatacion', 'SI'),
 ('cortanteLosas', 'Cortante en Losas', 'NO'),
 ('criptoflorescencia', 'Criptoflorescencia', 'NO'),
-('deficienciaPosicionadoArmaduras', 'Deficiencia en Posicionado de Armaduras', 'SI'),
+('deficienciaposicionamientoArmaduras', 'Deficiencia en Posicionado de Armaduras', 'SI'),
 ('desecacionsuperficial', 'Desecacion Superficial', 'SI'),
 ('eflorescencia', 'Eflorescencia', 'NO'),
 ('Erosion', 'Erosion', 'NO'),
 ('flexionLosas', 'Flexion en Losas', 'NO'),
 ('fluenciaElementos', 'Fluencia de Elementos', 'SI'),
 ('impactoExplosion', 'Impacto - Explosion', 'NO'),
-('malaReaccionAguaCemento', 'Mala Relacion Agua/Cemento', 'SI'),
+('malaRelacionAguaCemento', 'Mala Relacion Agua/Cemento', 'SI'),
 ('malVibradoConcreto', 'Mal Vibrado del Concreto', 'SI'),
 ('oquedadesSuperficiales', 'Oquedades Superficiales', 'SI'),
 ('reaccionAlcalisAgregado', 'Reaccion Alcalis - Agregado', 'SI'),
@@ -1041,9 +1041,9 @@ INSERT INTO `matrizrespuestaspatologicaslosas_patologia` (`nombre`, `numeroPregu
 ('QUMICAS', 17, 'Presencia de Medios para transportar Agentes (Fisuras, Oquedades, etc.)', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'SI', 2, 'SI | NO'),
 ('QUMICAS', 18, 'Cambios de Humedad constantes', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('QUMICAS', 19, 'Alto % de Humedad prolongado', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUMICAS', 20, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUMICAS', 21, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUMICAS', 22, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO');
+('QUMICAS', 20, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('QUMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('QUMICAS', 22, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO');
 
 -- --------------------------------------------------------
 
@@ -1074,14 +1074,14 @@ INSERT INTO `matrizrespuestaspatologicasmuros_nombrepatologia` (`idPatologia`, `
 ('corrosionCarbonatacion', 'Corrosion por Carbonatacion', 'SI'),
 ('cortanteMuros', 'Cortante en Muros', 'NO'),
 ('criptoflorescencia', 'Criptoflorescencia', 'NO'),
-('deficienciaPosicionadoArmaduras', 'Deficiencia en Posicionado de Armaduras', 'SI'),
+('deficienciaposicionamientoArmaduras', 'Deficiencia en Posicionado de Armaduras', 'SI'),
 ('desecacionsuperficial', 'Desecacion Superficial', 'SI'),
 ('eflorescencia', 'Eflorescencia', 'NO'),
 ('erosion', 'Erosion', 'NO'),
 ('flexionMuros', 'Flexion en Muros', 'NO'),
 ('fluenciaElementos', 'Fluencia de Elementos', 'SI'),
 ('impactos', 'Impactos', 'NO'),
-('malaReaccionAguaCemento', 'Mala Relacion Agua/Cemento', 'SI'),
+('malaRelacionAguaCemento', 'Mala Relacion Agua/Cemento', 'SI'),
 ('malVibradoConcreto', 'Mal Vibrado del Concreto', 'SI'),
 ('oquedadesSuperficiales', 'Oquedades Superficiales', 'SI'),
 ('reaccionAlcalisAgregado', 'Reaccion Alcalis - Agregado', 'SI'),
@@ -1201,9 +1201,9 @@ INSERT INTO `matrizrespuestaspatologicasmuros_patologia` (`nombre`, `numeroPregu
 ('QUIMICAS', 17, 'Presencia de Medios para transportar Agentes (Fisuras, Oquedades, etc.)', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'SI', 'SI', 2, 'SI | NO'),
 ('QUIMICAS', 18, 'Cambios de Humedad constantes', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('QUIMICAS', 19, 'Alto % de Humedad prolongado', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUIMICAS', 20, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUIMICAS', 21, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUIMICAS', 22, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO');
+('QUIMICAS', 20, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('QUIMICAS', 22, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO');
 
 -- --------------------------------------------------------
 
@@ -1216,6 +1216,39 @@ CREATE TABLE `matrizrespuestaspatologicasparedes_nombrepatologia` (
   `nombrePatologia` varchar(100) NOT NULL,
   `afectanTodosElementos` enum('SI','NO') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `matrizrespuestaspatologicasparedes_nombrepatologia`
+--
+
+INSERT INTO `matrizrespuestaspatologicasparedes_nombrepatologia` (`idPatologia`, `nombrePatologia`, `afectanTodosElementos`) VALUES
+('abrasion', 'Abrasion', 'SI'),
+('accionAguaMar', 'Accion de Agua de Mar', 'SI'),
+('accionFuego', 'Accion del Fuego', 'SI'),
+('accionSismica', 'Accion Sismica', 'SI'),
+('adherenciaAnclaje', 'Adherencia y Anclaje', 'SI'),
+('asentamiento', 'Asentamiento', 'SI'),
+('ataqueBiologico', 'Ataque Biologico', 'SI'),
+('ataqueSolucionAlcalina', 'Ataque de Solucion Alcalina', 'SI'),
+('compresionMuros', 'Compresion', 'SI'),
+('corrosionCarbonatacion', 'Corrosion por Carbonatacion', 'SI'),
+('cortanteMuros', 'Cortante', 'SI'),
+('criptoflorescencia', 'Criptoflorescencia', 'SI'),
+('desecacionSuperficial', 'Desecacion Superficial', 'SI'),
+('eflorescencia', 'Eflorescencia', 'SI'),
+('erosion', 'Erosion', 'SI'),
+('flexionMuros', 'Flexion', 'SI'),
+('fluenciaElementos', 'Fluencia de Elementos', 'SI'),
+('impactos', 'Impactos', 'SI'),
+('malaReaccionAguaCemento', 'Mala Relacion Agua/Cemento', 'SI'),
+('oquedadesSuperficiales', 'Oquedades Superficiales', 'SI'),
+('reaccionSulfatos', 'Reaccion con Sulfatos', 'SI'),
+('remocionEnconfrado', 'Remocion de Enconfrado', 'SI'),
+('retraccionHidraulica', 'Retraccion Hidraulica', 'SI'),
+('retraccionHidraulicaTermica', 'Retraccion Hidraulica y Termica', 'SI'),
+('traccionMuros', 'Traccion en Muros', 'SI'),
+('variacionHumedad', 'Variacion de Humedad', 'SI'),
+('variacionTermica', 'Variacion Termica (Movimentacion Termica)', 'SI');
 
 -- --------------------------------------------------------
 
@@ -1286,7 +1319,7 @@ INSERT INTO `matrizrespuestaspatologicasparedes_patologia` (`nombre`, `numeroPre
 ('FISURAS', 7, 'Con rotura de Elementos Adosados', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 8, 'En Elementos Restringentes', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 9, 'Con expansion de Volumen', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 2, 'SI | NO'),
-('FISURAS', 10, 'Con Desprendimiento de Recubrimiento', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 2, 'SI | NO'),
+('FISURAS', 10, 'Con Desprendimiento de Recubrimiento', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'CUALQUIERA', 'CUALQUIERA', 'NO', 'NO', 'CUALQUIERA', 'NO', 'CUALQUIERA', 'CUALQUIERA', 'NO', 'CUALQUIERA', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'CUALQUIERA', 'CUALQUIERA', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 11, 'Direccion de Fisuras', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'VERTICALMENTE', 'CUALQUIERA', 'VERTICALMENTE', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'DIAGONALMENTE', 'HORIZONTALMENTE / VERTICALMENTE', 'NO', 'NO', 'VERTICALMENTE', 'DIAGONALMENTE', 'DIAGONALMENTE', 'CUALQUIERA', 'HORIZONTALMENTE', 'CUALQUIERA', 'CUALQUIERA', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 12, 'Fisuras de Compresion', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 13, 'Superficiales / Profundas', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'PROFUNDAS', 'PROFUNDAS', 'PROFUNDAS', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'PROFUNDAS', 'SUPERFICIAL', 'NO', 'NO', 'PROFUNDAS', 'PROFUNDAS', 'PROFUNDAS', 'PROFUNDAS', 'PROFUNDAS', 'SUPERFICIAL', 'NO', 'NO', 'NO', 2, 'SI | NO'),
@@ -1309,9 +1342,9 @@ INSERT INTO `matrizrespuestaspatologicasparedes_patologia` (`nombre`, `numeroPre
 ('QUIMICAS', 17, 'Presencia de Medios para transportar Agentes (Fisuras, Oquedades, etc.)', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 2, 'SI | NO'),
 ('QUIMICAS', 18, 'Cambios de Humedad constantes', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('QUIMICAS', 19, 'Alto % de Humedad prolongado', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUIMICAS', 20, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 2, 'SI | NO'),
-('QUIMICAS', 21, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUIMICAS', 22, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 2, 'SI | NO');
+('QUIMICAS', 20, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 2, 'SI | NO'),
+('QUIMICAS', 22, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 2, 'SI | NO');
 
 -- --------------------------------------------------------
 
@@ -1340,16 +1373,16 @@ INSERT INTO `matrizrespuestaspatologicasvigas_nombrepatologia` (`idPatologia`, `
 ('corrimientoAcerosVigas', 'Corrimiento de Aceros en Vigas', 'NO'),
 ('corrosionArmaduras', 'Corrosion de Armaduras', 'SI'),
 ('corrosionCarbonatacion', 'Corrosion por Carbonatacion', 'SI'),
-('CortanteVigtas', 'Cortante en Vigas', 'NO'),
+('CortanteVigas', 'Cortante en Vigas', 'NO'),
 ('criptoflorescencia', 'Criptoflorescencia', 'NO'),
-('deficienciaPosicionadoArmaduras', 'Deficiencia en Posicionado de Armaduras', 'SI'),
+('deficienciaposicionamientoArmaduras', 'Deficiencia en Posicionado de Armaduras', 'SI'),
 ('desecacionsuperficial', 'Desecacion Superficial', 'SI'),
 ('eflorecencia', 'Eflorescencia', 'NO'),
 ('flexionCortante', 'Flexion - Cortante ( Vigas)', 'NO'),
 ('flexionTorsionVigas', 'Flexion - Torsion en Vigas', 'NO'),
 ('flexionVigas', 'Flexion en Vigas', 'NO'),
 ('fluenciaElementos', 'Fluencia de Elementos', 'SI'),
-('malaReaccionAguaCemento', 'Mala Relacion Agua/Cemento', 'SI'),
+('malaRelacionAguaCemento', 'Mala Relacion Agua/Cemento', 'SI'),
 ('malVibradoConcreto', 'Mal Vibrado del Concreto', 'SI'),
 ('oquedadesSuperficiales', 'Oquedades Superficiales', 'SI'),
 ('reaccionAlcalisAgregado', 'Reaccion Alcalis - Agregado', 'SI'),
@@ -1416,6 +1449,20 @@ CREATE TABLE `matrizrespuestaspatologicasvigas_patologia` (
 --
 
 INSERT INTO `matrizrespuestaspatologicasvigas_patologia` (`nombre`, `numeroPregunta`, `descripcion`, `variacionTermica`, `variacionHumedad`, `retraccionHidraulicaTermica`, `retraccionHidraulica`, `desecacionSuperficial`, `accionFuego`, `reaccionSulfatos`, `reaccionCloruros`, `corrosionCarbonatacion`, `deficienciaposicionamientoArmaduras`, `adherenciaAnclaje`, `accionAguaMar`, `oquedadesSuperficiales`, `reaccionAlcalisAgregado`, `fluenciaElementos`, `remocionEnconfrado`, `malaRelacionAguaCemento`, `malVibradoConcreto`, `corrosionArmaduras`, `ataqueBiologico`, `solucionAlcalina`, `flexionCortante`, `flexionVigas`, `torsionVigas`, `CortanteVigas`, `flexionTorsionVigas`, `traccionVigas`, `compresionVigas`, `corrimientoAcerosVigas`, `criptoflorescencia`, `eflorecencia`, `accionSismica`, `asentamiento`, `numeroValores`, `valores`) VALUES
+('FISICAS', 1, 'Deformaciones en el Elemento', 'SI', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'SI', 'NO', 'NO', 'SI', 'SI', 2, 'SI | NO'),
+('FISICAS', 2, 'Spalling', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 2, 'SI | NO'),
+('FISICAS', 3, 'Perdida de recubrimiento', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 2, 'SI | NO'),
+('FISICAS', 4, 'Aumento de Volumen / Perdida de Seccion', 'NO', 'NO', 'PERDIDA DE SECCION', 'PERDIDA DE SECCION', 'NO', 'NO', 'PERDIDA DE SECCION', 'NO', 'AUMENTO DE VOLUMEN', 'NO', 'NO', 'NO', 'NO', 'AUMENTO DE VOLUMEN', 'NO', 'PERDIDA DE SECCION', 'PERDIDA DE SECCION', 'NO', 'AUMENTO DE VOLUMEN', 'NO', 'AUMENTO DE VOLUMEN', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'AUMENTO DE VOLUMEN', 'AUMENTO DE VOLUMEN', 'PERDIDA DE SECCION', 'NO', 2, 'SI | NO'),
+('FISICAS', 5, 'Variaciones de Volumen antes de la Patologia', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('FISICAS', 6, 'Deformacion de Barras de Acero', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'SI', 'NO', 2, 'SI | NO'),
+('FISICAS', 7, 'Armaduras expuestas', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('FISICAS', 8, 'Evidencia de Lixiviacion', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 2, 'SI | NO'),
+('FISICAS', 9, 'Desagregacion de los Aridos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('FISICAS', 10, 'Aplastamiento en el Elemento', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('FISICAS', 11, 'Perdida de Seccion de las Barras de Acero', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('FISICAS', 12, 'Formacion de Grandes Fallos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('FISICAS', 13, 'Desgaste Superficial', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('FISICAS', 14, 'Picaduras', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 1, 'Fisuras Activas / Pasivas', 'ACTIVAS', 'ACTIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'NO', 'PASIVAS', 'ACTIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'NO', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'PASIVAS', 'ACTIVAS', 'ACTIVAS', 2, 'SI | NO'),
 ('FISURAS', 2, 'Fisuras en Mapeo', 'SI, SIN ENTRECRUZAMIENTO', 'SI, SIN ENTRECRUZAMIENTO', 'SI, SIN ENTRECRUZAMIENTO', 'SI, SIN ENTRECRUZAMIENTO', 'SI, CON ENTRECRUZAMIENTO', 'SI, CON ENTRECRUZAMIENTO', 'SI, CON ENTRECRUZAMIENTO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI, CON ENTRECRUZAMIENTO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 3, 'Presencia de Gel', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
@@ -1433,7 +1480,7 @@ INSERT INTO `matrizrespuestaspatologicasvigas_patologia` (`nombre`, `numeroPregu
 ('FISURAS', 15, 'Micro-Fisuras', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 16, 'Con expansion de Volumen', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 17, 'Con Desprendimiento de Recubrimiento', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 2, 'SI | NO'),
-('FISURAS', 18, 'En la zona de Compresion', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('FISURAS', 18, 'En la zona de Compresion', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'CUALQUIERA', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 19, 'Direccion de Fisuras', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'HORIZONTALMENTE', 'HORIZONTALMENTE', 'HORIZONTALMENTE / VERTICALMENTE', 'CUALQUIERA', 'CUALQUIERA', 'NO', 'CUALQUIERA', 'HORIZONTALMENTE', 'CUALQUIERA', 'CUALQUIERA', 'HORIZONTALMENTE', 'HORIZONTALMENTE', 'NO', 'CUALQUIERA', 'HORIZONTALMENTE', 'VERTICALMENTE', 'DIAGONALMENTE', 'DIAGONALMENTE', 'DIAGONALMENTE', 'VERTICALMENTE', 'HORIZONTALMENTE', 'HORIZONTALMENTE', 'CUALQUIERA', 'CUALQUIERA', 'CUALQUIERA', 'DIAGONALMENTE', 2, 'SI | NO'),
 ('FISURAS', 20, 'Perpendiculares al Acero Principal', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 21, 'Fisuras Tipo Resorte', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
@@ -1443,20 +1490,6 @@ INSERT INTO `matrizrespuestaspatologicasvigas_patologia` (`nombre`, `numeroPregu
 ('FISURAS', 25, 'Viga de Borde / Cantiléver', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('FISURAS', 26, 'Fisuras en Elementos Restringentes', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'SI', 2, 'SI | NO'),
 ('FISURAS', 27, 'Superficiales / Profundas', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'PROFUNDA', 'PROFUNDA', 'SUPERFICIAL', 'SUPERFICIALES', 'SUPERFICIALES', 'NO', 'SUPERFICIAL', 'PROFUNDA', 'PROFUNDA', 'PROFUNDA', 'PROFUNDA', 'PROFUNDA', 'PROFUNDA', 'PROFUNDA', 'SUPERFICIAL', 'SUPERFICIAL', 'SUPERFICIAL', 'PROFUNDA', 'PROFUNDA', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 1, 'Deformaciones en el Elemento', 'SI', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'SI', 'NO', 'NO', 'SI', 'SI', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 2, 'Spalling', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 3, 'Perdida de recubrimiento', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 4, 'Aumento de Volumen / Perdida de Seccion', 'NO', 'NO', 'PERDIDA DE SECCION', 'PERDIDA DE SECCION', 'NO', 'NO', 'PERDIDA DE SECCION', 'NO', 'AUMENTO DE VOLUMEN', 'NO', 'NO', 'NO', 'NO', 'AUMENTO DE VOLUMEN', 'NO', 'PERDIDA DE SECCION', 'PERDIDA DE SECCION', 'NO', 'AUMENTO DE VOLUMEN', 'NO', 'AUMENTO DE VOLUMEN', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'AUMENTO DE VOLUMEN', 'AUMENTO DE VOLUMEN', 'PERDIDA DE SECCION', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 5, 'Variaciones de Volumen antes de la Patologia', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 6, 'Deformacion de Barras de Acero', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'SI', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 7, 'Armaduras expuestas', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 8, 'Evidencia de Lixiviacion', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 9, 'Desagregacion de los Aridos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 10, 'Aplastamiento en el Elemento', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 11, 'Perdida de Seccion de las Barras de Acero', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 12, 'Formacion de Grandes Fallos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 13, 'Desgaste Superficial', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('Planilla N°7 FISICAS', 14, 'Picaduras', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('QUIMICAS', 1, 'Exudacion del Cemento', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('QUIMICAS', 2, 'Manchas de Carbonatacion', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('QUIMICAS', 3, 'Aridos en Superficie', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
@@ -1476,9 +1509,9 @@ INSERT INTO `matrizrespuestaspatologicasvigas_patologia` (`nombre`, `numeroPregu
 ('QUIMICAS', 17, 'Presencia de Medios para transportar Agentes (Fisuras, Oquedades, etc.)', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 2, 'SI | NO'),
 ('QUIMICAS', 18, 'Cambios de Humedad constantes', 'SI', 'SI', 'SI', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
 ('QUIMICAS', 19, 'Alto % de Humedad prolongado', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUIMICAS', 20, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUIMICAS', 21, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
-('QUIMICAS', 22, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO');
+('QUIMICAS', 20, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO'),
+('QUIMICAS', 22, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'SI', 'SI', 'NO', 'NO', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 2, 'SI | NO');
 
 -- --------------------------------------------------------
 
@@ -1525,7 +1558,7 @@ INSERT INTO `preguntasplanillasetapas` (`patologia`, `elemento`, `numeroEtapa`, 
 ('FISURAS', 'COLUMNAS', 2, 4, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 2, 5, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'COLUMNAS', 2, 6, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
-('FISURAS', 'COLUMNAS', 2, 7, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción Friso/Recubrimiento, Ultra-sonido, Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIALES-SUPERFICIALES-PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'COLUMNAS', 2, 7, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción Friso/Recubrimiento, Ultra-sonido, Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIAL-SUPERFICIAL y PROFUNDA-PROFUNDA'),
 ('FISURAS', 'LOSAS', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas?', 'Realizar Ensayo de Fisurómetro, Medición de Actividad con Testigos.', 2, 'ACTIVAS-PASIVAS'),
 ('FISURAS', 'LOSAS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', 'Realizar inspección Visual.', 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
 ('FISURAS', 'LOSAS', 1, 3, '¿Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', 'Realizar inspección Visual.', 2, 'SI-NO'),
@@ -1548,7 +1581,7 @@ INSERT INTO `preguntasplanillasetapas` (`patologia`, `elemento`, `numeroEtapa`, 
 ('FISURAS', 'LOSAS', 2, 5, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 2, 6, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'LOSAS', 2, 7, '¿Los elementos que restringen la dilatación del elemento tienen fisuras?', 'Realizar Análisis Térmico (Termografia)', 2, 'SI-NO'),
-('FISURAS', 'LOSAS', 2, 8, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción Friso/Recubrimiento, Ultra-Sonido,  Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'LOSAS', 2, 8, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción Friso/Recubrimiento, Ultra-Sonido,  Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIAL-SUPERFICIAL y PROFUNDA-PROFUNDA'),
 ('FISURAS', 'MAMPOSTERIA', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas?', 'Realizar ensayo de Fisurometro, Actividad de Fisuras con Testigo.', 2, 'ACTIVAS-PASIVAS'),
 ('FISURAS', 'MAMPOSTERIA', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', 'Determinar por Inspección Visual.', 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
 ('FISURAS', 'MAMPOSTERIA', 1, 3, '¿Las fisuras se manifiestan de forma Aleatoria sin ningún patrón aparente?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
@@ -1561,7 +1594,7 @@ INSERT INTO `preguntasplanillasetapas` (`patologia`, `elemento`, `numeroEtapa`, 
 ('FISURAS', 'MAMPOSTERIA', 1, 10, '¿Las fisuras se Asemejan a algunas de estas Imágenes?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 6, 'A-B-C-D-E-NINGUNA'),
 ('FISURAS', 'MAMPOSTERIA', 2, 1, '¿Las fisuras en la mampostería aparecen cerca de la cara del apoyo o en la zona de confinamiento de un elemento Estructural?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía), Ultra-sonido.', 2, 'SI-NO'),
 ('FISURAS', 'MAMPOSTERIA', 2, 2, '¿Se encuentran fisuras en elementos que restrinjan la dilatación del Elemento Afectado?', 'Realizar Análisis Térmico ( Termografia).', 2, 'SI-NO'),
-('FISURAS', 'MAMPOSTERIA', 2, 3, '¿Las fisuras que se observan,  son solo superficiales o también las acompañan profundas?', 'Realizar Remoción de Friso/Recubrimiento, Ultra-sonido, Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'MAMPOSTERIA', 2, 3, '¿Las fisuras que se observan,  son solo superficiales o también las acompañan profundas?', 'Realizar Remoción de Friso/Recubrimiento, Ultra-sonido, Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIAL-SUPERFICIAL y PROFUNDA-PROFUNDA'),
 ('FISURAS', 'MUROS', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas?', 'Realizar Ensayo de Fisurómetro, Medición de Actividad con Testigos.', 2, 'ACTIVAS-PASIVAS'),
 ('FISURAS', 'MUROS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', 'Determinar por Inspección Visual.', 3, 'SI, CON  ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
 ('FISURAS', 'MUROS', 1, 3, '¿Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
@@ -1585,7 +1618,7 @@ INSERT INTO `preguntasplanillasetapas` (`patologia`, `elemento`, `numeroEtapa`, 
 ('FISURAS', 'MUROS', 2, 7, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'MUROS', 2, 8, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'MUROS', 2, 9, '¿Los elementos que restringen la dilatación del elemento tienen fisuras?', 'Realizar Análisis Térmico (Termografia)', 2, 'SI-NO'),
-('FISURAS', 'MUROS', 2, 10, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar remoción de Friso/Recubrimiento, Ultra-Sonido, Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'MUROS', 2, 10, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar remoción de Friso/Recubrimiento, Ultra-Sonido, Radiografía  (Auscultación Magnética, Gammagrafía)', 3, 'SUPERFICIAL-SUPERFICIAL y PROFUNDA-PROFUNDA'),
 ('FISURAS', 'VIGAS', 1, 1, '¿Las fisuras se presentan como Activas (Movimentación, cambios de ancho o longitud) o Pasivas?', 'Realizar ensayos de Fisurometro, Medición de Actividad con Testigo.', 2, 'ACTIVAS-PASIVAS'),
 ('FISURAS', 'VIGAS', 1, 2, '¿Las fisuras se presentan en forma de "Mapeo" o "Redes", entrecruzadas entre sí?', 'Realizar inspección visual.', 3, 'SI, CON ENTRECRUZAMIENTO-SI, SIN ENTRECRUZAMIENTO-NO'),
 ('FISURAS', 'VIGAS', 1, 3, '¿ Las fisuras muestran presencia de Compuestos de tipo "Gel" en ellas?', 'Realizar inspección visual.', 2, 'SI-NO'),
@@ -1604,16 +1637,18 @@ INSERT INTO `preguntasplanillasetapas` (`patologia`, `elemento`, `numeroEtapa`, 
 ('FISURAS', 'VIGAS', 1, 16, '¿Se evidencia Fisuras perpendiculares a la Armadura Principal del Elemento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 1, 17, '¿Se evidencia Fisuras consecuentes en las distintas caras del elemento (Fisuras Tipo Resorte)?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 1, 18, '¿Son fisuras grandes con alguna configuración de las siguientes?', 'Realizar Ensayo de Fisurometro, Medición de Fisuras, Levantamiento Grafico de Fisuras.', 6, 'A-B-C-D-E-NINGUNA'),
+('FISURAS', 'VIGAS', 1, 19, '¿La viga es de borde o se encuentra en cantiléver?', 'Realizar Inspección Visual.', 2, 'SI-NO'),
+('FISURAS', 'VIGAS', 1, 20, '¿Los elementos que restringen su dilatación tienen fisuras?', 'Realizar Análisis Térmico ( Termografia )', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 2, 1, '¿Las fisuras aparecen progresando verticalmente a la línea neutra del elemento y desapareciendo al aproximarse?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 2, 2, '¿Las fisuras aparecen cerca de la cara del apoyo o en la zona de confinamiento?', 'Realizar Ensayo con Pachómetro (Ferroscan, Profometro), Radiografía  (Auscultación Magnética, Gammagrafía)', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 2, 3, '¿Se evidencia presencia de fisuras, acompañadas de Expansión en Volumen del elemento Afectado?', 'Realizar Ensayo de Medicion de Recubrimiento, Escaneo 3D, Nivelacion de Superficies.', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 2, 4, '¿Hay presencia de fisuras en la zona sometida a compresión del Elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 2, 5, '¿Hay presencia de fisuras en la zona sometida a tracción del elemento?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('FISURAS', 'VIGAS', 2, 6, '¿Las fisuras se presentan en todas las Caras del Elemento Afectado?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
-('FISURAS', 'VIGAS', 2, 7, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción de Friso/Recubrimiento, Radiografía  (Auscultación Magnética, Gammagrafía), Ultra-Sonido', 3, 'SUPERFICIALES-SUPERFICIALES y PROFUNDAS-PROFUNDAS'),
+('FISURAS', 'VIGAS', 2, 7, '¿Las fisuras que observas son solo superficiales o también las acompañan profundas?', 'Realizar Remoción de Friso/Recubrimiento, Radiografía  (Auscultación Magnética, Gammagrafía), Ultra-Sonido', 3, 'SUPERFICIAL-SUPERFICIAL y PROFUNDA-PROFUNDA'),
 ('MANIFESTACION FISICA', 'TODOS', 1, 1, '¿Se aprecian deformaciones en el Elemento Afectado?', 'Realizar ensayos de Nivelación de Superficies, Escaneo 3D, Plomo de Muros y Columnas.', 2, 'SI-NO'),
 ('MANIFESTACION FISICA', 'TODOS', 1, 2, '¿Se observa perdida recubrimiento en el Elemento Afectado?', 'Se recomienda determinar a través de inspección visual; para mayor precisión el ensayo de Velocidad de Pulsos Ultrasónicos o algún ensayo de medición de recubrimiento', 2, 'SI-NO'),
-('MANIFESTACION FISICA', 'TODOS', 1, 3, '¿Se observan aumentos en el volumen, o  pérdida en la sección del hormigón del Elemento Afectado?', 'Para esta pregunta, realizar ensayo de Medición del Recubrimiento, Nivelacion de Superficies, Escaneo 3D.', 3, 'AUMENTO DE VOLUMEN-PERDIDA DE LA SECCION-NINGUNA'),
+('MANIFESTACION FISICA', 'TODOS', 1, 3, '¿Se observan aumentos en el volumen, o  pérdida en la sección del hormigón del Elemento Afectado?', 'Para esta pregunta, realizar ensayo de Medición del Recubrimiento, Nivelacion de Superficies, Escaneo 3D.', 3, 'AUMENTO DE VOLUMEN-PERDIDA DE SECCION-NINGUNA'),
 ('MANIFESTACION FISICA', 'TODOS', 1, 4, '¿Existieron cambios de volumen en el pasado?', 'Evaluar historial de edificación y dimensiones con planos existentes.', 2, 'SI-NO'),
 ('MANIFESTACION FISICA', 'TODOS', 1, 5, '¿Se observaron armaduras aparentes en el Elemento Afectado? (Armaduras Expuestas)?', 'Determinar por Inspección Visual.', 2, 'SI-NO'),
 ('MANIFESTACION FISICA', 'TODOS', 1, 6, '¿El Elemento Afectado se encontró en procesos de lixiviación?', 'Evaluar por Inspección Visual. Para mayor precisión, es recomendado verificar a través del ensayo de Lixiviación In Situ (Requiere ensayo de Core-Drill).', 2, 'SI-NO'),

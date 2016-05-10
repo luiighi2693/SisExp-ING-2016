@@ -40,7 +40,7 @@ public class inicio extends JFrame implements ActionListener{
 
     public String elementoSeleccionado, ambienteSeleccionado, manifestacionSeleccionada;
     public String nombrePatologias[], idNombrePatologias[], tablaNombresSeleccionada, tablaSeleccionada;
-    public int etapaActual, aciertoPatologias[];
+    public int etapaActual, aciertoPatologias[],tamEtapa1, tamEtapa2;;
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
 
@@ -1128,26 +1128,158 @@ public class inicio extends JFrame implements ActionListener{
                 aciertoPatologias = new int[nombrePatologias.length];
 
                 int cont;
+
                 for(int i =0; i<idNombrePatologias.length; i++){
                     cont =0;
-                    aciertoPatologias[i]=0;
 
+                    //FISURAS
                     if(vigaCbx.isSelected()){
-                        for(int j=0; j<mc.selectTablaForHipotesis(tablaSeleccionada,idNombrePatologias[i], "FISURAS").size();j++){
-                            System.out.println("hola");
+                        for(int j=0; j<respuestasFisurasVigas1Str.length;j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasVigas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
                         }
-//                        if(mc.selectTablaForHipotesis(tablaSeleccionada,idNombrePatologias[i], "FISICAS").get(i)){
-//
-//                        }
+
+                        for(int j=respuestasFisurasVigas1Str.length; j<(respuestasFisurasVigas2Str.length+respuestasFisurasVigas1Str.length); j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasVigas2Str[j-respuestasFisurasVigas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
+                        }
+
                     }else if(columnaCbx.isSelected()){
+                        for(int j=0; j<respuestasFisurasColumnas1Str.length;j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasColumnas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
+                        }
 
+                        for(int j=respuestasFisurasColumnas1Str.length; j<(respuestasFisurasColumnas2Str.length+respuestasFisurasColumnas1Str.length); j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasColumnas2Str[j-respuestasFisurasColumnas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
+                        }
                     }else if(mamposteriaCbx.isSelected()){
+                        for(int j=0; j<respuestasFisurasMamposteria1Str.length;j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasMamposteria1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
+                        }
 
+                        for(int j=respuestasFisurasMamposteria1Str.length; j<(respuestasFisurasMamposteria2Str.length+respuestasFisurasMamposteria1Str.length); j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasMamposteria2Str[j-respuestasFisurasMamposteria1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
+                        }
                     }else if(losaCbx.isSelected()){
+                        for(int j=0; j<respuestasFisurasLosas1Str.length;j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasLosas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
+                        }
 
+                        for(int j=respuestasFisurasLosas1Str.length; j<(respuestasFisurasLosas2Str.length+respuestasFisurasLosas1Str.length); j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasLosas2Str[j-respuestasFisurasLosas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
+                        }
                     }else{
+                        for(int j=0; j<respuestasFisurasMuros1Str.length;j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasMuros1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
+                        }
 
+                        for(int j=respuestasFisurasMuros1Str.length; j<(respuestasFisurasMuros2Str.length+respuestasFisurasMuros1Str.length); j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasFisurasMuros2Str[j-respuestasFisurasMuros1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    cont++;
+                                }
+                            }
+                        }
                     }
+
+                    //FISICAS
+                    for(int j=0; j<respuestasManifestacionesFisicas1Str.length;j++){
+                        if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "NO")){
+                            if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "CUALQUIERA")){
+                                cont++;
+                            }else if (Objects.equals(respuestasManifestacionesFisicas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j))){
+                                cont++;
+                            }
+                        }
+                    }
+
+                    for(int j=respuestasManifestacionesFisicas1Str.length; j<(respuestasManifestacionesFisicas2Str.length+respuestasManifestacionesFisicas1Str.length); j++){
+                        if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "NO")){
+                            if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "CUALQUIERA")){
+                                cont++;
+                            }else if (Objects.equals(respuestasManifestacionesFisicas2Str[j-respuestasManifestacionesFisicas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j))){
+                                cont++;
+                            }
+                        }
+                    }
+
+                    //QUIMICAS
+
+                    for(int j=0; j<respuestasManifestacionesQuimicas1Str.length;j++){
+                        if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "NO")){
+                            if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "CUALQUIERA")){
+                                cont++;
+                            }else if (Objects.equals(respuestasManifestacionesQuimicas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j))){
+                                cont++;
+                            }
+                        }
+                    }
+
+                    for(int j=respuestasManifestacionesQuimicas1Str.length; j<(respuestasManifestacionesQuimicas2Str.length+respuestasManifestacionesQuimicas1Str.length); j++){
+                        if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "NO")){
+                            if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "CUALQUIERA")){
+                                cont++;
+                            }else if (Objects.equals(respuestasManifestacionesQuimicas2Str[j-respuestasManifestacionesQuimicas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j))){
+                                cont++;
+                            }
+                        }
+                    }
+
+                    aciertoPatologias[i]=cont;
                 }
             } catch (SQLException e1) {
                 e1.printStackTrace();
