@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-05-2016 a las 06:32:24
+-- Tiempo de generación: 11-05-2016 a las 07:10:27
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.6.19
 
@@ -945,10 +945,10 @@ INSERT INTO `matrizcausas` (`patologia`, `causa`) VALUES
 ('Mala Relacion Agua/Cemento', 'Negligencia laboral por parte de Mano de Obra o Supervisores'),
 ('Movimentacion Termica', 'Dilatacion del Elemento Expuesto ( Coeficiente del Hormigon 9x10-6 m/m/oC)'),
 ('Movimentacion Termica', 'Gradiente de temperatura interno y externo.'),
-('Reaccion Alcalis - Agregado / Alcalis - Carbonato', 'Absorción del agua por osmosis por el gel'),
-('Reaccion Alcalis - Agregado / Alcalis - Carbonato', 'Agregado con sílice, silicato o carbonato reactivos'),
-('Reaccion Alcalis - Agregado / Alcalis - Carbonato', 'Humedad relativa del ambiente > 75% o presencia de fuentes externas de humedad'),
-('Reaccion Alcalis - Agregado / Alcalis - Carbonato', 'Reacción entre los álcalis del aglomerante con el árido reactivo'),
+('Reaccion Alcalis - Agregado', 'Absorción del agua por osmosis por el gel'),
+('Reaccion Alcalis - Agregado', 'Agregado con sílice, silicato o carbonato reactivos'),
+('Reaccion Alcalis - Agregado', 'Humedad relativa del ambiente > 75% o presencia de fuentes externas de humedad'),
+('Reaccion Alcalis - Agregado', 'Reacción entre los álcalis del aglomerante con el árido reactivo'),
 ('Remocion del Encofrado', 'La remoción de los puntales cuando aún el concreto no alcanzó la resistencia suficiente'),
 ('Remocion del Encofrado', 'La separación excesiva de los puntales en elementos flexados o de los anillos en las columnas origina elementos estructurales con deformaciones iniciales.'),
 ('Remocion del Encofrado', 'Se mantienen los puntales en varias plantas sin realizar reapuntalamientos o cuando se colocan cargas importantes sobre los entrepisos en construcción.'),
@@ -2171,8 +2171,8 @@ INSERT INTO `matrizterapias` (`patologia`, `terapia`) VALUES
 ('Mala Relacion Agua/Cemento', 'Reforzamiento del elemento con Hormigon Proyectado ( Aumento de Seccion)'),
 ('Movimentacion Termica', 'Aislamiento térmico del elemento sujeto a variación térmica'),
 ('Movimentacion Termica', 'Sellamiento de fisuras'),
-('Reaccion Alcalis - Agregado / Alcalis - Carbonato', 'Confinamento de la reacción'),
-('Reaccion Alcalis - Agregado / Alcalis - Carbonato', 'Uso de sales de litio'),
+('Reaccion Alcalis - Agregado', 'Confinamento de la reacción'),
+('Reaccion Alcalis - Agregado', 'Uso de sales de litio'),
 ('Remocion del Encofrado', 'En casos extremos y necesarios, demolicion del Elemento afectado'),
 ('Remocion del Encofrado', 'Re apuntalamiento del elemento y reparacion localizada'),
 ('Remocion del Encofrado', 'Reforzamiento estructural del Elemento'),

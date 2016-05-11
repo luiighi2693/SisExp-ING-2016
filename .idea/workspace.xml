@@ -10,14 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7cb67f1-f378-4785-a649-83931e48b420" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imagen2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imagen.png" afterPath="$PROJECT_DIR$/imagen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_17_bin.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_17_bin.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ingenieria.sql" afterPath="$PROJECT_DIR$/ingenieria.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sistema.sql" afterPath="$PROJECT_DIR$/sistema.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/dataBaseConnection.java" afterPath="$PROJECT_DIR$/src/view/dataBaseConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/inicio.java" afterPath="$PROJECT_DIR$/src/view/inicio.java" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <ignored path="$PROJECT_DIR$/test/" />
@@ -65,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inicio.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inicio.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/inicio.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="183">
@@ -73,6 +67,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ingenieria.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ingenieria.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="1230" column="44" selection-start-line="1230" selection-start-column="44" selection-end-line="1230" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -688,7 +692,7 @@
       <workItem from="1462805267427" duration="7064000" />
       <workItem from="1462846893545" duration="21579000" />
       <workItem from="1462891663371" duration="13409000" />
-      <workItem from="1462919307450" duration="18768000" />
+      <workItem from="1462919307450" duration="20025000" />
     </task>
     <task id="LOCAL-00001" summary="xcvbxcmkvbkx">
       <created>1462863842971</created>
@@ -697,11 +701,18 @@
       <option name="project" value="LOCAL" />
       <updated>1462863842971</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fin">
+      <created>1462941186683</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1462941186683</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63509000" />
+    <option name="totallyTimeSpent" value="64766000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -747,7 +758,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="xcvbxcmkvbkx" />
-    <option name="LAST_COMMIT_MESSAGE" value="xcvbxcmkvbkx" />
+    <MESSAGE value="fin" />
+    <option name="LAST_COMMIT_MESSAGE" value="fin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -966,14 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ingenieria.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1220" column="30" selection-start-line="1220" selection-start-column="30" selection-end-line="1220" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/inicio.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -981,6 +985,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ingenieria.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="1230" column="44" selection-start-line="1230" selection-start-column="44" selection-end-line="1230" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
