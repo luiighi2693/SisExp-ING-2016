@@ -1,184 +1,158 @@
--- phpMyAdmin SQL Dump
--- version 4.5.0.2
--- http://www.phpmyadmin.net
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 21-01-2016 a las 05:23:31
--- Versión del servidor: 10.0.17-MariaDB
--- Versión de PHP: 5.6.14
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `sistema`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `antecesores`
---
-
-CREATE TABLE `antecesores` (
-  `id_actual` int(11) NOT NULL,
-  `id_antecesor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `antecesores`
---
-
-INSERT INTO `antecesores` (`id_actual`, `id_antecesor`) VALUES
-(1001, 0),
-(1002, 0),
-(2001, 1001),
-(2002, 1002),
-(3001, 2001),
-(3002, 2002),
-(3003, 2002),
-(3004, 2002),
-(4001, 3001),
-(4002, 3001),
-(4003, 3001),
-(4004, 3002),
-(4005, 3002),
-(4006, 3003),
-(4007, 3003),
-(4008, 3003),
-(4009, 3004),
-(4010, 3004),
-(5001, 4002),
-(5002, 4002),
-(5003, 4004),
-(5004, 4004),
-(5005, 4006),
-(5006, 4007),
-(5007, 4008),
-(5008, 4008),
-(5009, 4009),
-(6001, 5007);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `data`
---
-
-CREATE TABLE `data` (
-  `nombre` varchar(100) NOT NULL,
-  `nivel` int(11) NOT NULL,
-  `id` int(11) NOT NULL,
-  `descripcion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `data`
---
-
-INSERT INTO `data` (`nombre`, `nivel`, `id`, `descripcion`) VALUES
-('prevencion (etapa Diseño)', 1000, 1001, ''),
-('diagnostico (etapa de Servicio)', 1000, 1002, ''),
-('amenazas (alcance de investigacion)', 2000, 2001, ''),
-('posibles patologias', 2000, 2002, ''),
-('plantilla descripcion amenaza y ensayos necesarios', 3000, 3001, ''),
-('concordancia del levantamiento altiplainetrico con planes edificacion', 3000, 3002, ''),
-('planillas de inspeccion con estudios necesarios a realizar', 3000, 3003, ''),
-('verificacion del sistema de fundacion con el tipo de suelo presente', 3000, 3004, ''),
-('metodo de fructuacion', 4000, 4001, ''),
-('planilla descripcion N° 2', 4000, 4002, ''),
-('Conclusion', 4000, 4003, ''),
-('calculo estructural', 4000, 4004, ''),
-('planillas de inspeccion', 4000, 4005, ''),
-('calculo estructural', 4000, 4006, ''),
-('planillas inspeccion N°2', 4000, 4007, ''),
-('Causas y Consecuencias', 4000, 4008, ''),
-('Causas y Consecuencias', 4000, 4009, ''),
-('Planillas inspeccion', 4000, 4010, ''),
-('Conclusion', 5000, 5001, ''),
-('Metodo de Prevencion', 5000, 5002, ''),
-('Fallo Elemento', 5000, 5003, ''),
-('Planilla Inspeccion', 5000, 5004, ''),
-('Derivacion Anterior', 5000, 5005, ''),
-('Causas y Consecuencias', 5000, 5006, ''),
-('Rehabilitacion', 5000, 5007, ''),
-('Conclusion', 5000, 5008, ''),
-('Rehabilitacion', 5000, 5009, ''),
-('Prevencion y Mantenimiento', 6000, 6001, '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `sucesores`
---
-
-CREATE TABLE `sucesores` (
-  `id_actual` int(11) NOT NULL,
-  `id_sucesor` int(11) NOT NULL,
-  `id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `sucesores`
---
-
-INSERT INTO `sucesores` (`id_actual`, `id_sucesor`, `id`) VALUES
-(5007, 6001, 0),
-(1001, 2001, 1),
-(1002, 2002, 2),
-(2001, 3001, 3),
-(2002, 3002, 4),
-(2002, 3003, 5),
-(2002, 3004, 6),
-(3001, 4001, 7),
-(3001, 4002, 8),
-(3001, 4003, 9),
-(3002, 4004, 10),
-(3002, 4005, 11),
-(3003, 4006, 12),
-(3003, 4007, 13),
-(3003, 4008, 14),
-(3004, 4009, 15),
-(3004, 4010, 16),
-(4002, 5001, 17),
-(4002, 5002, 18),
-(4004, 5003, 19),
-(4004, 5004, 20),
-(4006, 5005, 21),
-(4007, 5006, 22),
-(4008, 5007, 23),
-(4008, 5008, 24),
-(4009, 5009, 25),
-(4005, 3003, 26);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `antecesores`
---
-ALTER TABLE `antecesores`
-  ADD PRIMARY KEY (`id_actual`);
-
---
--- Indices de la tabla `data`
---
-ALTER TABLE `data`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `sucesores`
---
-ALTER TABLE `sucesores`
-  ADD PRIMARY KEY (`id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Variacion Termica (Movimentacion Termica)',  'Fisuración de los elementos que restringen el aumento de la dilatación');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Variacion Termica (Movimentacion Termica)',  'Carbonatación, deterioro del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Variacion Termica (Movimentacion Termica)',  'Corrosión de armaduras ');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Variacion Termica (Movimentacion Termica)',  'Colapso parcial o total de la estructura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Variacion de Humedad',  'Movimentación de las fisuras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Variacion de Humedad','El hormigón se “hincha” cuando se humedece y se contrae a medida que se seca.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Variacion de Humedad','“Mapeo” o “cuarteado” de superficies hormigonadas, en las que el ancho de fisuras es muy pequeño pero abarcan prácticamente toda la superficie.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Retraccion Hidraulica y Termica',  'Aumento de la porosidad');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Retraccion Hidraulica y Termica',  'Carbonatación,');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Retraccion Hidraulica y Termica',  'Corrosión de las armaduras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Retraccion Hidraulica y Termica',  'Colapso de la estructura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Retraccion Hidraulica',  'Corrosión de armaduras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Retraccion Hidraulica','Fisuras que surgen durante las primeras horas, después del hormigonado, producto de la perdida de su agua por evaporación. Esta disminución de volumen se produce en el hormigón aun en estado plástico, sin que haya finalizado el proceso de fraguado.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Desecacion Superficial',  'Fisuras superficiales y pasivas;');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Desecacion Superficial',  'No ocurrencia de problemas estructurales;');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Desecacion Superficial',  'En caso de pisos de industriales, ocurrencia de pérdida de recubrimiento y consecuente disminución del camino de los agentes agresivos a las armaduras: Aumento de la porosidad, transporte de agentes agresivos, corrosión de las armaduras, colapso de la estructura.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion del Fuego',  'Fisuración superficial');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion del Fuego',  'Deformación del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion del Fuego',  'Lascamiento del recubrimiento');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion del Fuego',  'Deformación del acero');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion con Sulfatos',  'Fisuras aleatorias en la superficie');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion con Sulfatos',  'Exfoliación superficial');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion con Sulfatos',  'Reducción significativa de la dureza y de la resistencia superficial');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion con Sulfatos',  'Reducción del pH del extracto acuoso de los poros superficiales');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion con Cloruros',  'Aumento de la humedad interna y de la conductividad eléctrica del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion con Cloruros',  'Formación de productos de corrosión');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion con Cloruros',  'Producción de tensiones internas');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion con Cloruros',  'Fisuración en Direccion de la armadura principal del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion con Cloruros',  'Desprendimiento irregular del recubrimiento');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Corrosion por Carbonatacion',  'Aumento de la espesura de la frente de carbonatación');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Corrosion por Carbonatacion',  'Reducción del pH del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Corrosion por Carbonatacion',  'Despasivación de la armadura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Corrosion por Carbonatacion',  'Fisuración en Direccion de la armadura principal del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Corrosion por Carbonatacion',  'Desplacamiento del recubrimiento');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Deficiencia en Posicionado de Armaduras',  'Ausencia de recubrimiento o pequeño recubrimiento');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Deficiencia en Posicionado de Armaduras',  'Fisuración paralela a las armaduras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Deficiencia en Posicionado de Armaduras',  'Desprendimiento del recubrimiento');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Deficiencia en Posicionado de Armaduras',  'Carbonatación');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Deficiencia en Posicionado de Armaduras',  'Corrosión');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Adherencia y Anclaje',  'Fisuración ( Paralelas a la direccion del Acero, continuas)');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Adherencia y Anclaje',  'Transporte de agentes agresivos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Adherencia y Anclaje',  'Carbonatación');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Adherencia y Anclaje',  'Corrosión de las armaduras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion de Agua de Mar',  'Corrosión de la armadura inducida por cloruros');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion de Agua de Mar',  'Impactos provocan erosión y abrasión superficial del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion de Agua de Mar',  'Expansión, fisuración y desagregación debido a la acción de los sulfatos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion de Agua de Mar',  'Lixiviación y corrosión de la armadura debido a la acción de los cloruros');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Oquedades Superficiales',  'Áridos gruesos sin cohesión y aparentes');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Oquedades Superficiales',  'Armaduras aparentes');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Oquedades Superficiales',  'Disminución de la resistencia del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Oquedades Superficiales',  'Hormigón poroso');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion Alcalis - Agregado',  'Movimentación del gel de sílice del árido para las regiones microfisuradas');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion Alcalis - Agregado',  'Aumento de las micro-fisuras por el acumulo del gel');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion Alcalis - Agregado',  'Aparecimiento de fisuras en la superficie del hormigón en la forma de redes');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Reaccion Alcalis - Agregado',  'Aumento de volumen de los elementos de hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fluencia de Elementos','Se presenten daños en edificios de altura, al cabo de un cierto tiempo se produce la rotura de los tabiques de ladrillo.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fluencia de Elementos','Esto origina deformaciones elásticas y diferidas marcadamente distintas en ambos elementos estructurales');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fluencia de Elementos','En ciertos casos la fisuración de las vigas y/o las losas así como roturas en los cerramientos adosados');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque Biologico',  'Disolución del Ca(OH)2 y de los silicatos hidratados - Lixiviación-');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque Biologico',  'Desagregación del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque Biologico',  'Desprendimiento del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque Biologico',  'Corrosión de la armadura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Remocion de Enconfrado','generan deformaciones iniciales y/o fisuración de la estructura.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Remocion de Enconfrado','puede originar sobretensiones, fisuración y aún el colapso de la estructura.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Mala Relacion Agua/Cemento',  'Se puede producir el aplastamiento de la cabeza de la columna al no tener el hormigón la resistencia adecuada.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Mala Relacion Agua/Cemento',  'Deformaciones plásticas de la cabeza de la columna.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Mala Relacion Agua/Cemento',  'Corrosión de las armaduras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Mal Vibrado del Concreto',  'Se puede producir el aplastamiento de la cabeza de la columna al no tener el hormigón la resistencia adecuada.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Mal Vibrado del Concreto',  'Deformaciones plásticas de la cabeza de la columna.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Mal Vibrado del Concreto',  'Corrosión de las armaduras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Corrosion de Armaduras','1- Fisuras en el hormigón paralelas a la dirección de los refuerzos.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Corrosion de Armaduras','2-Delaminación y/o desprendimientos del recubrimiento.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Corrosion de Armaduras','3-En elementos de elevado contenido de humedad, manchas de óxido en la superficie del hormigón.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Abrasion',  'Desagregación del árido y de la pasta de cemento');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Abrasion',  'Formación de grandes fallos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Abrasion',  'Exposición de la armadura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Cortante (Columna)','La fisura o grieta toma una inclinación comprendida entre 45° y 75°, ');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Cortante (Columna)',  'Las fisuras originadas dependerán de la cuantía de acero longitudinal, la cantidad del mismo que llegue al apoyo y del número de cercos, espaciamiento y forma de elaboración.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Flexion - Torsion (Columna)',  'Las fisuras toman distintas inclinaciones en cada cara de la columna, se  presentan en elementos que se sometan a fuertes momentos flectores y torsores.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Flexion - Torsion (Columna)',  'Fallo muy grave, la rotura puede ser rápida.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Compresion (Columna)',  'Fisuración en Columnas ( Paralelas a la direccion del esfuerzo, irregulares)');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Compresion (Columna)',  'Transporte de agentes agresivos  en Columna');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Compresion (Columna)',  'Corrosión de las armaduras  en Columna');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Torsion (Columna)',  'Fisuración (45° de inclinacion en todas las caras del elemento)');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Torsion (Columna)',  'Transporte de agentes agresivos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Torsion (Columna)',  'Carbonatación');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Torsion (Columna)',  'Corrosión de las armaduras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Traccion (Columna)','Numerosas e importantes fisuras, de configuración perpendicular a las barras de acero principales');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Asentamiento','Cuadro de fisuras no deseado e incluso la rotura de algún elemento ya sea estructural o de cerramiento');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Asentamiento','Las fisuras se presentan Perpendiculares al Esfuerzo de Traccion ( Este esfuerzo en la diagonal que se alarga, a 45°)');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Impactos',  'En caso de explosiones, fisuraciones paralelas a la armadura transversal en direccion del punto de detonacion');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Impactos',  'Pérdida de sección del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Impactos',  'Exposición de la armadura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Impactos',  'Corrosión de armaduras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Fallo por Flexion en Columnas','No afectan a toda la altura de la pieza, sino que llegan aproximadamente hasta el eje neutro.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Solucion Alcalina',  'Lixiviación de la pasta');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Solucion Alcalina',  'Fisuración superficial');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Solucion Alcalina',  'Pérdida de la adherencia entre la pasta de cemento y las partículas de agregado');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Solucion Alcalina',  'Exposición de los áridos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion - Cortante ( Vigas)',  'Fisuración en Viga ( En la armadura sometida a Traccion, progresando verticalmente hacia la linea neutra del elemento, desapareciendo a medida que se aproximan)');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion - Cortante ( Vigas)',  'Transporte de agentes agresivos en Viga');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion - Cortante ( Vigas)',  'Carbonatación en Viga');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion - Cortante ( Vigas)',  'Corrosión de las armaduras en Viga');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion en Vigas','No afectan a toda la altura de la pieza, sino que llegan aproximadamente hasta el eje neutro.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Torsion en Vigas',  'Fisuración en Viga ( 45° de inclinacion en todas las caras del elemento)');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Torsion en Vigas',  'Carbonatación');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Torsion en Vigas',  'Transporte de agentes agresivos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Torsion en Vigas',  'Corrosión de las armaduras');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Cortante en Vigas',' • La fisura o grieta toma una inclinación comprendida entre 45° y 75°, dirigiéndose al apoyo y seccionando la viga en su cara lateral y en la inferior. La mayor abertura estará en la zona de tracción.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Cortante en Vigas',  'Las fisuras originadas dependerán de la cuantía de acero longitudinal, la cantidad del mismo que llegue al apoyo y del número de cercos, espaciamiento y forma de elaboración.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion - Torsion en Vigas',  'Las fisuras toman distintas inclinaciones en cada cara de la viga, se  presentan en elementos que pueden ser vigas de borde, vigas en voladizo que se sometan a fuertes momentos flectores y torsores.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion - Torsion en Vigas',  'Fallo muy grave, la rotura puede ser rápida.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Traccion en Vigas','Numerosas e importantes fisuras, de configuración perpendicular a las barras de acero principales');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Compresion en Vigas','Se presentan fisuras en la zona de compresión por aplastamiento delhormigón, aunque tienen apariencias inofensivas, son muy peligrosas.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Corrimiento de Aceros en Vigas',  'Aparición de fisuras cerca del apoyo a causa de un agarre insuficiente de los cercos al tener una longitud de anclaje pequeña.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Criptoflorescencia',  'A diferencia de la Eflorescencia, la formacion de los productos Carbonatos y sales se genera internamente. No se observa la Eflorescencia hasta descubrir la zona interna afectada');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Criptoflorescencia',  'Disminución del pH del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Criptoflorescencia',  'Corrosión de la armadura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Criptoflorescencia',  'Formación de estalactitas - lixiviación - en las zonas de mayor porosidad');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Eflorescencia',  'Formación de manchas blancas – eflorescencias - por acúmulo de carbonatos en la superficie del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Eflorescencia',  'Formación de estalactitas - lixiviación - en las zonas de mayor porosidad');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Eflorescencia',  'Disminución del pH del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Eflorescencia',  'Corrosión de la armadura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion en Losas',  'Fisuración en Losa ( En el centro de la luz del elemento, progresando hacia la linea neutra y desapareciendo a medida que se aproxima)');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion en Losas',  'Corrosión de las armaduras en Losa');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion en Losas',  'Transporte de agentes agresivos en Losa');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion en Losas',  'Carbonatación en Losa');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Soluciones Acidas','Remoción de la pasta de cemento y exposición de los áridos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Soluciones Acidas',' Disminución del pH del hormigón y corrosión de la armadura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Soluciones Acidas',' Aumento de la porosidad del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Soluciones Acidas',' Desagregación de los áridos calcáreos o dolomíticos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Aguas Puras',  'Aumento de la porosidad');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Aguas Puras',  'Disminución de la resistencia');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Aguas Puras',  'Disminución de la alcalinidad del hormigón y corrosión de la armadura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Ataque de Aguas Puras',  'Exposición de los áridos en la superficie del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Erosion',  'Desgaste superficial del hormigón');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Erosion',  'Desagregación del árido y de la pasta de cemento');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Erosion',  'Aparecimiento de grandes fallos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Erosion',  'Exposición de la armadura');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Compresion en Losas','Fisuras paralelas al acero longitudinal');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Compresion en Losas','Fisuras profundas, pasivas');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Compresion en Losas','Fisuras en la zona de compresión');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Compresion en Losas','Deformaciónes del elemento');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Cortante en Losas',' • La fisura o grieta toma una inclinación comprendida entre 45° y 75°, dirigiéndose al apoyo y seccionando la losa en su cara lateral y en la inferior. La mayor abertura estará en la zona de tracción.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Cortante en Losas',  'Las fisuras originadas dependerán de la cuantía de acero longitudinal, la cantidad del mismo que llegue al apoyo y del número de cercos, espaciamiento y forma de elaboración.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Traccion en Losas','Numerosas e importantes fisuras, de configuración perpendicular a las barras de acero principales');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Compresion en Muros',  'Fisuración en Muro ( Paralelas a la direccion del esfuerzo, irregulares)');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Compresion en Muros',  'Transporte de agentes agresivos  en Muro / Mampostería');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Compresion en Muros',  'Corrosión de las armaduras  en Muro ');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Compresion en Muros',  'Colapso de la estructura  en Muros / Mampostería');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion en Muros',' • Fisuras Diagonales o de otra forma');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Flexion en Muros',  'Las fisuras originadas dependerán de la cuantía de acero longitudinal, la cantidad del mismo que llegue al apoyo y del número de cercos, espaciamiento y forma de elaboración.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Cortante en Muros','La fisura o grieta toma una inclinación comprendida entre 45° y 75°, ');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion Sismica','Daños en elementos no estructurales: instalaciones, elementos de cierre y de division, etc.');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion Sismica','Superacion de la ductilidad');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion Sismica','Fisuras en centros de tramos de elementos, y conexión Nodo - Columna');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Accion Sismica','Fisuras Verticales en Vigas en la proximidad de los nodos');
+INSERT INTO matrizSintomas (patologia,sintoma) VALUES ('Traccion en Muros','Numerosas e importantes fisuras, de configuración perpendicular a las barras de acero principales');

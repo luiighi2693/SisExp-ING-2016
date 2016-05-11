@@ -31,7 +31,7 @@ public class inicio extends JFrame implements ActionListener{
     public JMenuBar menuBar;
     public JMenu menu;
     public JMenuItem abrir, guardar;
-    public JCheckBox vigaCbx, losaCbx, muroCbx, columnaCbx, mamposteriaCbx, agresivoCbx, noAgresivoCbx;
+    public JCheckBox vigaCbx, losaCbx, muroCbx, columnaCbx, mamposteriaCbx, agresivoCbx, noAgresivoCbx, manifestacionesFisicasCbx, manifestacionesQuimicasCbx;
     public JCheckBox respuestasFisurasColumnas1Cxb [], respuestasFisurasColumnas2Cxb [], respuestasFisurasLosas1Cxb [],
             respuestasFisurasLosas2Cxb [], respuestasFisurasMamposteria1Cxb [], respuestasFisurasMamposteria2Cxb [],
             respuestasFisurasMuros1Cxb [], respuestasFisurasMuros2Cxb [], respuestasFisurasVigas1Cxb [],
@@ -52,9 +52,14 @@ public class inicio extends JFrame implements ActionListener{
 
     public String elementoSeleccionado, ambienteSeleccionado, manifestacionSeleccionada;
     public String nombrePatologias[], idNombrePatologias[], tablaNombresSeleccionada, tablaSeleccionada, patologiaFinal;
-    public int etapaActual, aciertoPatologias[], seleccionadoAciertoPatologias[], indiceRespuestasNombrePatologia[], otraPatologiaSeleccionada;
+    public int etapaActual, aciertoPatologias[], totalRespuestasPatologias[], seleccionadoAciertoPatologias[], indiceRespuestasNombrePatologia[], otraPatologiaSeleccionada;
     public JCheckBox respuestasSeleccionadas[], condicionEtapa4Si, condicionEtapa4NO;
     public JComboBox comboBox;
+    public JLabel recomendacionBolatines;
+
+    public JLabel imagenReferencia;
+    public JButton verImagenReferencia;
+    public int booleano = 0;
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
 
@@ -90,6 +95,7 @@ public class inicio extends JFrame implements ActionListener{
 
     public void instancias(){
         tituloLbl = new JLabel("DOCTOR STRUCTURE V1.0");
+        tituloLbl.setFont(new java.awt.Font("Tahoma", 0, 24));
         nombreProyectoLbl = new JLabel("Nombre de Proyecto:");
         numeroCasoLlb = new JLabel("N°. Caso:");
         ingenieroEspecialistaLbl = new JLabel("Ing. Especialista:");
@@ -104,15 +110,19 @@ public class inicio extends JFrame implements ActionListener{
         cedulaTxF = new JTextField();
         fechaTxF = new JTextField();
 
-        vigaCbx = new JCheckBox("Viga");
-        columnaCbx = new JCheckBox("Columna");
-        mamposteriaCbx = new JCheckBox("Mamposteria");
-        losaCbx = new JCheckBox("Losa");
-        muroCbx = new JCheckBox("Muro");
+        vigaCbx = new JCheckBox("FISURA-Viga");
+        columnaCbx = new JCheckBox("FISURA-Columna");
+        mamposteriaCbx = new JCheckBox("FISURA-Mamposteria");
+        losaCbx = new JCheckBox("FISURA-Losa");
+        muroCbx = new JCheckBox("FISURA-Muro");
+
+        manifestacionesFisicasCbx = new JCheckBox("Manifestaciones Fisicas");
+        manifestacionesQuimicasCbx = new JCheckBox("Manifestaciones Quimicas");
+
         agresivoCbx = new JCheckBox("Agresivo");
         noAgresivoCbx = new JCheckBox("No Agresivo");
 
-        elementoInicialLbl = new JLabel("Elemento:");
+        elementoInicialLbl = new JLabel("Combinación de elemento-sintoma:");
         tipoAmbienteLbl = new JLabel("Tipo de Ambiente");
 
         siguienteBoletin1Fisura= new JButton("Siguiente");
@@ -141,6 +151,11 @@ public class inicio extends JFrame implements ActionListener{
         inicioImg= new JLabel("");
         cargaDatosImg = new JLabel("");
 
+        recomendacionBolatines= new JLabel("Ensayos recomendados para atender las Siguientes Etapas");
+
+        imagenReferencia= new JLabel();
+        verImagenReferencia= new JButton("Ver Fisuras de Compresion");
+
         condicionEtapa4Si = new JCheckBox();
         condicionEtapa4NO = new JCheckBox();
 
@@ -149,7 +164,8 @@ public class inicio extends JFrame implements ActionListener{
     }
 
     public void inicializarComponentes() throws SQLException {
-        tituloLbl.setBounds(400,100,250,25);
+        tituloLbl.setBounds(350,100,400,25);
+        recomendacionBolatines.setBounds(325,75,350,25);
 
         nuevaInspeccionBtn.setBounds(850,650,150,30);
         nuevaInspeccionBtn.addActionListener(this);
@@ -180,7 +196,7 @@ public class inicio extends JFrame implements ActionListener{
 
         fechaTxF.setBounds(720,200,80,25);
 
-        elementoInicialLbl.setBounds(300,150,150,25);
+        elementoInicialLbl.setBounds(300,150,200,25);
 
         vigaCbx.setBounds(350,175,150,25);
         losaCbx.setBounds(350,200,150,25);
@@ -188,10 +204,13 @@ public class inicio extends JFrame implements ActionListener{
         mamposteriaCbx.setBounds(350,250,150,25);
         muroCbx.setBounds(350,275,150,25);
 
-        tipoAmbienteLbl.setBounds(300,325,150,25);
+        manifestacionesFisicasCbx.setBounds(350,325,200,25);
+        manifestacionesQuimicasCbx.setBounds(350,350,200,25);
 
-        agresivoCbx.setBounds(350,350,150,25);
-        noAgresivoCbx.setBounds(350,375,150,25);
+        tipoAmbienteLbl.setBounds(300,400,150,25);
+
+        agresivoCbx.setBounds(350,425,150,25);
+        noAgresivoCbx.setBounds(350,450,150,25);
 
         siguienteBoletin1Fisura.setBounds(850,650,150,30);
         siguienteBoletin1Fisura.addActionListener(this);
@@ -241,12 +260,19 @@ public class inicio extends JFrame implements ActionListener{
         cargaDatosImg.setIcon(new ImageIcon("frame2.png"));
         cargaDatosImg.setBounds(175,200,700,400);
 
+        imagenReferencia.setIcon(new ImageIcon("imagen2.png"));
+        imagenReferencia.setBounds(640,20,360,150);
+
+        verImagenReferencia.addActionListener(this);
+
         panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         panel.setBounds(300,200,600,400);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         scroller.setBounds(225,200,600,400);
         scroller.setAutoscrolls(true);
+
+//        recomendacionBolatines.setBounds();
 
         this.add(tituloLbl);
         this.add(nuevaInspeccionBtn);
@@ -471,6 +497,7 @@ public class inicio extends JFrame implements ActionListener{
                     elementos= mc.selectRespuestasFromPreguntasPlanillasEtapas(etapaActual,elementoSeleccionado).get(i).split("/",2);
                     respuestas = elementos[1].split("-", Integer.parseInt(elementos[0]));
 
+
                     for (int j=0; j<respuestas.length; j++){
                         if(etapaActual==1){
                             if(Objects.equals(elementoSeleccionado, "VIGAS")){
@@ -502,6 +529,9 @@ public class inicio extends JFrame implements ActionListener{
                 }
                 panel.add(new JLabel(" "));
                 panel.add(new JLabel(" "));
+            }
+            if(etapaActual==1 && !Objects.equals(tipo, "boletin")){
+                panel.add(verImagenReferencia);
             }
         }else{
             for (int i=0; i<mc.selectPreguntasFromPreguntasPlanillasEtapasManifestaciones(etapaActual, manifestacionSeleccionada).size(); i++){
@@ -748,7 +778,7 @@ public class inicio extends JFrame implements ActionListener{
         return x;
     }
 
-    public void reporte() throws IOException, DocumentException{
+    public void reporte() throws IOException, DocumentException, SQLException {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream("C:\\drStructure\\inspecciones\\"+numeroCasoTxF.getText()+"\\"+numeroCasoTxF.getText()+".pdf"));
         document.setPageSize(PageSize.A4);
@@ -799,8 +829,12 @@ public class inicio extends JFrame implements ActionListener{
         paragraph = new Paragraph("\n    *Síntomas correspondientes a Dicha Patología:", fuente);
         document.add(paragraph);
 
-        for (int i = 0; i < 5; ++i) {
-            paragraph = new Paragraph("                * Sintoma " + (i + 1));
+        for (int i = 0; i < mc.selectSintomas(patologiaDiagnosticada).size(); ++i) {
+            if (patologiaDiagnosticada.length() > 89) {
+                paragraph = new Paragraph("                *" + mc.selectSintomas(patologiaDiagnosticada).get(i).subSequence(0, 88) + "\n                 \t\t" + mc.selectSintomas(patologiaDiagnosticada).get(i).subSequence(88, mc.selectSintomas(patologiaDiagnosticada).get(i).length()));
+            } else {
+                paragraph = new Paragraph("                * "+mc.selectSintomas(patologiaDiagnosticada).get(i));
+            }
             document.add(paragraph);
         }
 
@@ -816,8 +850,12 @@ public class inicio extends JFrame implements ActionListener{
         paragraph = new Paragraph("\n    *Causas u Orígenes conocidos de la Patología Diagnosticada:", fuente);
         document.add(paragraph);
 
-        for (int i = 0; i < 5; ++i) {
-            paragraph = new Paragraph("                * Causa " + (i + 1));
+        for (int i = 0; i < mc.selectCausas(patologiaDiagnosticada).size(); ++i) {
+            if (patologiaDiagnosticada.length() > 89) {
+                paragraph = new Paragraph("                *" + mc.selectCausas(patologiaDiagnosticada).get(i).subSequence(0, 88) + "\n                 \t\t" + mc.selectCausas(patologiaDiagnosticada).get(i).subSequence(88, mc.selectCausas(patologiaDiagnosticada).get(i).length()));
+            } else {
+                paragraph = new Paragraph("                * "+mc.selectCausas(patologiaDiagnosticada).get(i));
+            }
             document.add(paragraph);
         }
 
@@ -825,8 +863,12 @@ public class inicio extends JFrame implements ActionListener{
         paragraph = new Paragraph("\n    *Acciones Correctivas / Preventivas, para Reparar y Erradicar  Localmente el mecanismo:", fuente);
         document.add(paragraph);
 
-        for (int i = 0; i < 5; ++i) {
-            paragraph = new Paragraph("                * Terapia " + (i + 1));
+        for (int i = 0; i < mc.selectTerapias(patologiaDiagnosticada).size(); ++i) {
+            if (patologiaDiagnosticada.length() > 89) {
+                paragraph = new Paragraph("                *" + mc.selectTerapias(patologiaDiagnosticada).get(i).subSequence(0, 88) + "\n                 \t\t" + mc.selectTerapias(patologiaDiagnosticada).get(i).subSequence(88, mc.selectTerapias(patologiaDiagnosticada).get(i).length()));
+            } else {
+                paragraph = new Paragraph("                * "+mc.selectTerapias(patologiaDiagnosticada).get(i));
+            }
             document.add(paragraph);
         }
 
@@ -870,7 +912,7 @@ public class inicio extends JFrame implements ActionListener{
             add(cargaDatosImg);
 
             tituloLbl.setText("Datos Generales de la Inspección");
-            tituloLbl.setBounds(400,50,250,25);
+            tituloLbl.setBounds(350,50,400,25);
             repaint();
         }
 
@@ -918,13 +960,17 @@ public class inicio extends JFrame implements ActionListener{
             remove(siguienteBoletin3);
             remove(siguienteAvanzarDiagnostico);
             remove(cargaDatosImg);
+            remove(manifestacionesFisicasCbx);
+            remove(manifestacionesQuimicasCbx);
+            remove(recomendacionBolatines);
+            remove(imagenReferencia);
 
             add(nuevaInspeccionBtn);
             add(inicioImg);
             panel.setBounds(300,200,600,400);
             scroller.setBounds(225,200,600,400);
             tituloLbl.setText("DOCTOR STRUCTURE V1.0");
-            tituloLbl.setBounds(400,100,250,25);
+            tituloLbl.setBounds(350,100,400,25);
             repaint();
         }
 
@@ -944,7 +990,7 @@ public class inicio extends JFrame implements ActionListener{
             remove(fechaTxF);
             remove(cargaDatosImg);
 
-            tituloLbl.setText("Etapa 0");
+            tituloLbl.setText("ETAPA 0");
             add(elementoInicialLbl);
             add(vigaCbx);
             add(losaCbx);
@@ -955,6 +1001,8 @@ public class inicio extends JFrame implements ActionListener{
             add(agresivoCbx);
             add(noAgresivoCbx);
             add(siguienteBoletin1Fisura);
+            add(manifestacionesQuimicasCbx);
+            add(manifestacionesFisicasCbx);
 
             tamRespuestasFisurasColumnas1=0;
             tamRespuestasFisurasColumnas2=0;
@@ -971,15 +1019,8 @@ public class inicio extends JFrame implements ActionListener{
             tamRespuestasManifestacionesQuimicas1=0;
             tamRespuestasManifestacionesQuimicas2=0;
 
-//            try {
-                File dir = new File("C:\\drStructure\\inspecciones\\"+numeroCasoTxF.getText());
-                dir.mkdir();
-//                String cmd="md C:\\drStructure\\inspecciones\\"+numeroCasoTxF.getText();
-//                Runtime.getRuntime().exec(cmd);
-//            } catch (IOException e1) {
-//                e1.printStackTrace();
-//            }
-
+            File dir = new File("C:\\drStructure\\inspecciones\\"+numeroCasoTxF.getText());
+            dir.mkdir();
             repaint();
         }
 
@@ -1014,7 +1055,8 @@ public class inicio extends JFrame implements ActionListener{
                 e1.printStackTrace();
             }
 
-            tituloLbl.setText("Boletin 1 Fisuras "+elementoSeleccionado);
+            tituloLbl.setText("BOLETIN 1 FISURAS "+elementoSeleccionado);
+            add(recomendacionBolatines);
             remove(elementoInicialLbl);
             remove(vigaCbx);
             remove(losaCbx);
@@ -1026,6 +1068,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(noAgresivoCbx);
             remove(siguienteBoletin1Fisura);
             remove(cargaDatosImg);
+            remove(manifestacionesFisicasCbx);
+            remove(manifestacionesQuimicasCbx);
 
             try {
                 preguntasInPane("boletin");
@@ -1039,8 +1083,9 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteEtapa1Fisura){
-            tituloLbl.setText("Etapa 1 Fisuras "+elementoSeleccionado);
+            tituloLbl.setText("ETAPA 1 FISURAS "+elementoSeleccionado);
             remove(siguienteEtapa1Fisura);
+            remove(recomendacionBolatines);
             add(siguienteBoletin2Fisura);
             inicializarIndices();
             try {
@@ -1056,9 +1101,11 @@ public class inicio extends JFrame implements ActionListener{
             safeChanges();
             etapaActual=2;
 
-            tituloLbl.setText("Boletin 2 Fisuras "+elementoSeleccionado);
+            tituloLbl.setText("BOLETIN 2 FISURAS "+elementoSeleccionado);
             remove(siguienteBoletin2Fisura);
+            remove(imagenReferencia);
             add(siguienteEtapa2Fisura);
+            add(recomendacionBolatines);
             inicializarIndices();
             try {
                 inicializarArreglos();
@@ -1070,8 +1117,9 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteEtapa2Fisura){
-            tituloLbl.setText("Etapa 2 Fisuras "+elementoSeleccionado);
+            tituloLbl.setText("ETAPA 2 FISURAS "+elementoSeleccionado);
             remove(siguienteEtapa2Fisura);
+            remove(recomendacionBolatines);
             add(siguienteBoletin1Fisica);
             inicializarIndices();
             try {
@@ -1088,8 +1136,9 @@ public class inicio extends JFrame implements ActionListener{
             etapaActual=1;
             manifestacionSeleccionada= "MANIFESTACION FISICA";
 
-            tituloLbl.setText("Boletin 1 Manifestaciòn Fìsica");
+            tituloLbl.setText("BOLETIN 1 MANIFESTACION FISICA");
             remove(siguienteBoletin1Fisica);
+            add(recomendacionBolatines);
             add(siguienteEtapa1Fisica);
             inicializarIndices();
             try {
@@ -1098,12 +1147,17 @@ public class inicio extends JFrame implements ActionListener{
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            repaint();
+            if(manifestacionesFisicasCbx.isSelected()){
+                repaint();
+            }else{
+                siguienteEtapa1Fisica.doClick();
+            }
         }
 
         if(e.getSource()==siguienteEtapa1Fisica){
-            tituloLbl.setText("Etapa 1 Manifestaciòn Fìsica");
+            tituloLbl.setText("ETAPA 1 MANIFESTACION FISICA");
             remove(siguienteEtapa1Fisica);
+            remove(recomendacionBolatines);
             add(siguienteBoletin2Fisica);
             inicializarIndices();
             try {
@@ -1112,15 +1166,20 @@ public class inicio extends JFrame implements ActionListener{
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            repaint();
+            if(manifestacionesFisicasCbx.isSelected()){
+                repaint();
+            }else{
+                siguienteBoletin2Fisica.doClick();
+            }
         }
 
         if(e.getSource()==siguienteBoletin2Fisica){
             safeChanges();
             etapaActual=2;
 
-            tituloLbl.setText("Boletin 2 Manifestaciòn Fìsica");
+            tituloLbl.setText("BOLETIN 2 MANIFESTACION FISICA");
             remove(siguienteBoletin2Fisica);
+            add(recomendacionBolatines);
             add(siguienteEtapa2Fisica);
             inicializarIndices();
             try {
@@ -1129,11 +1188,16 @@ public class inicio extends JFrame implements ActionListener{
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            repaint();
+            if(manifestacionesFisicasCbx.isSelected()){
+                repaint();
+            }else{
+                siguienteEtapa2Fisica.doClick();
+            }
         }
 
         if(e.getSource()==siguienteEtapa2Fisica){
-            tituloLbl.setText("etapa 2 Manifestaciòn Fìsica");
+            tituloLbl.setText("ETAPA 2 MANIFESTACION FISICA");
+            remove(recomendacionBolatines);
             remove(siguienteEtapa2Fisica);
             add(siguienteBoletin1Quimica);
             inicializarIndices();
@@ -1143,7 +1207,12 @@ public class inicio extends JFrame implements ActionListener{
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            repaint();
+
+            if(manifestacionesFisicasCbx.isSelected()){
+                repaint();
+            }else{
+                siguienteBoletin1Quimica.doClick();
+            }
         }
 
         if(e.getSource()==siguienteBoletin1Quimica){
@@ -1151,8 +1220,9 @@ public class inicio extends JFrame implements ActionListener{
             etapaActual=1;
             manifestacionSeleccionada= "MANIFESTACION QUIMICA";
 
-            tituloLbl.setText("boletin 1 Manifestaciòn Quimica");
+            tituloLbl.setText("BOLETIN 1 MANIFESTACION QUIMICA");
             remove(siguienteBoletin1Quimica);
+            add(recomendacionBolatines);
             add(siguienteEtapa1Quimica);
             inicializarIndices();
             try {
@@ -1161,11 +1231,17 @@ public class inicio extends JFrame implements ActionListener{
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            repaint();
+
+            if(manifestacionesQuimicasCbx.isSelected()){
+                repaint();
+            }else{
+                siguienteEtapa1Quimica.doClick();
+            }
         }
 
         if(e.getSource()==siguienteEtapa1Quimica){
-            tituloLbl.setText("Etapa 1 Manifestaciòn Quimica");
+            tituloLbl.setText("ETAPA 1 MANIFESTACION QUIMICA");
+            remove(recomendacionBolatines);
             remove(siguienteEtapa1Quimica);
             add(siguienteBoletin2Quimica);
             inicializarIndices();
@@ -1175,14 +1251,19 @@ public class inicio extends JFrame implements ActionListener{
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            repaint();
+            if(manifestacionesQuimicasCbx.isSelected()){
+                repaint();
+            }else{
+                siguienteBoletin2Quimica.doClick();
+            }
         }
 
         if(e.getSource()==siguienteBoletin2Quimica){
             safeChanges();
             etapaActual=2;
 
-            tituloLbl.setText("boletin 2 Manifestaciòn Quimica");
+            tituloLbl.setText("BOLETIN 2 MANIFESTACION QUIMICA");
+            add(recomendacionBolatines);
             remove(siguienteBoletin2Quimica);
             add(siguienteEtapa2Quimica);
             inicializarIndices();
@@ -1192,11 +1273,16 @@ public class inicio extends JFrame implements ActionListener{
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            repaint();
+            if(manifestacionesQuimicasCbx.isSelected()){
+                repaint();
+            }else{
+                siguienteEtapa2Quimica.doClick();
+            }
         }
 
         if(e.getSource()==siguienteEtapa2Quimica){
-            tituloLbl.setText("Etapa 2 Manifestaciòn Quimica");
+            tituloLbl.setText("ETAPA 2 MANIFESTACION QUIMICA");
+            remove(recomendacionBolatines);
             remove(siguienteEtapa2Quimica);
             add(siguienteBoletin3);
             inicializarIndices();
@@ -1206,12 +1292,18 @@ public class inicio extends JFrame implements ActionListener{
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            repaint();
+
+            if(manifestacionesQuimicasCbx.isSelected()){
+                repaint();
+            }else{
+                siguienteBoletin3.doClick();
+            }
         }
 
         if(e.getSource()==siguienteBoletin3){
             safeChanges();
-            tituloLbl.setText("Boletin 3");
+            tituloLbl.setText("BOLETIN 3");
+            add(recomendacionBolatines);
             remove(siguienteBoletin3);
             add(siguienteAvanzarDiagnostico);
             add(siguienteEtapa4);
@@ -1221,6 +1313,7 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteAvanzarDiagnostico){
+            remove(recomendacionBolatines);
             if(condicionEtapa4NO.isSelected()){
                 JOptionPane.showMessageDialog(null, "AVANCE A DIAGNOSTICO Y EN \" SELECCIONAR OTRAS HIPOTESIS\" , SELECCIONE LA FALLA ENCONTRADA EN LOS ANALISIS ESTRUCTURALES PARA PASAR A REPORTE");
             }
@@ -1254,7 +1347,7 @@ public class inicio extends JFrame implements ActionListener{
                 }
 
                 aciertoPatologias = new int[nombrePatologias.length];
-
+                totalRespuestasPatologias = new int[nombrePatologias.length];
                 int cont;
 
                 for(int i =0; i<idNombrePatologias.length; i++){
@@ -1264,6 +1357,7 @@ public class inicio extends JFrame implements ActionListener{
                     if(vigaCbx.isSelected()){
                         for(int j=0; j<respuestasFisurasVigas1Str.length;j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasVigas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1274,6 +1368,7 @@ public class inicio extends JFrame implements ActionListener{
 
                         for(int j=respuestasFisurasVigas1Str.length; j<(respuestasFisurasVigas2Str.length+respuestasFisurasVigas1Str.length); j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasVigas2Str[j-respuestasFisurasVigas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1285,6 +1380,7 @@ public class inicio extends JFrame implements ActionListener{
                     }else if(columnaCbx.isSelected()){
                         for(int j=0; j<respuestasFisurasColumnas1Str.length;j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasColumnas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1295,6 +1391,7 @@ public class inicio extends JFrame implements ActionListener{
 
                         for(int j=respuestasFisurasColumnas1Str.length; j<(respuestasFisurasColumnas2Str.length+respuestasFisurasColumnas1Str.length); j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasColumnas2Str[j-respuestasFisurasColumnas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1305,6 +1402,7 @@ public class inicio extends JFrame implements ActionListener{
                     }else if(mamposteriaCbx.isSelected()){
                         for(int j=0; j<respuestasFisurasMamposteria1Str.length;j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasMamposteria1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1315,6 +1413,7 @@ public class inicio extends JFrame implements ActionListener{
 
                         for(int j=respuestasFisurasMamposteria1Str.length; j<(respuestasFisurasMamposteria2Str.length+respuestasFisurasMamposteria1Str.length); j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasMamposteria2Str[j-respuestasFisurasMamposteria1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1325,6 +1424,7 @@ public class inicio extends JFrame implements ActionListener{
                     }else if(losaCbx.isSelected()){
                         for(int j=0; j<respuestasFisurasLosas1Str.length;j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasLosas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1335,6 +1435,7 @@ public class inicio extends JFrame implements ActionListener{
 
                         for(int j=respuestasFisurasLosas1Str.length; j<(respuestasFisurasLosas2Str.length+respuestasFisurasLosas1Str.length); j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasLosas2Str[j-respuestasFisurasLosas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1345,6 +1446,7 @@ public class inicio extends JFrame implements ActionListener{
                     }else{
                         for(int j=0; j<respuestasFisurasMuros1Str.length;j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasMuros1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1355,6 +1457,7 @@ public class inicio extends JFrame implements ActionListener{
 
                         for(int j=respuestasFisurasMuros1Str.length; j<(respuestasFisurasMuros2Str.length+respuestasFisurasMuros1Str.length); j++){
                             if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
                                 if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j), "CUALQUIERA")){
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasMuros2Str[j-respuestasFisurasMuros1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
@@ -1365,44 +1468,58 @@ public class inicio extends JFrame implements ActionListener{
                     }
 
                     //FISICAS
-                    for(int j=0; j<respuestasManifestacionesFisicas1Str.length;j++){
-                        if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "NO")){
-                            if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "CUALQUIERA")){
-                                cont++;
-                            }else if (Objects.equals(respuestasManifestacionesFisicas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j))){
-                                cont++;
+                    if(manifestacionesFisicasCbx.isSelected()){
+                        for(int j=0; j<respuestasManifestacionesFisicas1Str.length;j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasManifestacionesFisicas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j))){
+                                    cont++;
+                                }
                             }
                         }
-                    }
 
-                    for(int j=respuestasManifestacionesFisicas1Str.length; j<(respuestasManifestacionesFisicas2Str.length+respuestasManifestacionesFisicas1Str.length); j++){
-                        if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "NO")){
-                            if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "CUALQUIERA")){
-                                cont++;
-                            }else if (Objects.equals(respuestasManifestacionesFisicas2Str[j-respuestasManifestacionesFisicas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j))){
-                                cont++;
+                        for(int j=respuestasManifestacionesFisicas1Str.length; j<(respuestasManifestacionesFisicas2Str.length+respuestasManifestacionesFisicas1Str.length); j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasManifestacionesFisicas2Str[j-respuestasManifestacionesFisicas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISICAS").get(j))){
+                                    cont++;
+                                }
                             }
                         }
                     }
 
                     //QUIMICAS
-
-                    for(int j=0; j<respuestasManifestacionesQuimicas1Str.length;j++){
-                        if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "NO")){
-                            if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "CUALQUIERA")){
-                                cont++;
-                            }else if (Objects.equals(respuestasManifestacionesQuimicas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j))){
-                                cont++;
+                    if(manifestacionesQuimicasCbx.isSelected()){
+                        for(int j=0; j<respuestasManifestacionesQuimicas1Str.length;j++){
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasManifestacionesQuimicas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j))){
+                                    cont++;
+                                }
                             }
                         }
-                    }
 
-                    for(int j=respuestasManifestacionesQuimicas1Str.length; j<(respuestasManifestacionesQuimicas2Str.length+respuestasManifestacionesQuimicas1Str.length); j++){
-                        if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "NO")){
-                            if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "CUALQUIERA")){
-                                cont++;
-                            }else if (Objects.equals(respuestasManifestacionesQuimicas2Str[j-respuestasManifestacionesQuimicas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j))){
-                                cont++;
+                        for(int j=respuestasManifestacionesQuimicas1Str.length; j<(respuestasManifestacionesQuimicas2Str.length+respuestasManifestacionesQuimicas1Str.length); j++){
+                            if(j==(respuestasManifestacionesQuimicas2Str.length+respuestasManifestacionesQuimicas1Str.length)){
+                                if(agresivoCbx.isSelected()&& !Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j+1), "NO")){
+                                    cont++;
+                                    totalRespuestasPatologias[i]++;
+                                }
+                            }
+
+                            if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "NO")){
+                                totalRespuestasPatologias[i]++;
+                                if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j), "CUALQUIERA")){
+                                    cont++;
+                                }else if (Objects.equals(respuestasManifestacionesQuimicas2Str[j-respuestasManifestacionesQuimicas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j))){
+                                    cont++;
+                                }
                             }
                         }
                     }
@@ -1445,7 +1562,7 @@ public class inicio extends JFrame implements ActionListener{
 
             for (int i=0; i<aciertoPatologias.length;i++){
                 if (mayor == aciertoPatologias[i] && seleccionadoAciertoPatologias[i]!=1){
-                    porcentajes[0] = ((float)aciertoPatologias[i]/(tam))*100;
+                    porcentajes[0] = ((float)aciertoPatologias[i]/(totalRespuestasPatologias[i]))*100;
                     indiceRespuestasNombrePatologia[0] = i;
                     respuestasSeleccionadas[0] = new JCheckBox(nombrePatologias[i]+": "+decimales.format(porcentajes[0])+"%");
                     seleccionadoAciertoPatologias[i]=1;
@@ -1462,7 +1579,7 @@ public class inicio extends JFrame implements ActionListener{
 
             for (int i=0; i<aciertoPatologias.length;i++){
                 if (mayor == aciertoPatologias[i] && seleccionadoAciertoPatologias[i]!=1){
-                    porcentajes[1] = ((float)aciertoPatologias[i]/(tam))*100;
+                    porcentajes[1] = ((float)aciertoPatologias[i]/(totalRespuestasPatologias[i]))*100;
                     indiceRespuestasNombrePatologia[1] = i;
                     respuestasSeleccionadas[1] = new JCheckBox(nombrePatologias[i]+": "+decimales.format(porcentajes[1])+"%");
                     seleccionadoAciertoPatologias[i]=1;
@@ -1479,7 +1596,7 @@ public class inicio extends JFrame implements ActionListener{
 
             for (int i=0; i<aciertoPatologias.length;i++){
                 if (mayor == aciertoPatologias[i] && seleccionadoAciertoPatologias[i]!=1){
-                    porcentajes[2] = ((float)aciertoPatologias[i]/(tam))*100;
+                    porcentajes[2] = ((float)aciertoPatologias[i]/(totalRespuestasPatologias[i]))*100;
                     indiceRespuestasNombrePatologia[2] = i;
                     respuestasSeleccionadas[2] = new JCheckBox(nombrePatologias[i]+": "+decimales.format(porcentajes[2])+"%");
                     seleccionadoAciertoPatologias[i]=1;
@@ -1496,7 +1613,7 @@ public class inicio extends JFrame implements ActionListener{
             panel.add(new JLabel(" "));
             panel.add(respuestasSeleccionadas[2]);
 
-            tituloLbl.setText("Planteamiento de hipotesis de Diagnostico");
+            tituloLbl.setText("PLANTEAMIENTO DE HIPOTESIS DE DIAGNOSTICO");
             remove(siguienteAvanzarDiagnostico);
             remove(siguienteEtapa4);
             add(siguienteOtrasHipotesis);
@@ -1506,7 +1623,8 @@ public class inicio extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==siguienteEtapa4){
-            tituloLbl.setText("Etapa 4");
+            tituloLbl.setText("ETAPA 4");
+            remove(recomendacionBolatines);
             remove(siguienteOtrasHipotesis);
             remove(siguienteReporte);
             remove(siguienteEtapa4);
@@ -1540,7 +1658,7 @@ public class inicio extends JFrame implements ActionListener{
             }
             comboBox = new JComboBox(patologiasSeleccionar);
 
-            tituloLbl.setText("Seleccion de otra hipotesis");
+            tituloLbl.setText("SELECCION DE OTRAS HIPOTESIS");
             remove(siguienteOtrasHipotesis);
             panel.removeAll();
             panel.setBounds(300,200,300,50);
@@ -1551,13 +1669,13 @@ public class inicio extends JFrame implements ActionListener{
 
         if(e.getSource()==siguienteReporte ){
 
-            tituloLbl.setText("reporte");
+            tituloLbl.setText("REPORTE");
             panel.setBounds(300,200,600,400);
             scroller.setBounds(225,200,600,400);
             panel.removeAll();
             remove(siguienteReporte);
             remove(siguienteOtrasHipotesis);
-
+            repaint();
             if(otraPatologiaSeleccionada==0){
                 if(respuestasSeleccionadas[0].isSelected()){
                     try {
@@ -1592,10 +1710,12 @@ public class inicio extends JFrame implements ActionListener{
                 e1.printStackTrace();
             } catch (DocumentException e1) {
                 e1.printStackTrace();
-            }
+            } catch (SQLException e1) {
+               e1.printStackTrace();
+           }
 
             JFrame frame = new JFrame("PDF Test");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             PagePanel panel = new PagePanel();
             frame.add(panel);
             frame.pack();
@@ -1619,6 +1739,17 @@ public class inicio extends JFrame implements ActionListener{
 
             add(frame);
 
+            repaint();
+        }
+
+        if(e.getSource()==verImagenReferencia){
+            if(booleano == 0){
+                add(imagenReferencia);
+                booleano=1;
+            }else{
+                remove(imagenReferencia);
+                booleano=0;
+            }
             repaint();
         }
     }

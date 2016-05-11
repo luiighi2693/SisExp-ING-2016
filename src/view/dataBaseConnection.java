@@ -222,4 +222,49 @@ public class dataBaseConnection {
         rs.close();
         return ls;
     }
+
+    public ArrayList<String> selectSintomas(String patologia) throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT sintoma FROM matrizsintomas WHERE patologia = '"+patologia+"'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  rs.getString("sintoma");
+
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
+
+    public ArrayList<String> selectCausas(String patologia) throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT causa FROM matrizcausas WHERE patologia = '"+patologia+"'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  rs.getString("causa");
+
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
+
+    public ArrayList<String> selectTerapias(String patologia) throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT terapia FROM matrizterapias WHERE patologia = '"+patologia+"'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  rs.getString("terapia");
+
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
 }
