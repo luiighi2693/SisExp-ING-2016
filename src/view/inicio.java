@@ -30,7 +30,7 @@ public class inicio extends JFrame implements ActionListener{
     public JTextField nombreProyectoTxF, numeroCasoTxF, ingenieroEspecialistaTxF, cedulaTxF, fechaTxF;
     public JMenuBar menuBar;
     public JMenu menu;
-    public JMenuItem abrir, guardar;
+    public JMenuItem abrir, guardar, insertar;
     public JCheckBox vigaCbx, losaCbx, muroCbx, columnaCbx, mamposteriaCbx, agresivoCbx, noAgresivoCbx, manifestacionesFisicasCbx, manifestacionesQuimicasCbx;
     public JCheckBox respuestasFisurasColumnas1Cxb [], respuestasFisurasColumnas2Cxb [], respuestasFisurasLosas1Cxb [],
             respuestasFisurasLosas2Cxb [], respuestasFisurasMamposteria1Cxb [], respuestasFisurasMamposteria2Cxb [],
@@ -82,10 +82,16 @@ public class inicio extends JFrame implements ActionListener{
 
         abrir = new JMenuItem("abrir...");
         abrir.addActionListener(this);
+
+        insertar = new JMenuItem("insertar");
+        insertar.addActionListener(this);
+
         guardar = new JMenuItem("guardar");
         guardar.addActionListener(this);
+
         menu = new JMenu("Opciones");
         menu.add(abrir);
+        menu.add(insertar);
         menuBar = new JMenuBar();
         menuBar.add(menu);
         this.setJMenuBar(menuBar);
@@ -881,6 +887,13 @@ public class inicio extends JFrame implements ActionListener{
             System.out.println("presionaste abrir");
         }
 
+        if (e.getSource()==insertar){
+            remove(inicioImg);
+            remove(nuevaInspeccionBtn);
+            add(atrasDatosInspeccionBtn);
+            repaint();
+        }
+
         if(e.getSource()==guardar){
             safeChanges();
             System.out.println("\n");
@@ -894,6 +907,7 @@ public class inicio extends JFrame implements ActionListener{
 
         if (e.getSource()== nuevaInspeccionBtn){
             menu.remove(abrir);
+            menu.remove(insertar);
             menu.remove(guardar);
             remove(inicioImg);
             remove(nuevaInspeccionBtn);
@@ -918,6 +932,7 @@ public class inicio extends JFrame implements ActionListener{
 
         if (e.getSource()== atrasDatosInspeccionBtn){
             menu.add(abrir);
+            menu.add(insertar);
             menu.remove(guardar);
             remove(atrasDatosInspeccionBtn);
             remove(empezarInspeccionBtn);
