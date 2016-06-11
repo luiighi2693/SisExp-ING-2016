@@ -267,4 +267,19 @@ public class dataBaseConnection {
         rs.close();
         return ls;
     }
+
+    public ArrayList<String> selectPatologias() throws SQLException{
+        ArrayList<String> ls = new ArrayList<String>();
+        String concat;
+
+        PreparedStatement ps = con.prepareStatement("SELECT DISTINCT patologia FROM matrizterapias");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            concat =  rs.getString("patologia");
+
+            ls.add(concat);
+        }
+        rs.close();
+        return ls;
+    }
 }

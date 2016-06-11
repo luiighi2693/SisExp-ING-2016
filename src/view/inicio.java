@@ -60,6 +60,8 @@ public class inicio extends JFrame implements ActionListener{
     public JLabel imagenReferencia;
     public JButton verImagenReferencia;
     public int booleano = 0;
+    public JButton insertarCausasBtn, insertarSintomasBtn, insertarTerapiasBtn, insertarAceptarBtn;
+    public String tipoInsercion;
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
 
@@ -70,15 +72,15 @@ public class inicio extends JFrame implements ActionListener{
         inicializarComponentes();
 
         mostrarInicio();
-        this.setVisible(true);
+        setVisible(true);
     }
 
     public void configurarVentana(){
-        this.setTitle("inicio");
-        this.setSize(1024,768);
-        this.setLocationRelativeTo(null);
-        this.setLayout(null);
-        this.setResizable(false);
+        setTitle("inicio");
+        setSize(1024,768);
+        setLocationRelativeTo(null);
+        setLayout(null);
+        setResizable(false);
 
         abrir = new JMenuItem("abrir...");
         abrir.addActionListener(this);
@@ -94,9 +96,9 @@ public class inicio extends JFrame implements ActionListener{
         menu.add(insertar);
         menuBar = new JMenuBar();
         menuBar.add(menu);
-        this.setJMenuBar(menuBar);
+        setJMenuBar(menuBar);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void instancias(){
@@ -164,6 +166,11 @@ public class inicio extends JFrame implements ActionListener{
 
         condicionEtapa4Si = new JCheckBox();
         condicionEtapa4NO = new JCheckBox();
+
+        insertarCausasBtn = new JButton("Causas");
+        insertarSintomasBtn = new JButton("Sintomas");
+        insertarTerapiasBtn = new JButton("Terapias");
+        insertarAceptarBtn = new JButton("Insertar");
 
         panel = new JPanel();
         scroller = new JScrollPane(panel);
@@ -278,11 +285,21 @@ public class inicio extends JFrame implements ActionListener{
         scroller.setBounds(225,200,600,400);
         scroller.setAutoscrolls(true);
 
-//        recomendacionBolatines.setBounds();
+        insertarCausasBtn.setBounds(400,175,150,25);
+        insertarCausasBtn.addActionListener(this);
 
-        this.add(tituloLbl);
-        this.add(nuevaInspeccionBtn);
-        this.add(inicioImg);
+        insertarSintomasBtn.setBounds(400,225,150,25);
+        insertarSintomasBtn.addActionListener(this);
+
+        insertarTerapiasBtn.setBounds(400,275,150,25);
+        insertarTerapiasBtn.addActionListener(this);
+
+        insertarAceptarBtn.setBounds(850,650,150,30);
+        insertarAceptarBtn.addActionListener(this);
+
+        add(tituloLbl);
+        add(nuevaInspeccionBtn);
+        add(inicioImg);
     }
 
     public void mostrarInicio(){
@@ -358,21 +375,6 @@ public class inicio extends JFrame implements ActionListener{
     }
 
     public void inicializarArreglos() throws SQLException {
- /*       tamRespuestasFisurasColumnas1=0;
-        tamRespuestasFisurasColumnas2=0;
-        tamRespuestasFisurasLosas1=0;
-        tamRespuestasFisurasLosas2=0;
-        tamRespuestasFisurasMamposteria1=0;
-        tamRespuestasFisurasMamposteria2=0;
-        tamRespuestasFisurasMuros1=0;
-        tamRespuestasFisurasMuros2=0;
-        tamRespuestasFisurasVigas1=0;
-        tamRespuestasFisurasVigas2=0;
-        tamRespuestasManifestacionesFisicas1=0;
-        tamRespuestasManifestacionesFisicas2=0;
-        tamRespuestasManifestacionesQuimicas1=0;
-        tamRespuestasManifestacionesQuimicas2=0;
-*/
         if(etapaActual==1){
             if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
                 if(Objects.equals(elementoSeleccionado, "VIGAS")){
@@ -502,7 +504,6 @@ public class inicio extends JFrame implements ActionListener{
 
                     elementos= mc.selectRespuestasFromPreguntasPlanillasEtapas(etapaActual,elementoSeleccionado).get(i).split("/",2);
                     respuestas = elementos[1].split("-", Integer.parseInt(elementos[0]));
-
 
                     for (int j=0; j<respuestas.length; j++){
                         if(etapaActual==1){
@@ -891,6 +892,92 @@ public class inicio extends JFrame implements ActionListener{
             remove(inicioImg);
             remove(nuevaInspeccionBtn);
             add(atrasDatosInspeccionBtn);
+            add(insertarCausasBtn);
+            add(insertarSintomasBtn);
+            add(insertarTerapiasBtn);
+            tituloLbl.setText("Insertar");
+            tituloLbl.setBounds(400,100,400,25);
+            repaint();
+        }
+
+        if(e.getSource()==insertarTerapiasBtn){
+            remove(insertarCausasBtn);
+            remove(insertarTerapiasBtn);
+            remove(insertarSintomasBtn);
+            add(insertarAceptarBtn);
+            tituloLbl.setText("Terapias");
+            tituloLbl.setBounds(400,100,400,25);
+            tipoInsercion = "terapia";
+
+            String [] patologias = null;
+            try {
+                patologias = new String[mc.selectPatologias().size()];
+                for(int i=0; i<mc.selectPatologias().size();i++){
+                    patologias[i]= mc.selectPatologias().get(i);
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            comboBox = new JComboBox(patologias);
+            panel.removeAll();
+            scroller.setBounds(300,200,300,50);
+            panel.add(comboBox);
+            add(scroller);
+
+            repaint();
+        }
+
+        if(e.getSource()==insertarSintomasBtn){
+            remove(insertarCausasBtn);
+            remove(insertarTerapiasBtn);
+            remove(insertarSintomasBtn);
+            add(insertarAceptarBtn);
+            tituloLbl.setText("Sintomas");
+            tituloLbl.setBounds(400,100,400,25);
+            tipoInsercion = "sintoma";
+
+            String [] patologias = null;
+            try {
+                patologias = new String[mc.selectPatologias().size()];
+                for(int i=0; i<mc.selectPatologias().size();i++){
+                    patologias[i]= mc.selectPatologias().get(i);
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            comboBox = new JComboBox(patologias);
+            panel.removeAll();
+            scroller.setBounds(300,200,300,50);
+            panel.add(comboBox);
+            add(scroller);
+
+            repaint();
+        }
+
+        if(e.getSource()==insertarCausasBtn){
+            remove(insertarCausasBtn);
+            remove(insertarTerapiasBtn);
+            remove(insertarSintomasBtn);
+            add(insertarAceptarBtn);
+            tituloLbl.setText("Causas");
+            tituloLbl.setBounds(400,100,400,25);
+            tipoInsercion = "causa";
+
+            String [] patologias = null;
+            try {
+                patologias = new String[mc.selectPatologias().size()];
+                for(int i=0; i<mc.selectPatologias().size();i++){
+                    patologias[i]= mc.selectPatologias().get(i);
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            comboBox = new JComboBox(patologias);
+            panel.removeAll();
+            scroller.setBounds(300,200,300,50);
+            panel.add(comboBox);
+            add(scroller);
+
             repaint();
         }
 
@@ -979,6 +1066,10 @@ public class inicio extends JFrame implements ActionListener{
             remove(manifestacionesQuimicasCbx);
             remove(recomendacionBolatines);
             remove(imagenReferencia);
+            remove(insertarCausasBtn);
+            remove(insertarTerapiasBtn);
+            remove(insertarSintomasBtn);
+            remove(insertarAceptarBtn);
 
             add(nuevaInspeccionBtn);
             add(inicioImg);
