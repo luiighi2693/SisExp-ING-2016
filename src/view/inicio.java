@@ -62,6 +62,7 @@ public class inicio extends JFrame implements ActionListener{
     public int booleano = 0;
     public JButton insertarCausasBtn, insertarSintomasBtn, insertarTerapiasBtn, insertarAceptarBtn;
     public String tipoInsercion;
+    public JTextField camposInsercion[];
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
 
@@ -171,6 +172,11 @@ public class inicio extends JFrame implements ActionListener{
         insertarSintomasBtn = new JButton("Sintomas");
         insertarTerapiasBtn = new JButton("Terapias");
         insertarAceptarBtn = new JButton("Insertar");
+
+        camposInsercion = new JTextField[5];
+        for(int i=0; i<camposInsercion.length; i++){
+            camposInsercion[i] = new JTextField();
+        }
 
         panel = new JPanel();
         scroller = new JScrollPane(panel);
@@ -296,6 +302,10 @@ public class inicio extends JFrame implements ActionListener{
 
         insertarAceptarBtn.setBounds(850,650,150,30);
         insertarAceptarBtn.addActionListener(this);
+
+        for(int i=0; i<camposInsercion.length;i++){
+            camposInsercion[i].setBounds(400, 300+(30*i), 150, 25);
+        }
 
         add(tituloLbl);
         add(nuevaInspeccionBtn);
@@ -924,6 +934,10 @@ public class inicio extends JFrame implements ActionListener{
             panel.add(comboBox);
             add(scroller);
 
+            for(int i=0; i<camposInsercion.length;i++){
+                add(camposInsercion[i]);
+            }
+
             repaint();
         }
 
@@ -950,6 +964,10 @@ public class inicio extends JFrame implements ActionListener{
             scroller.setBounds(300,200,300,50);
             panel.add(comboBox);
             add(scroller);
+
+            for(int i=0; i<camposInsercion.length;i++){
+                add(camposInsercion[i]);
+            }
 
             repaint();
         }
@@ -978,7 +996,37 @@ public class inicio extends JFrame implements ActionListener{
             panel.add(comboBox);
             add(scroller);
 
+            for(int i=0; i<camposInsercion.length;i++){
+                add(camposInsercion[i]);
+            }
+
             repaint();
+        }
+
+        if(e.getSource()==insertarAceptarBtn){
+            String matrizInsercion="";
+            if(Objects.equals(tipoInsercion, "terapia")){
+                matrizInsercion="matrizterapias";
+            }else{
+                if(Objects.equals(tipoInsercion, "sintoma")){
+                    matrizInsercion="matrizsintomas";
+                }else{
+                    matrizInsercion="matrizcausas";
+                }
+            }
+
+            for(int i=0; i < camposInsercion.length; i++){
+                if(camposInsercion[i].getText().length()>0){
+                    try {
+                        mc.insertPropiedades(matrizInsercion,comboBox.getSelectedItem().toString(),tipoInsercion,camposInsercion[i].getText());
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+
+            JOptionPane.showMessageDialog(null,"Inserciòn Exitosa");
+            atrasDatosInspeccionBtn.doClick();
         }
 
         if(e.getSource()==guardar){
@@ -1070,6 +1118,9 @@ public class inicio extends JFrame implements ActionListener{
             remove(insertarTerapiasBtn);
             remove(insertarSintomasBtn);
             remove(insertarAceptarBtn);
+            for(int i=0; i<camposInsercion.length;i++){
+                remove(camposInsercion[i]);
+            }
 
             add(nuevaInspeccionBtn);
             add(inicioImg);

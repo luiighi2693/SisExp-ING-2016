@@ -13,7 +13,7 @@ public class dataBaseConnection {
     /**
      * constructor
      */
-    private dataBaseConnection() {
+    public dataBaseConnection() {
 
     }
 
@@ -66,28 +66,6 @@ public class dataBaseConnection {
         } catch (Exception e) {
             System.out.println("Error en el tancament de la connexió.");
         }
-    }
-
-    /**
-     * metodos
-     */
-    public ArrayList<String> selectBaseDatosTratamientos() throws SQLException{
-        ArrayList<String> ls = new ArrayList<String>();
-        String concat;
-
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM baseDatosTratamientos");
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-
-            concat = String.valueOf(rs.getInt("idPatologia")) + "\t"+
-                    rs.getString("patologia")+"\t"+
-                    String.valueOf(rs.getInt("numeroTratamiento")) + "\t"+
-                    rs.getString("tratamientoTerapias")+"\t";
-
-            ls.add(concat);
-        }
-        rs.close();
-        return ls;
     }
 
     public ArrayList<String> selectPreguntasFromPreguntasPlanillasEtapas(int numeroEtapa, String elemento) throws SQLException{
@@ -281,5 +259,10 @@ public class dataBaseConnection {
         }
         rs.close();
         return ls;
+    }
+
+    public void insertPropiedades(String tabla, String patologia, String metodo, String propiedad) throws SQLException{
+        PreparedStatement ps = con.prepareStatement("INSERT INTO "+tabla+" (patologia, "+metodo+") VALUES ('"+patologia+"', '"+propiedad+"')");
+        ps.execute();
     }
 }
