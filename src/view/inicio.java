@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -344,85 +343,58 @@ public class inicio extends JFrame implements ActionListener{
         return cont;
     }
 
-    public void inicializarIndices(){
+    public void inicializarIndices() throws SQLException {
         if (etapaActual==1){
             if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
                 if(Objects.equals(elementoSeleccionado, "VIGAS")){
+                    respuestasFisurasVigas1Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasVigas1=0;
                 }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
+                    respuestasFisurasColumnas1Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasColumnas1=0;
                 }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
+                    respuestasFisurasMamposteria1Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasMamposteria1=0;
                 }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
+                    respuestasFisurasLosas1Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasLosas1=0;
                 }else{
+                    respuestasFisurasMuros1Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasMuros1=0;
                 }
             }else if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")) {
+                respuestasManifestacionesFisicas1Cxb = new JCheckBox[contarElementos()];
                 tamRespuestasManifestacionesFisicas1=0;
             }else{
+                respuestasManifestacionesQuimicas1Cxb = new JCheckBox[contarElementos()];
                 tamRespuestasManifestacionesQuimicas1=0;
             }
         }else{
             if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
                 if(Objects.equals(elementoSeleccionado, "VIGAS")){
+                    respuestasFisurasVigas2Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasVigas2=0;
                 }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
+                    respuestasFisurasColumnas2Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasColumnas2=0;
                 }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
+                    respuestasFisurasMamposteria2Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasMamposteria2=0;
                 }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
+                    respuestasFisurasLosas2Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasLosas2=0;
                 }else{
+                    respuestasFisurasMuros2Cxb = new JCheckBox[contarElementos()];
                     tamRespuestasFisurasMuros2=0;
                 }
             }else if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")) {
+                respuestasManifestacionesFisicas2Cxb = new JCheckBox[contarElementos()];
                 tamRespuestasManifestacionesFisicas2=0;
             }else{
+                respuestasManifestacionesQuimicas2Cxb = new JCheckBox[contarElementos()];
                 tamRespuestasManifestacionesQuimicas2=0;
             }
         }
-    }
-
-    public void inicializarArreglos() throws SQLException {
-        if(etapaActual==1){
-            if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
-                if(Objects.equals(elementoSeleccionado, "VIGAS")){
-                    respuestasFisurasVigas1Cxb = new JCheckBox[contarElementos()];
-                }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
-                    respuestasFisurasColumnas1Cxb = new JCheckBox[contarElementos()];
-                }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
-                    respuestasFisurasMamposteria1Cxb = new JCheckBox[contarElementos()];
-                }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
-                    respuestasFisurasLosas1Cxb = new JCheckBox[contarElementos()];
-                }else{
-                    respuestasFisurasMuros1Cxb = new JCheckBox[contarElementos()];
-                }
-            }else if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")) {
-                respuestasManifestacionesFisicas1Cxb = new JCheckBox[contarElementos()];
-            }else{
-                respuestasManifestacionesQuimicas1Cxb = new JCheckBox[contarElementos()];
-            }
-        }else{
-            if(Objects.equals(manifestacionSeleccionada, "FISURAS")){
-                if(Objects.equals(elementoSeleccionado, "VIGAS")){
-                    respuestasFisurasVigas2Cxb = new JCheckBox[contarElementos()];
-                }else if(Objects.equals(elementoSeleccionado, "COLUMNAS")){
-                    respuestasFisurasColumnas2Cxb = new JCheckBox[contarElementos()];
-                }else if(Objects.equals(elementoSeleccionado, "MAMPOSTERIA")){
-                    respuestasFisurasMamposteria2Cxb = new JCheckBox[contarElementos()];
-                }else if(Objects.equals(elementoSeleccionado, "LOSAS")){
-                    respuestasFisurasLosas2Cxb = new JCheckBox[contarElementos()];
-                }else{
-                    respuestasFisurasMuros2Cxb = new JCheckBox[contarElementos()];
-                }
-            }else if(Objects.equals(manifestacionSeleccionada, "MANIFESTACION FISICA")) {
-                respuestasManifestacionesFisicas2Cxb = new JCheckBox[contarElementos()];
-            }else{
-                respuestasManifestacionesQuimicas2Cxb = new JCheckBox[contarElementos()];
-            }
-        }
-        System.out.print(contarElementos());
     }
 
     public void preguntasInPane(String tipo) throws SQLException {
@@ -1207,7 +1179,7 @@ public class inicio extends JFrame implements ActionListener{
             manifestacionSeleccionada= "FISURAS";
 
             try {
-                inicializarArreglos();
+                inicializarIndices();
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
@@ -1244,9 +1216,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(siguienteEtapa1Fisura);
             remove(recomendacionBolatines);
             add(siguienteBoletin2Fisura);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("etapa");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1263,9 +1234,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(imagenReferencia);
             add(siguienteEtapa2Fisura);
             add(recomendacionBolatines);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("boletin");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1278,9 +1248,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(siguienteEtapa2Fisura);
             remove(recomendacionBolatines);
             add(siguienteBoletin1Fisica);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("etapa");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1297,9 +1266,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(siguienteBoletin1Fisica);
             add(recomendacionBolatines);
             add(siguienteEtapa1Fisica);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("boletin");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1316,9 +1284,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(siguienteEtapa1Fisica);
             remove(recomendacionBolatines);
             add(siguienteBoletin2Fisica);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("etapa");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1338,9 +1305,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(siguienteBoletin2Fisica);
             add(recomendacionBolatines);
             add(siguienteEtapa2Fisica);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("boletin");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1357,9 +1323,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(recomendacionBolatines);
             remove(siguienteEtapa2Fisica);
             add(siguienteBoletin1Quimica);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("etapa");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1381,9 +1346,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(siguienteBoletin1Quimica);
             add(recomendacionBolatines);
             add(siguienteEtapa1Quimica);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("boletin");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1401,9 +1365,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(recomendacionBolatines);
             remove(siguienteEtapa1Quimica);
             add(siguienteBoletin2Quimica);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("etapa");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1423,9 +1386,8 @@ public class inicio extends JFrame implements ActionListener{
             add(recomendacionBolatines);
             remove(siguienteBoletin2Quimica);
             add(siguienteEtapa2Quimica);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("boletin");
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -1442,9 +1404,8 @@ public class inicio extends JFrame implements ActionListener{
             remove(recomendacionBolatines);
             remove(siguienteEtapa2Quimica);
             add(siguienteBoletin3);
-            inicializarIndices();
             try {
-                inicializarArreglos();
+                inicializarIndices();
                 preguntasInPane("etapa");
             } catch (SQLException e1) {
                 e1.printStackTrace();
