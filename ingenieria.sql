@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2016 a las 04:25:58
+-- Tiempo de generación: 22-06-2016 a las 04:47:04
 -- Versión del servidor: 10.0.17-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -762,7 +762,8 @@ INSERT INTO `matrizrespuestaspatologicasmuros_patologia` (`nombre`, `numeroPregu
 ('QUIMICAS', 18, 'Presencia de Iones Cloruro', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
 ('QUIMICAS', 19, 'Perdida de Cohesion entre Cemento y Agregados /Acero', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
 ('QUIMICAS', 20, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
-('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO');
+('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
+('QUIMICAS', 22, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'MARINO / QUIMICO', 'MARINO', 'URBANO/INDUSTRIAL', 'NO', 'NO', 'MARINO', 'NO', 'CUALQUIERA', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO');
 
 -- --------------------------------------------------------
 
@@ -899,7 +900,8 @@ INSERT INTO `matrizrespuestaspatologicasparedes_patologia` (`nombre`, `numeroPre
 ('QUIMICAS', 18, 'Presencia de Iones Cloruro', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO'),
 ('QUIMICAS', 19, 'Perdida de Cohesion entre Cemento y Agregados /Acero', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
 ('QUIMICAS', 20, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
-('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI');
+('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI'),
+('QUIMICAS', 22, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'MARINO', 'URBANO / INDUSTRIAL', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'CUALQUIERA', 'MARINO', 'NO', 'NO');
 
 -- --------------------------------------------------------
 
@@ -1062,7 +1064,8 @@ INSERT INTO `matrizrespuestaspatologicasvigas_patologia` (`nombre`, `numeroPregu
 ('QUIMICAS', 18, 'Presencia de Iones Cloruro', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
 ('QUIMICAS', 19, 'Perdida de Cohesion entre Cemento y Agregados /Acero', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
 ('QUIMICAS', 20, 'Presencia de Sulfatos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
-('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO');
+('QUIMICAS', 21, 'Presencia de Microorganismos', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'SI', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO'),
+('QUIMICAS', 22, 'Presencia de Ambiente Agresivo', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'MARINO / QUIMICO', 'MARINO', 'URBANO / INDUSTRIAL', 'NO', 'NO', 'MARINO', 'NO', 'CUALQUIERA', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'INDUSTRIAL', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO');
 
 -- --------------------------------------------------------
 
