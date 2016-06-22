@@ -1509,6 +1509,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasVigas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasVigas1Str[j],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasVigas1Str[j],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
@@ -1520,6 +1524,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasVigas2Str[j-respuestasFisurasVigas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasVigas2Str[j-respuestasFisurasVigas1Str.length],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasVigas2Str[j-respuestasFisurasVigas1Str.length],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
@@ -1532,6 +1540,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasColumnas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasColumnas1Str[j],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasColumnas1Str[j],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
@@ -1543,6 +1555,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasColumnas2Str[j-respuestasFisurasColumnas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasColumnas2Str[j-respuestasFisurasColumnas1Str.length],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasColumnas2Str[j-respuestasFisurasColumnas1Str.length],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
@@ -1554,6 +1570,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasMamposteria1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasMamposteria1Str[j],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasMamposteria1Str[j],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
@@ -1565,6 +1585,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasMamposteria2Str[j-respuestasFisurasMamposteria1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasMamposteria2Str[j-respuestasFisurasMamposteria1Str.length],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasMamposteria2Str[j-respuestasFisurasMamposteria1Str.length],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
@@ -1576,6 +1600,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasLosas1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasLosas1Str[j],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasLosas1Str[j],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
@@ -1587,6 +1615,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasLosas2Str[j-respuestasFisurasLosas1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasLosas2Str[j-respuestasFisurasLosas1Str.length],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasLosas2Str[j-respuestasFisurasLosas1Str.length],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
@@ -1598,6 +1630,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasMuros1Str[j], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasMuros1Str[j],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasMuros1Str[j],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
@@ -1609,6 +1645,10 @@ public class inicio extends JFrame implements ActionListener{
                                     cont++;
                                 }else if (Objects.equals(respuestasFisurasMuros2Str[j-respuestasFisurasMuros1Str.length], mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
                                     cont++;
+                                }else if(Objects.equals("HORIZONTALMENTE / VERTICALMENTE", mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasMuros2Str[j-respuestasFisurasMuros1Str.length],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasMuros2Str[j-respuestasFisurasMuros1Str.length],"VERTICALMENTE")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
