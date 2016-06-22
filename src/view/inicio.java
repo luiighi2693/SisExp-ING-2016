@@ -30,7 +30,7 @@ public class inicio extends JFrame implements ActionListener{
     public JMenuBar menuBar;
     public JMenu menu;
     public JMenuItem abrir, guardar, insertar;
-    public JCheckBox vigaCbx, losaCbx, muroCbx, columnaCbx, mamposteriaCbx, agresivoCbx, noAgresivoCbx, manifestacionesFisicasCbx, manifestacionesQuimicasCbx;
+    public JCheckBox vigaCbx, losaCbx, muroCbx, columnaCbx, mamposteriaCbx, manifestacionesFisicasCbx, manifestacionesQuimicasCbx;
     public JCheckBox respuestasFisurasColumnas1Cxb [], respuestasFisurasColumnas2Cxb [], respuestasFisurasLosas1Cxb [],
             respuestasFisurasLosas2Cxb [], respuestasFisurasMamposteria1Cxb [], respuestasFisurasMamposteria2Cxb [],
             respuestasFisurasMuros1Cxb [], respuestasFisurasMuros2Cxb [], respuestasFisurasVigas1Cxb [],
@@ -62,6 +62,7 @@ public class inicio extends JFrame implements ActionListener{
     public JButton insertarCausasBtn, insertarSintomasBtn, insertarTerapiasBtn, insertarAceptarBtn;
     public String tipoInsercion;
     public JTextField camposInsercion[];
+    public JCheckBox ambienteMarino, ambienteUrbano, ambienteIndustrial, ambienteQuimico, ambienteNo;
 
     private static dataBaseConnection mc = dataBaseConnection.getInstance();
 
@@ -127,8 +128,11 @@ public class inicio extends JFrame implements ActionListener{
         manifestacionesFisicasCbx = new JCheckBox("Manifestaciones Fisicas");
         manifestacionesQuimicasCbx = new JCheckBox("Manifestaciones Quimicas");
 
-        agresivoCbx = new JCheckBox("Agresivo");
-        noAgresivoCbx = new JCheckBox("No Agresivo");
+        ambienteMarino = new JCheckBox("Marino");
+        ambienteUrbano = new JCheckBox("Urbano");
+        ambienteIndustrial = new JCheckBox("Industria");
+        ambienteQuimico = new JCheckBox("Químico");
+        ambienteNo = new JCheckBox("No");
 
         elementoInicialLbl = new JLabel("Combinación de elemento-sintoma:");
         tipoAmbienteLbl = new JLabel("Tipo de Ambiente");
@@ -227,8 +231,11 @@ public class inicio extends JFrame implements ActionListener{
 
         tipoAmbienteLbl.setBounds(300,400,150,25);
 
-        agresivoCbx.setBounds(350,425,150,25);
-        noAgresivoCbx.setBounds(350,450,150,25);
+        ambienteMarino.setBounds(350,425,150,25);
+        ambienteUrbano.setBounds(350,450,150,25);
+        ambienteIndustrial.setBounds(350,475,150,25);
+        ambienteQuimico.setBounds(350,500,150,25);
+        ambienteNo.setBounds(350,525,150,25);
 
         siguienteBoletin1Fisura.setBounds(850,650,150,30);
         siguienteBoletin1Fisura.addActionListener(this);
@@ -1060,8 +1067,11 @@ public class inicio extends JFrame implements ActionListener{
             remove(mamposteriaCbx);
             remove(muroCbx);
             remove(tipoAmbienteLbl);
-            remove(agresivoCbx);
-            remove(noAgresivoCbx);
+            remove(ambienteIndustrial);
+            remove(ambienteMarino);
+            remove(ambienteQuimico);
+            remove(ambienteUrbano);
+            remove(ambienteNo);
             remove(scroller);
             remove(siguienteEtapa4);
             remove(siguienteOtrasHipotesis);
@@ -1127,8 +1137,11 @@ public class inicio extends JFrame implements ActionListener{
             add(mamposteriaCbx);
             add(muroCbx);
             add(tipoAmbienteLbl);
-            add(agresivoCbx);
-            add(noAgresivoCbx);
+            add(ambienteIndustrial);
+            add(ambienteQuimico);
+            add(ambienteUrbano);
+            add(ambienteMarino);
+            add(ambienteNo);
             add(siguienteBoletin1Fisura);
             add(manifestacionesQuimicasCbx);
             add(manifestacionesFisicasCbx);
@@ -1167,11 +1180,24 @@ public class inicio extends JFrame implements ActionListener{
                 elementoSeleccionado= "MUROS";
             }
 
-            if(agresivoCbx.isSelected()){
-                ambienteSeleccionado = agresivoCbx.getText();
+            if(ambienteIndustrial.isSelected()){
+                ambienteSeleccionado = "INDUSTRIAL";
             }
-            else{
-                ambienteSeleccionado = noAgresivoCbx.getText();
+
+            if(ambienteMarino.isSelected()){
+                ambienteSeleccionado = "MARINO";
+            }
+
+            if(ambienteQuimico.isSelected()){
+               ambienteSeleccionado = "QUIMICO";
+            }
+
+            if(ambienteUrbano.isSelected()){
+                ambienteSeleccionado = "URBANO";
+            }
+
+            if(ambienteNo.isSelected()){
+                ambienteSeleccionado = "NO";
             }
 
             etapaActual=1;
@@ -1193,8 +1219,11 @@ public class inicio extends JFrame implements ActionListener{
             remove(mamposteriaCbx);
             remove(muroCbx);
             remove(tipoAmbienteLbl);
-            remove(agresivoCbx);
-            remove(noAgresivoCbx);
+            remove(ambienteIndustrial);
+            remove(ambienteMarino);
+            remove(ambienteQuimico);
+            remove(ambienteUrbano);
+            remove(ambienteNo);
             remove(siguienteBoletin1Fisura);
             remove(cargaDatosImg);
             remove(manifestacionesFisicasCbx);
@@ -1625,9 +1654,32 @@ public class inicio extends JFrame implements ActionListener{
 
                         for(int j=respuestasManifestacionesQuimicas1Str.length; j<(respuestasManifestacionesQuimicas2Str.length+respuestasManifestacionesQuimicas1Str.length); j++){
                             if(j==(respuestasManifestacionesQuimicas2Str.length+respuestasManifestacionesQuimicas1Str.length)){
-                                if(agresivoCbx.isSelected()&& !Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j+1), "NO")){
-                                    cont++;
-                                    totalRespuestasPatologias[i]++;
+                                if(!Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j+1), "NO")){
+                                    if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j+1), ambienteSeleccionado)){
+                                        cont++;
+                                        totalRespuestasPatologias[i]++;
+                                    }
+
+                                    if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j+1), "MARINO / QUIMICO")){
+                                        if(ambienteSeleccionado.equals("MARINO")||ambienteSeleccionado.equals("QUIMICO")){
+                                            cont++;
+                                            totalRespuestasPatologias[i]++;
+                                        }
+                                    }
+
+                                    if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j+1), "URBANO / INDUSTRIAL")){
+                                        if(ambienteSeleccionado.equals("URBANO")||ambienteSeleccionado.equals("INDUSTRIAL")){
+                                            cont++;
+                                            totalRespuestasPatologias[i]++;
+                                        }
+                                    }
+
+                                    if(Objects.equals(mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "QUIMICAS").get(j+1), "INDUSTRIAL / QUIMICO")){
+                                        if(ambienteSeleccionado.equals("INDUSTRIAL")||ambienteSeleccionado.equals("QUIMICO")){
+                                            cont++;
+                                            totalRespuestasPatologias[i]++;
+                                        }
+                                    }
                                 }
                             }
 
