@@ -1544,6 +1544,10 @@ public class inicio extends JFrame implements ActionListener{
                                     if(Objects.equals(respuestasFisurasColumnas1Str[j],"HORIZONTALMENTE")||Objects.equals(respuestasFisurasColumnas1Str[j],"VERTICALMENTE")){
                                         cont++;
                                     }
+                                }else if(Objects.equals("A,B,C,D,E",mc.selectTablaForHipotesis(tablaSeleccionada, idNombrePatologias[i], "FISURAS").get(j))){
+                                    if(Objects.equals(respuestasFisurasColumnas1Str[j],"A")||Objects.equals(respuestasFisurasColumnas1Str[j],"B")||Objects.equals(respuestasFisurasColumnas1Str[j],"C")||Objects.equals(respuestasFisurasColumnas1Str[j],"D")||Objects.equals(respuestasFisurasColumnas1Str[j],"E")){
+                                        cont++;
+                                    }
                                 }
                             }
                         }
